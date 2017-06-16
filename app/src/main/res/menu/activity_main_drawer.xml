@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item android:title = "Statistical Attack">
+            <menu>
+                <item
+                    android:id="@+id/nav_frequency"
+                    android:icon="@drawable/ic_frequency"
+                    android:title="Frequency Counter" />
+                <item
+                    android:id="@+id/nav_ioc"
+                    android:icon="@drawable/ic_ioc"
+                    android:title="Index of Coincidence" />
+                <item
+                    android:id="@+id/nav_period"
+                    android:icon="@drawable/ic_period"
+                    android:title="Period" />
+                <item
+                    android:id="@+id/nav_sub"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Substitution Cipher" />
+            </menu>
+    </item>
+    <item android:title="Ciphers">
+        <menu>
+            <item
+                android:id="@+id/nav_vingere"
+                android:icon="@drawable/ic_vigenere"
+                android:title="Vingere" />
+            <item
+                android:id="@+id/nav_transpo"
+                android:icon="@drawable/ic_transposition"
+                android:title="Transposition"/>
+        </menu>
+    </item>
+    </group>
+</menu>

@@ -84,7 +84,7 @@ public class ioc extends Fragment {
 
         calIOC = (Button) view.findViewById(R.id.calioc);
         displayIOC = (TextView)view.findViewById(R.id.displayioc);
-        displayInput = (TextView)view.findViewById(R.id.inputpreview);
+        displayInput = (TextView)view.findViewById(R.id.inputpreviewIOC);
         displayInput.setText(globalText);
         //back = (Button)findViewById(R.id.btnBack);
         reset = (Button) view.findViewById(R.id.btnreset);

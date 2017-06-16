@@ -2,6 +2,42 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="C:\Users\Panda\.android\build-cache\7cbd338f5a6700ba2f2a5581d4285ffff9b5bafb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\pre-dexed\debug\classes_a80abb9fa66bba06978d840d50ea22094b8aac17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Panda\.android\build-cache\34585a3761aaa64cb5ad209bcd964a43c4586297\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\pre-dexed\debug\classes_6ee1b395b3c64f59814b5b144a4f49dab40b9e6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Panda\.android\build-cache\c64d103f191da523ed1bc98d9a7ec5f436e2327f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\pre-dexed\debug\classes_574757fb91f47797bd3858d217c3850ae782b323.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Panda\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.2\5d4eb08a326bdbd7fbbddc769666898c9936b282\MPAndroidChart-v3.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5d4eb08a326bdbd7fbbddc769666898c9936b282">
+        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v3.0.2_e2153badc31c665f0d029b73eaa03fe5b7c7aeae.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"

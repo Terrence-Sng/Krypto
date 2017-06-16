@@ -81,15 +81,14 @@ public class vigenere extends Fragment {
         encrypt = (Button) view.findViewById(R.id.btnEnc);
         decrypt = (Button) view.findViewById(R.id.btnDec);
         displayResult = (TextView) view.findViewById(R.id.Output);
+        editKey = (EditText) view.findViewById(R.id.inputkey);
+        editPlain = (EditText) view.findViewById(R.id.inputPT);
         //back = (Button) findViewById(R.id.btnBack);
         reset = (Button) view.findViewById(R.id.btnreset);
 
         encrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                editKey = (EditText) view.findViewById(R.id.inputkey);
                 String keyword = editKey.getText().toString();
-
-                editPlain = (EditText) view.findViewById(R.id.inputPT);
                 String msg = editPlain.getText().toString();
                 msg = msg.replaceAll("[^A-Za-z]+","");
                 msg = msg.toLowerCase();
@@ -141,12 +140,12 @@ public class vigenere extends Fragment {
 
         decrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                editKey = (EditText) view.findViewById(R.id.inputkey);
+                //editKey = (EditText) view.findViewById(R.id.inputkey);
                 String keyword = editKey.getText().toString();
                 keyword = keyword.replaceAll("[^A-Za-z]+","");
                 keyword = keyword.toLowerCase();
 
-                editPlain = (EditText) view.findViewById(R.id.inputPT);
+               // editPlain = (EditText) view.findViewById(R.id.inputPT);
                 String msg = editPlain.getText().toString();
                 msg = msg.replaceAll("[^A-Za-z]+","");
                 msg = msg.toLowerCase();

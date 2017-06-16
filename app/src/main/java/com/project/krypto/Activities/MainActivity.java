@@ -1,7 +1,9 @@
 package com.project.krypto.Activities;
 
+import android.media.audiofx.EnvironmentalReverb;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
 import com.project.krypto.Fragments.Sub.subCipher;
@@ -27,6 +30,10 @@ import com.project.krypto.Fragments.period.*;
 import com.project.krypto.Fragments.vingere.*;
 import com.project.krypto.Fragments.transpo.*;
 import com.project.krypto.R;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener, nGramCounter.OnFragmentInteractionListener,
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         initFrags();
-
+        checkExternalStorage();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +181,47 @@ public class MainActivity extends AppCompatActivity
         iocFrag.updateText(text);
         periodFrag.updateText(text);
         subcipher.updateText(text);
+    }
+
+    public void checkExternalStorage()
+    {
+        boolean mExternalStorageAvailable = false;
+        boolean mExternalStorageWriteable = false;
+        String state = Environment.getExternalStorageState();
+
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            // We can read and write the media
+            mExternalStorageAvailable = mExternalStorageWriteable = true;
+            Log.d("Log" , "External Storage Available");
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            // We can only read the media
+            mExternalStorageAvailable = true;
+            mExternalStorageWriteable = false;
+            Log.d("Log" , "External Storage Available cannot write");
+        } else {
+            // Something else is wrong. It may be one of many other states, but all we need
+            //  to know is we can neither read nor write
+            mExternalStorageAvailable = mExternalStorageWriteable = false;
+            Log.d("Log" , "External Storage not Available");
+        }
+
+        if(mExternalStorageAvailable == true && mExternalStorageWriteable == true) {
+            try {
+                File newFile = new File(Environment.getExternalStorageDirectory(), "Cipher");
+                if (!newFile.exists()) {
+                    newFile.mkdirs();
+                }
+                File notes = new File(newFile, "cipher1");
+                FileWriter fw = new FileWriter(notes);
+                fw.append("hello");
+                fw.flush();
+                fw.close();
+                Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
+            } catch (IOException e)
+            {
+                Log.d("Saving issues", "cannot save");
+        }
+        }
     }
 
 }

@@ -1,0 +1,151 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Substitution Cipher"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="86dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="86dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inputSubGroup"
+        android:layout_below="@+id/titleSub"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/readButtons"
+            android:layout_below="@+id/input"
+            android:layout_centerInParent="true">
+            <Button
+                android:id="@+id/btninsert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/or"
+                android:textStyle="bold"
+                android:textSize ="20dp"
+                android:text="or"
+                android:layout_toRightOf="@+id/btninsert"
+                android:layout_alignBaseline="@+id/btninsert"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/getFromHome"
+                android:text = "Get Text From Home"
+                android:layout_toRightOf="@+id/or"
+                android:layout_alignBaseline="@+id/btninsert"/>
+        </RelativeLayout>
+            <EditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Text"
+                android:inputType="textPersonName"
+                android:textIsSelectable="true" />
+    </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/spinnerSubGroup"
+    android:layout_below="@+id/inputSubGroup"
+    android:layout_centerInParent="true"
+    android:layout_marginTop="10dp">
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="112dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="112dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_toRightOf="@+id/spinner1" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/subRestbuttons"
+    android:layout_below="@+id/spinnerSubGroup"
+    android:layout_centerInParent="true">
+    <Button
+        android:id="@+id/btnsub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Substitute" />
+
+    <Button
+        android:id="@+id/btnreset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset"
+        android:layout_toRightOf="@+id/btnsub"/>
+</RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/beforeAfterSub"
+        android:layout_below="@+id/subRestbuttons"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/beforeSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Before Substitution" />
+
+        <TextView
+            android:id="@+id/before"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:layout_marginTop="2dp"
+            android:textIsSelectable="true"
+            android:layout_below="@+id/beforeSubTitle" />
+
+        <TextView
+            android:id="@+id/afterSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="After Substitution"
+            android:layout_below="@+id/before"/>
+
+        <TextView
+            android:id="@+id/after"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:layout_marginTop="2dp"
+            android:textIsSelectable="true"
+            android:layout_below="@id/afterSubTitle"/>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

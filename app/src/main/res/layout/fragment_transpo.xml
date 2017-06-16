@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.project.krypto.Fragments.transpo.transpo">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/transpoTitle"
+        android:text="Transposition"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:ems="10"
+        android:hint="text message"
+        android:inputType="textPersonName"
+        android:text="sample text"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/transpoTitle"/>
+
+    <RelativeLayout
+        android:id="@+id/blockSizeGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/editText">
+
+        <TextView
+            android:id="@+id/blockSizeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="51dp"
+            android:gravity="center"
+            android:text="Block Size :"
+            android:textSize = "20dp"/>
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="57dp"
+            android:layout_height="51dp"
+            android:ems="10"
+            android:hint="blk/row"
+            android:inputType="number"
+            android:text="7"
+            android:textAlignment="center"
+            android:layout_toRightOf="@+id/blockSizeTitle"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonGroup"
+        android:layout_below="@+id/blockSizeGroup"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/transpo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transpo by blk" />
+
+        <Button
+            android:id="@+id/encrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="encrypt"
+            android:layout_toRightOf="@+id/transpo"/>
+
+        <Button
+            android:id="@+id/decrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="decrypt"
+            android:layout_toRightOf="@+id/encrypt" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/outputText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="output"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/buttonGroup" />
+
+
+<!--
+    <Button
+        android:id="@+id/ex_Blk"
+        android:layout_width="94dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ex blk"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/ex_Enc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ex enc"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintLeft_toRightOf="@+id/ex_Blk"
+        app:layout_constraintRight_toRightOf="@+id/ex_Dec"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/ex_Dec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="244dp"
+        android:layout_marginTop="8dp"
+        android:text="ex Dec"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/decrypt"
+        app:layout_constraintVertical_bias="1.0" />-->
+
+</RelativeLayout>

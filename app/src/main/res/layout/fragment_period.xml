@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="339dp"
+        android:layout_height="51dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="16dp"
+        android:text="Caculate Index of Coincidence using Periods"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="23dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textGroup">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text = "Input Preview"></TextView>
+        <TextView
+        android:id="@+id/periodText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:inputType="textPersonName"
+        android:textIsSelectable="true"
+        android:layout_marginTop="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textGroup"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editGroup">
+        <EditText
+        android:id="@+id/editperiod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Period"
+        android:inputType="textPersonName" />
+        <Button
+        android:id="@+id/calioc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="calculate"
+        android:layout_toRightOf="@+id/editperiod"/>
+        <Button
+        android:id="@+id/btnreset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset"
+        android:layout_toRightOf="@id/calioc"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editGroup"
+        android:layout_marginTop="10dp">
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Period Results"
+            android:id="@+id/periodResultTitle"/>
+            <TextView
+            android:id="@+id/results"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scrollbars = "vertical"
+            android:layout_below="@+id/periodResultTitle"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

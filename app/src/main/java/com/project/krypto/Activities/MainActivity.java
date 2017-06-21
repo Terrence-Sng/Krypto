@@ -1,39 +1,40 @@
 package com.project.krypto.Activities;
 
-import android.media.audiofx.EnvironmentalReverb;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
 import com.project.krypto.Fragments.Sub.subCipher;
+import com.project.krypto.Fragments.ioc.ioc;
 import com.project.krypto.Fragments.nGram.nGramCounter;
-import com.project.krypto.Fragments.ioc.*;
-import com.project.krypto.Fragments.period.*;
-//import com.example.panda.krypto.Interfaces.fragmentInterfaces;
-import com.project.krypto.Fragments.vingere.*;
-import com.project.krypto.Fragments.transpo.*;
+import com.project.krypto.Fragments.period.period;
+import com.project.krypto.Fragments.transpo.transpo;
+import com.project.krypto.Fragments.vingere.vigenere;
 import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+//import com.example.panda.krypto.Interfaces.fragmentInterfaces;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener, nGramCounter.OnFragmentInteractionListener,
@@ -117,6 +118,11 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id== R.id.transpoHelp)
+        {
+            Intent intent = new Intent(this, TranspoHelpActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

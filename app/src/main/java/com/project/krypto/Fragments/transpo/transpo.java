@@ -3,10 +3,10 @@ package com.project.krypto.Fragments.transpo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -73,7 +73,7 @@ public class transpo extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_transpo, container, false);
-
+        setHasOptionsMenu(true);
         final EditText mEdit = (EditText) view.findViewById(R.id.editText);
         final EditText mEdit2 = (EditText) view.findViewById(R.id.editText2);
         final TextView textView = (TextView) view.findViewById(R.id.outputText);
@@ -425,5 +425,12 @@ public class transpo extends Fragment {
         {
             System.out.println("Invalid Choice");
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.transpomain, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

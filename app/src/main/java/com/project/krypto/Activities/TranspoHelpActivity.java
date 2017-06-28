@@ -42,7 +42,9 @@ public class TranspoHelpActivity extends AppCompatActivity implements TranspoFra
                 onBackPressed();
             }
         });
+
         initList();
+
         viewPager = (ViewPager) findViewById(R.id.ViewPager);
         viewPager.setAdapter(new HelpPagerAdapter(
                 getSupportFragmentManager()));
@@ -59,7 +61,8 @@ public class TranspoHelpActivity extends AppCompatActivity implements TranspoFra
 
     public void initList()
     {
-        list.add(new TranspoFragment());
+        TranspoFragment frag1 = new TranspoFragment().newInstance("1", "hellow 2nd String");
+        list.add(frag1);
         list.add(new TranspoFragment());
     }
     @Override

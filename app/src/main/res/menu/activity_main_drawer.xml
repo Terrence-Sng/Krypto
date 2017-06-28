@@ -29,14 +29,16 @@
     <item android:title="Ciphers">
         <menu>
             <item
-                android:id="@+id/nav_vingere"
+                android:id="@+id/nav_vigenere"
                 android:icon="@drawable/ic_vigenere"
-                android:title="Vingere" />
+                android:title="Vigenere" />
             <item
                 android:id="@+id/nav_transpo"
                 android:icon="@drawable/ic_transposition"
                 android:title="Transposition"/>
         </menu>
     </item>
+        <item android:title="Logout"
+            android:id ="@+id/logout"/>
     </group>
 </menu>

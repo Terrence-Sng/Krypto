@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
@@ -28,17 +27,21 @@ import com.project.krypto.Fragments.nGram.nGramCounter;
 import com.project.krypto.Fragments.period.period;
 import com.project.krypto.Fragments.transpo.transpo;
 import com.project.krypto.Fragments.vingere.vigenere;
+import com.project.krypto.Helper.SQLiteHandler;
+import com.project.krypto.Helper.SessionManager;
+import com.project.krypto.LoginRegisterActivity.LoginActivity;
 import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 
 //import com.example.panda.krypto.Interfaces.fragmentInterfaces;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener, nGramCounter.OnFragmentInteractionListener,
-        ioc.OnFragmentInteractionListener, period.OnFragmentInteractionListener, vigenere.OnFragmentInteractionListener, subCipher.OnFragmentInteractionListener, transpo.OnFragmentInteractionListener{//, fragmentInterfaces {
+        ioc.OnFragmentInteractionListener, period.OnFragmentInteractionListener, vigenere.OnFragmentInteractionListener, subCipher.OnFragmentInteractionListener, transpo.OnFragmentInteractionListener {//, fragmentInterfaces {
 
     private Toolbar toolbar;
     private ExpandableListView expandableList;
@@ -49,24 +52,22 @@ public class MainActivity extends AppCompatActivity
     private vigenere vigFrag;
     private subCipher subcipher;
     private transpo transpo;
+    private TextView username, textEmail;
+
+    private SQLiteHandler db;
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Krypto");
         setSupportActionBar(toolbar);
 
         initFrags();
         checkExternalStorage();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
@@ -75,22 +76,27 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             showHomeFrag();
         }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        username = (TextView) headerView.findViewById(R.id.userName);
+        textEmail = (TextView) headerView.findViewById(R.id.userEmail);
+        initUserSession();
     }
 
-    public void showHomeFrag ()
-    {
+    public void showHomeFrag() {
         Fragment fragment = homeFrag;
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         toolbar.setTitle("Home");
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -119,8 +125,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id== R.id.transpoHelp)
-        {
+        if (id == R.id.transpoHelp) {
             Intent intent = new Intent(this, TranspoHelpActivity.class);
             startActivity(intent);
         }
@@ -149,20 +154,42 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_period) {
             fragment = periodFrag;
             toolbar.setTitle("Period");
-        } else if (id == R.id.nav_vingere) {
+        } else if (id == R.id.nav_vigenere) {
             fragment = vigFrag;
+            toolbar.setTitle("Vingere Cipher");
         } else if (id == R.id.nav_sub) {
             fragment = subcipher;
-        } else if (id == R.id.nav_transpo)
-        {
+            toolbar.setTitle("Substitute Cipher");
+        } else if (id == R.id.nav_transpo) {
             fragment = transpo;
+            toolbar.setTitle("Transposition Cipher");
+        } else
+        {
+            logoutUser();
+        }
+        if(fragment != null) {
+            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         }
 
-        fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onDestory()
+    {
+        super.onDestroy();
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        Intent intent = new Intent (MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+
+        Log.d("Destory", "Destory called");
+
     }
 
     public void initFrags()
@@ -230,4 +257,40 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void initUserSession()
+    {
+        db = new SQLiteHandler(getApplicationContext());
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+
+        String name = user.get("name");
+        String email = user.get("email");
+
+        // Displaying the user details on the screen
+        username.setText(name);
+        textEmail.setText(email);
+    }
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -34,6 +34,7 @@ public class TranspoFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -58,6 +59,14 @@ public class TranspoFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            if (mParam1.equals("1"))
+            {
+
+            }
+            else if (mParam1.equals("2"))
+            {
+
+            }
         }
     }
 
@@ -65,7 +74,9 @@ public class TranspoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transpo_help, container, false);
+        View view = inflater.inflate(R.layout.fragment_transpo_help, container, false);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

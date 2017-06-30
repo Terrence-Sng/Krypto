@@ -34,8 +34,7 @@ public class TranspoHelpActivity extends AppCompatActivity implements TranspoFra
         toolbar.setTitle("Transposition Examples");
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
-
-
+        
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

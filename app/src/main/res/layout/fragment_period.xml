@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text = "Input Preview"
-            android:scrollbars="vertical"></TextView>
+            android:scrollbars="vertical"
+            android:textColor="@color/Black"/>
         <TextView
         android:id="@+id/periodText"
         android:layout_width="match_parent"
@@ -69,17 +70,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editGroup"
         android:layout_marginTop="10dp">
-            <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Period Results"
-            android:id="@+id/periodResultTitle"/>
-            <TextView
-            android:id="@+id/results"
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:scrollbars = "vertical"
-            android:layout_below="@+id/periodResultTitle" />
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Period Results"
+                android:textColor="@color/Black"
+                android:id="@+id/periodResultTitle"/>
+                <TextView
+                android:id="@+id/results"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:scrollbars = "vertical"
+                android:layout_below="@+id/periodResultTitle" />
     </RelativeLayout>
 </RelativeLayout>
 </ScrollView>

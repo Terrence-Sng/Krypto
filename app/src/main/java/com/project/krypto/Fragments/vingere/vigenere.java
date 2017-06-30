@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.project.krypto.R;
 
@@ -33,7 +32,7 @@ public class vigenere extends Fragment {
     private static Button decrypt;
     private static Button reset;
 
-    TextView displayResult;
+    EditText displayResult;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -80,7 +79,7 @@ public class vigenere extends Fragment {
 
         encrypt = (Button) view.findViewById(R.id.btnEnc);
         decrypt = (Button) view.findViewById(R.id.btnDec);
-        displayResult = (TextView) view.findViewById(R.id.Output);
+        displayResult = (EditText) view.findViewById(R.id.Output);
         editKey = (EditText) view.findViewById(R.id.inputkey);
         editPlain = (EditText) view.findViewById(R.id.inputPT);
         //back = (Button) findViewById(R.id.btnBack);

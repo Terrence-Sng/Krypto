@@ -5,9 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.krypto.Fragments.nGram.nGramCounter"
-    android:id="@+id/ngramFrag"
-    android:weightSum="5">
+    android:id="@+id/ngramFrag">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,19 +24,21 @@
             android:text="Input Preivew"
             android:layout_below="@+id/titleNGram"
             android:paddingTop="5dp"
-            android:background="@color/White"
+            android:textColor="@color/Black"
             />
         <TextView
             android:id="@+id/EnterText"
             android:layout_height="150dp"
             android:layout_width="match_parent"
             android:layout_below="@+id/inputPre"
+            android:textIsSelectable="true"
             android:background="@drawable/edittextborder"/>
         <TextView
             android:id="@+id/hist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Result"
+            android:textColor="@color/Black"
             android:layout_below="@+id/EnterText"/>
 
         <com.github.mikephil.charting.charts.BarChart

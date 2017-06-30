@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +78,7 @@ public class transpo extends Fragment {
         final EditText mEdit = (EditText) view.findViewById(R.id.editText);
         final EditText mEdit2 = (EditText) view.findViewById(R.id.editText2);
         final TextView textView = (TextView) view.findViewById(R.id.outputText);
-
+        textView.setMovementMethod(new ScrollingMovementMethod());
         Button transpose = (Button) view.findViewById(R.id.transpo);
         transpose.setOnClickListener(new View.OnClickListener() {
             @Override

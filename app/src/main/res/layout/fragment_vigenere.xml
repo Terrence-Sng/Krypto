@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RelativeLayout
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="wrap_content"
+    android:id="@+id/parentVig">
     <TextView
         android:id="@+id/titleVig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vigenere Cipher"
+        android:text="@string/Vcipher"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"/>
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Keyword"
-            android:inputType="textPersonName"
-            android:textIsSelectable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             />
         <EditText
             android:id="@+id/inputPT"
@@ -38,31 +38,28 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Text"
-            android:inputType="textPersonName"
-            android:textIsSelectable="true"
-            android:layout_below="@id/inputkey"/>
-            </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textGroupVig"
-        android:layout_below="@+id/vigBtnGroup">
-    <TextView
+            android:layout_below="@id/inputkey"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+        </RelativeLayout>
+
+        <TextView
+        android:layout_below="@+id/vigBtnGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/outputLabelVig"
         android:text="Vigenere Cipher Output"
-        android:textSize="10dp" />
-    <TextView
+        android:textSize="10dp"
+        android:focusableInTouchMode="false"/>
+
+    <EditText
         android:id="@+id/Output"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="match_parent"
+        android:cursorVisible="false"
         android:textIsSelectable="true"
-        android:layout_below="@+id/outputLabelVig"
-        android:scrollbars="vertical"/>
-    </RelativeLayout>
+        android:inputType="textPersonName"
+        android:layout_below="@+id/outputLabelVig" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -92,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="RESET"
-        android:layout_below="@+id/textGroupVig"/>
+        android:layout_below="@+id/Output"/>
 
 </RelativeLayout>
 </ScrollView>

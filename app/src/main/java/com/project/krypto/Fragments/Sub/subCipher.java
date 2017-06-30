@@ -4,18 +4,26 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.krypto.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,14 +39,17 @@ public class subCipher extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText input;
-    Button sub;
-    Button insert;
-    Button reset;
-    Button getHome;
+    Button sub, undo, reset;
     TextView before;
     TextView after;
     String globalText = "";
-
+    String subbedText = "";
+    int instance = 0;
+    String previousSub = "";
+    TableRow tRow, tRow2;
+    ArrayList<TextView> letters1 = new ArrayList<>();
+    ArrayList<TextView> letters2 = new ArrayList<>();
+    String[] letters = new String[]{"A", "B", "C", "D", "E" ,"F", "G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -97,58 +108,81 @@ public class subCipher extends Fragment {
 
         //declare
         sub = (Button)  view.findViewById(R.id.btnsub);
-        insert = (Button)  view.findViewById(R.id.btninsert);
         reset = (Button)  view.findViewById(R.id.btnreset);
         before = (TextView)  view.findViewById(R.id.before);
+        before.setTextIsSelectable(true);
         after = (TextView)  view.findViewById(R.id.after);
-        input = (EditText)  view.findViewById(R.id.input);
-        getHome = (Button) view.findViewById(R.id.getFromHome);
+        after.setTextIsSelectable(true);
+        undo = (Button) view.findViewById(R.id.undoBtn);
+        reset = (Button) view.findViewById(R.id.resetBtn);
         Log.d ("log", "Hello " + globalText);
 
         before.setMovementMethod(new ScrollingMovementMethod());
-        before.setTextIsSelectable(true);
         after.setMovementMethod(new ScrollingMovementMethod());
-        after.setTextIsSelectable(true);
+        String beforetext = globalText;
+        beforetext = beforetext.toLowerCase();
+        before.setText(beforetext);
+        if(instance == 0)
+        {
+            after.setText(beforetext);
 
-        getHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!globalText.isEmpty()) {
-                    input.setText(globalText);
-                    String beforetext = globalText;
-                    beforetext = beforetext.toLowerCase();
-                    before.setText(beforetext);
-                    after.setText(beforetext);
-
-                }
-            }
-        });
-        insert.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String beforetext = input.getText().toString();
-                beforetext = beforetext.toLowerCase();
-                before.setText(beforetext);
-                after.setText(beforetext);
-            }
-        });
+            instance ++;
+        }
+        else
+        {
+            after.setText(subbedText);
+        }
 
         sub.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String choice = dropdown.getSelectedItem().toString();
                 String replace = dropdown2.getSelectedItem().toString();
-                String aftertext = after.getText().toString();
-                aftertext = aftertext.replaceAll(choice, replace);
-                after.setText(aftertext);
+                subbedText = before.getText().toString();
+                subbedText = subbedText.replaceAll(choice, replace);
+                after.setText(subbedText);
+                setPrevious(choice, replace);
+                updateTable(choice, replace, view);
+            }
+        });
 
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String temp = previousSub;
+                String [] split = temp.split(",");
+                String choice = split[0];
+                String replace = split[1];
+                String initial = split[2];
+                char c = choice.toUpperCase().charAt(0);
+                int index = c - 65;
+                TextView text = letters2.get(index);
+                text.setText(initial);
+                letters2.set(index, text);
+                if(letters2.get(index).getText().toString().equalsIgnoreCase(letters1.get(index).getText().toString()))
+                {
+                    setCellColor(index, letters2, ContextCompat.getColor(view.getContext(), R.color.white));
+                    setCellColor(index, letters1, ContextCompat.getColor(view.getContext(), R.color.white));
+                }
+                Toast.makeText(view.getContext(), temp, Toast.LENGTH_SHORT).show();
             }
         });
 
         reset.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                String aftertext = before.getText().toString();
-                after.setText(aftertext);
+                after.setText(globalText.toLowerCase());
+                for(int i =0; i < 26; i++)
+                {
+                    TextView text = letters2.get(i);
+                    text.setText(letters[i]);
+                    letters2.set(i, text);
+                }
+                setCellColor(-1, letters1, ContextCompat.getColor(view.getContext(), R.color.white));
+                setCellColor(-1, letters2, ContextCompat.getColor(view.getContext(), R.color.white));
             }
         });
+
+        initTable(view);
         return view;
     }
 
@@ -173,9 +207,17 @@ public class subCipher extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        tRow.removeAllViews();
+        tRow2.removeAllViews();
         mListener = null;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.subcipher2, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -193,6 +235,84 @@ public class subCipher extends Fragment {
 
     public void updateText (String text)
     {
-        globalText = text;
+        globalText = text.replaceAll("[^a-zA-Z]+", "");;
+    }
+
+    public String getHomeText ()
+    {
+        subbedText = globalText;
+        return subbedText;
+    }
+
+    public void initTable(View view)
+    {
+        tRow = (TableRow) view.findViewById(R.id.subTableRow1);
+
+        for(int i = 0; i < 26; i ++)
+        {
+            TextView text = new TextView(view.getContext());
+            text.setText(letters[i]);
+            text.setWidth(40);
+            text.setGravity(Gravity.CENTER_HORIZONTAL);
+            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Black));
+
+            letters1.add(text);
+        }
+        for(int i = 0; i < 26; i ++)
+        {
+            tRow.addView(letters1.get(i));
+        }
+
+        tRow2 = (TableRow) view.findViewById(R.id.subTableRow2);
+        for(int i = 0; i < 26; i ++)
+        {
+            TextView text = new TextView(view.getContext());
+            text.setText(letters[i]);
+            text.setWidth(40);
+            text.setGravity(Gravity.CENTER_HORIZONTAL);
+            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Black));
+
+            letters2.add(text);
+        }
+        for(int i = 0; i < 26; i ++)
+        {
+            tRow2.addView(letters2.get(i));
+        }
+    }
+    public void updateTable (String choice, String replace, View view)
+    {
+        char c = choice.toUpperCase().charAt(0);
+        int index = c - 65;
+
+        TextView text = letters2.get(index);
+        text.setText(replace);
+        letters2.set(index, text);
+
+        setCellColor(index, letters1, ContextCompat.getColor(view.getContext(), R.color.btn_logut_bg));
+        setCellColor(index, letters2, ContextCompat.getColor(view.getContext(), R.color.btn_logut_bg));
+    }
+
+    public void setPrevious (String choice, String replace)
+    {
+        String temp = choice;
+        char t = temp.toUpperCase().charAt(0);
+        int index = t - 65;
+        previousSub = choice + "," + replace + "," + letters2.get(index).getText().toString();
+    }
+
+    public void setCellColor (int index, ArrayList<TextView> letter, int color)
+    {
+        if(index == -1)
+        {
+            for(int i = 0; i < 26; i ++) {
+                letter.get(i).setBackgroundColor(color);
+            }
+        }
+        else {
+            TextView text = letter.get(index);
+            text.setBackgroundColor(color);
+            letter.set(index, text);
+        }
+
     }
 }

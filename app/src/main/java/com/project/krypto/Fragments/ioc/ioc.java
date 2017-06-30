@@ -87,7 +87,6 @@ public class ioc extends Fragment {
         displayInput = (TextView)view.findViewById(R.id.inputpreviewIOC);
         displayInput.setText(globalText);
         //back = (Button)findViewById(R.id.btnBack);
-        reset = (Button) view.findViewById(R.id.btnreset);
 
         //button for calculating IOC
         calIOC.setOnClickListener(new View.OnClickListener(){
@@ -144,14 +143,6 @@ public class ioc extends Fragment {
                 startActivity(i);
             }
         });*/
-
-        reset.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //(editText).setText("");
-                displayIOC.setText("");
-                displayInput.setText("");
-            }
-        });
 
         return view;
     }

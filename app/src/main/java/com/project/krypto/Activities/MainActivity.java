@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
-import com.project.krypto.Fragments.Sub.subCipher;
+import com.project.krypto.Fragments.Sub.*;
 import com.project.krypto.Fragments.ioc.ioc;
 import com.project.krypto.Fragments.nGram.nGramCounter;
 import com.project.krypto.Fragments.period.period;
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     private period periodFrag;
     private vigenere vigFrag;
     private subCipher subcipher;
+    private SubCipher2 subCipher2;
     private transpo transpo;
     private TextView username, textEmail;
 
@@ -129,6 +130,16 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, TranspoHelpActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.subCipher2)
+        {
+            Fragment fragment = subCipher2;
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+            toolbar.setTitle("Substitute Cipher (Keyword)");
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -156,7 +167,7 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("Period");
         } else if (id == R.id.nav_vigenere) {
             fragment = vigFrag;
-            toolbar.setTitle("Vingere Cipher");
+            toolbar.setTitle("Vigenere Cipher");
         } else if (id == R.id.nav_sub) {
             fragment = subcipher;
             toolbar.setTitle("Substitute Cipher");
@@ -167,6 +178,7 @@ public class MainActivity extends AppCompatActivity
         {
             logoutUser();
         }
+
         if(fragment != null) {
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         }
@@ -201,6 +213,7 @@ public class MainActivity extends AppCompatActivity
         vigFrag = new vigenere();
         subcipher = new subCipher();
         transpo = new transpo();
+        subCipher2 = new SubCipher2();
     }
 
     @Override

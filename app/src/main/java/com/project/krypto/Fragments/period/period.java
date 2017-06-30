@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -31,12 +32,10 @@ public class period extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static TextView gText;
-    private static EditText editPeriod;
-    private static Button calIOC;
-    private static TextView displayResult;
-    private static Button back;
-    private static Button reset;
+    private  TextView gText;
+    private  EditText editPeriod;
+    private  TextView displayResult;
+
     private static String globalText = "";
 
     // TODO: Rename and change types of parameters
@@ -84,10 +83,11 @@ public class period extends Fragment {
 
         gText = (TextView) view.findViewById(R.id.periodText);
         gText.setText(globalText);
-        calIOC = (Button) view.findViewById(R.id.calioc);
+        Button calIOC = (Button) view.findViewById(R.id.calioc);
         displayResult = (TextView) view.findViewById(R.id.results);
         //back = (Button) findViewById(R.id.btnBack);
-        reset = (Button) view.findViewById(R.id.btnreset);
+        editPeriod = (EditText) view.findViewById(R.id.editperiod);
+        Button reset = (Button) view.findViewById(R.id.btnreset);
 
         reset.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -104,8 +104,12 @@ public class period extends Fragment {
                             String lowcontent = pt.toLowerCase();
                             String finalInput = lowcontent.replaceAll("[^A-Za-z]+", "");
 
-                            editPeriod = (EditText) view.findViewById(R.id.editperiod);
                             String period = editPeriod.getText().toString();
+                            if(period.isEmpty())
+                            {
+                                Toast.makeText(view.getContext(), "Period is empty!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             int p = Integer.valueOf(period);
 
                             //init the p strings
@@ -138,7 +142,7 @@ public class period extends Fragment {
                                 char character;
                                 int count = 0;
                                 int n = 0;
-                                ArrayList<Integer> freq = new ArrayList<Integer>();
+                                ArrayList<Integer> freq = new ArrayList<>();
                                 freq.addAll(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
                                 int a = 0;
 

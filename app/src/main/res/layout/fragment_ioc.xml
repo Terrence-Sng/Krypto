@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:text="Input Preview:"
         android:textStyle="bold|italic"
-        android:layout_marginStart="6dp" />
+        android:layout_marginStart="6dp"
+        android:textColor="@color/Black"/>
 
     <TextView
         android:id="@+id/inputpreviewIOC"
@@ -41,6 +42,7 @@
 
     <TextView
         android:id="@+id/labelIOC"
+        android:textColor="@color/Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Index of Coincidence:"
@@ -66,15 +68,6 @@
         android:text="calculate"
      />
 
-    <Button
-        android:id="@+id/btnreset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="reset"
-        android:layout_toRightOf="@+id/calioc"
-        android:layout_alignBaseline="@+id/calioc"
-       />
     </RelativeLayout>
 
     <!--

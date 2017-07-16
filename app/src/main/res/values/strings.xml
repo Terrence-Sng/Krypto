@@ -17,7 +17,13 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
 
-    <string name="Vcipher">Vigenere Cipher</string>
+
+    <string name="freqcounter">Freqeuncy Counter</string>
+    <string name="ioc">Index of Coincidence</string>
+    <string name="period">Period</string>
+    <string name="subcipher">Substitute Cipher</string>
+    <string name="vcipher">Vigenere Cipher</string>
+    <string name="transpo">Transposition Cipher</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

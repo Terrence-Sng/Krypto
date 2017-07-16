@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="572c48a0c8589e8c7753c66cc81b9843f491a294">
-        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e52cc64fd1f48bf600ea0b870b5d055a0d222e17\classes.dex" />
+        sha1="ad76e39d829b2ffddb2b393755e137fa9c31bf96">
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_8cca0068762d1f1ed74bce3559a840fb566af13d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\Panda\Desktop\Online courses\Android Studio\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f6d82b66927b0a37dadc0fd6825ca0fd061e7075\classes.dex" />
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_201a8f40f235639070b141ac00475b6502ac32ae\classes.dex" />
     </item>
 
 </items>

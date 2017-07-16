@@ -6,6 +6,13 @@
     <color name="White">#FFFFFF</color>
     <color name="Grey">#808080</color>
     <color name="Black">#000000</color>
+    <color name="Neon_Green">#00ff2b</color>
+    <color name="Dull_Green">#36ba01</color>
+    <color name="Dark_Green">#009a22</color>
+    <color name="Darker_Green">#013f0f</color>
+    <color name="dark_grey">#23262a</color>
+
+    <color name="darker_grey">#1c1f22</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

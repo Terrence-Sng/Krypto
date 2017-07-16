@@ -6,36 +6,38 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
-        <item android:title = "Statistical Attack">
+        <item android:title = "Statistical Attack"
+            android:id="@+id/statistic">
             <menu>
                 <item
                     android:id="@+id/nav_frequency"
                     android:icon="@drawable/ic_frequency"
-                    android:title="Frequency Counter" />
+                    android:title="@string/freqcounter" />
                 <item
                     android:id="@+id/nav_ioc"
                     android:icon="@drawable/ic_ioc"
-                    android:title="Index of Coincidence" />
+                    android:title="@string/ioc" />
                 <item
                     android:id="@+id/nav_period"
                     android:icon="@drawable/ic_period"
-                    android:title="Period" />
+                    android:title="@string/period" />
                 <item
                     android:id="@+id/nav_sub"
                     android:icon="@drawable/ic_menu_send"
                     android:title="Substitution Cipher" />
             </menu>
     </item>
-    <item android:title="Ciphers">
+    <item android:title="Ciphers"
+        android:id="@+id/ciphers">
         <menu>
             <item
                 android:id="@+id/nav_vigenere"
                 android:icon="@drawable/ic_vigenere"
-                android:title="Vigenere" />
+                android:title="@string/vcipher" />
             <item
                 android:id="@+id/nav_transpo"
                 android:icon="@drawable/ic_transposition"
-                android:title="Transposition"/>
+                android:title="@string/transpo"/>
         </menu>
     </item>
         <item android:title="Logout"

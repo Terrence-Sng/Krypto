@@ -1,5 +1,6 @@
 package com.project.krypto.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,19 +13,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
-import com.project.krypto.Fragments.Sub.*;
+import com.project.krypto.Fragments.Sub.SubCipher2;
+import com.project.krypto.Fragments.Sub.subCipher;
 import com.project.krypto.Fragments.ioc.ioc;
 import com.project.krypto.Fragments.nGram.nGramCounter;
 import com.project.krypto.Fragments.period.period;
@@ -76,7 +78,29 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                InputMethodManager inputMethodManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                InputMethodManager inputMethodManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -100,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.userName);
         textEmail = (TextView) headerView.findViewById(R.id.userEmail);
-        initUserSession();
+       // initUserSession();
     }
 
     public void showHomeFrag() {
@@ -187,7 +211,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_transpo) {
             fragment = transpo;
             toolbar.setTitle("Transposition Cipher");
-        } else
+        } else if(id == R.id.game)
+        {
+            Intent i = new Intent (getApplicationContext(),LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else
         {
             logoutUser();
         }

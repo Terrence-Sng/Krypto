@@ -15,11 +15,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.project.krypto.Activities.MainActivity;
-import com.project.krypto.R;
 import com.project.krypto.App.AppConfig;
 import com.project.krypto.App.AppController;
+import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Helper.SQLiteHandler;
 import com.project.krypto.Helper.SessionManager;
+import com.project.krypto.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,7 +66,7 @@ public class LoginActivity extends Activity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
             startActivity(intent);
             finish();
         }
@@ -86,7 +87,7 @@ public class LoginActivity extends Activity {
                     {
                         session.setLogin(true);
                         db.addUser("test", "123", "12344", "DD-MM-YYYY");
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, GameActivity.class);
                         startActivity(intent);
                         finish();
                     }else {

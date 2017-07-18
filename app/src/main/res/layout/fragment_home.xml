@@ -1,27 +1,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.project.krypto.Fragments.Home.HomeFrag"
-    android:background="@color/dark_grey">
+    android:background="@color/dark_grey"
+    android:focusableInTouchMode="true">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <EditText
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/homeTextlayout"
+    android:paddingTop="16dp"
+    app:hintTextAppearance="@style/Floating_hint">
+        <EditText
         android:id="@+id/homeText"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:hint="Enter text here"
         android:gravity="bottom"
         android:layout_margin="10dp"
+        android:paddingTop="@dimen/floating_hint_margin"
+        android:paddingBottom="8dp"
         android:background="@drawable/edittextborder"
         android:textColor="@color/Neon_Green"
         android:textColorHint="@color/Darker_Green"
         />
+</android.support.design.widget.TextInputLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@+id/homeText"
+        android:layout_below="@+id/homeTextlayout"
         android:layout_centerInParent="true">
     <Button
         android:id="@+id/readButt"

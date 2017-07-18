@@ -3,8 +3,11 @@ package com.project.krypto.Fragments.vingere;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,9 @@ public class vigenere extends Fragment {
     private static Button reset;
 
     EditText displayResult;
+
+    final Handler handler = new Handler();
+    test t = new test();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -91,25 +97,12 @@ public class vigenere extends Fragment {
                 String msg = editPlain.getText().toString();
                 msg = msg.replaceAll("[^A-Za-z]+","");
                 msg = msg.toLowerCase();
-                String cipher = "";
 
+
+                String tempcipher = "";
                 int counter = 0;
-
                 while (counter <= (msg.length()-1))
                 {
-                    char tmp = keyword.charAt(counter%keyword.length());
-                    int temp = (int)tmp - 97; //a = 0
-
-                    char msgTmp = msg.charAt(counter);
-                    int msgTemp = (int)msgTmp - 97;
-
-                    int enc = ((msgTemp + temp) % 26) + 97;
-                    char encTmp = (char)enc;
-
-                    cipher = cipher + Character.toString(encTmp);
-
-                    counter++;
-                    /*
                     for (int i = 0; i < keyword.length(); i++)
                     {
                         if (counter <= (msg.length()-1))
@@ -126,14 +119,30 @@ public class vigenere extends Fragment {
                             int enc = ((msgTemp + temp) % 26) + 97;
                             char encTmp = (char)enc;
 
-                            cipher = cipher + Character.toString(encTmp);
+                            tempcipher = tempcipher + Character.toString(encTmp);
 
                             counter++;
                         }
-                    }*/
+                    }
                 }
+
                 displayResult.setMovementMethod(new ScrollingMovementMethod());
-                displayResult.setText(cipher);
+                //displayResult.setText(msg);
+                String sent = "";
+                String colorCodeStart = "<font color='#FF0000'>";  // use any color as  your want
+                String colorCodeEnd = "</font>";
+                for (int i = 0; i < tempcipher.length(); i++) {
+                    String testmsg = "";
+                    test test = new test();
+                    sent += tempcipher.charAt(i);
+                    testmsg = msg.substring(i+1, tempcipher.length());
+                    String comb = "<(>" + sent + "<)>" + testmsg; // <(> and <)> to mark the start and end of the color change
+                    comb =  comb.replace("<(>",colorCodeStart); //start of color change
+                    comb=  comb.replace("<)>",colorCodeEnd); // end of color change
+                    test.cipher = comb;
+                    test.counter = i;
+                    test.run();
+                }
             }
         });
 
@@ -150,32 +159,11 @@ public class vigenere extends Fragment {
                 msg = msg.toLowerCase();
                 String plaintext = "";
 
+                String tempplaintext = "";
                 int counter2 = 0;
 
                 while (counter2 <= (msg.length()-1))
                 {
-                    char tmp = keyword.charAt(counter2%keyword.length());
-                    int temp = (int)tmp - 97; //a = 0
-
-                    char msgTmp = msg.charAt(counter2);
-                    int msgTemp = (int)msgTmp - 97;
-
-                    double dec = msgTemp - temp;
-                    if (dec < 0)
-                    {
-                        dec = dec + 26;
-                    }
-                    else
-                    {
-                        dec = dec % 26.0;
-                    }
-                    dec = dec + 97;
-                    char decTmp = (char)dec;
-
-                    plaintext = plaintext + Character.toString(decTmp);
-
-                    counter2++;
-/*
                     for (int i = 0; i < keyword.length(); i++)
                     {
                         if (counter2 <= (msg.length()-1))
@@ -195,13 +183,27 @@ public class vigenere extends Fragment {
                             }
                             dec = dec + 97;
                             char decTmp = (char)dec;
-                            plaintext = plaintext + Character.toString(decTmp);
+                            tempplaintext = tempplaintext + Character.toString(decTmp);
                             counter2++;
                         }
-                    }*/
+                    }
                 }
                 displayResult.setMovementMethod(new ScrollingMovementMethod());
-                displayResult.setText(plaintext);
+                String sent = "";
+                String colorCodeStart = "<font color='#FF0000'>";  // use any color as  your want
+                String colorCodeEnd = "</font>";
+                for (int i = 0; i < tempplaintext.length(); i++) {
+                    String testmsg = "";
+                    test test = new test();
+                    sent += tempplaintext.charAt(i);
+                    testmsg = msg.substring(i+1, tempplaintext.length());
+                    String comb = "<(>" + sent + "<)>" + testmsg;
+                    comb =  comb.replace("<(>",colorCodeStart); //start of color change
+                    comb=  comb.replace("<)>",colorCodeEnd); // end of color change
+                    test.cipher = comb;
+                    test.counter = i;
+                    test.run();
+                }
             }
         });
 
@@ -254,5 +256,21 @@ public class vigenere extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    class test implements Runnable
+    {
+        String cipher = "";
+        int counter = 0;
+        @Override
+        public void run() {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("cipher", cipher);
+                    displayResult.setText(Html.fromHtml(cipher));
+                }
+            }, 1000*counter);
+        }
     }
 }

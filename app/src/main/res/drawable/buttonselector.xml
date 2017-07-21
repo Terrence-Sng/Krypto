@@ -4,11 +4,13 @@
     <item
         android:state_focused="true"
         android:state_pressed="true"
-        android:drawable="@drawable/buttonpresseed"/>
+        android:drawable="@drawable/buttonpresseed"
+        android:color = "@color/Neon_Green"/>
     <item
         android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/buttonpresseed"/>
+        android:drawable="@drawable/buttonpresseed"
+        android:color = "@color/Neon_Green"/>
 
     <item android:drawable="@drawable/buttonborder"/>
 

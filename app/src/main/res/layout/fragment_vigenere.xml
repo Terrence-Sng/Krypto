@@ -2,64 +2,77 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_grey">
 <RelativeLayout
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:id="@+id/parentVig">
-    <TextView
-        android:id="@+id/titleVig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vcipher"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
-
         <RelativeLayout
             android:id="@+id/vigETextGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below = "@id/titleVig"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp">
-        <EditText
-            android:id="@+id/inputkey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Keyword"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            />
-        <EditText
-            android:id="@+id/inputPT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Text"
-            android:layout_below="@id/inputkey"
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:layout_margin="10dp">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/Floating_hint"
+                android:textColorHint="@color/Darker_Green"
+                android:id="@+id/inputKeyLayoutVig">
+            <EditText
+                android:id="@+id/inputkey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Keyword"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColor="@color/Neon_Green"
+                app:theme="@style/EditTextTheme"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayoutVig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/Floating_hint"
+                android:textColorHint="@color/Darker_Green"
+                android:layout_below="@id/inputKeyLayoutVig"
+                android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/inputPT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Text"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:textColor="@color/Neon_Green"
+                    app:theme="@style/EditTextTheme"/>
+            </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
-        <TextView
-        android:layout_below="@+id/vigBtnGroup"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/outputLabelVig"
-        android:text="Vigenere Cipher Output"
-        android:textSize="10dp"
-        android:focusableInTouchMode="false"/>
-
-    <EditText
-        android:id="@+id/Output"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:cursorVisible="false"
-        android:textIsSelectable="true"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/outputLabelVig" />
+        android:layout_below="@+id/vigBtnGroup"
+        android:focusable="true"
+        android:background="@drawable/edittextborder"
+        android:id="@+id/OutputGroupVig">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/outputLabelVig"
+            android:text="Vigenere Cipher Output"
+            android:textColor="@color/Dark_Green"
+            android:focusableInTouchMode="false"/>
+        <TextView
+            android:id="@+id/Output"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:textIsSelectable="true"
+            android:textColor="@color/Dark_Green"
+            android:layout_below="@+id/outputLabelVig" />
+    </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -67,12 +80,15 @@
             android:id="@+id/vigBtnGroup"
             android:layout_below="@+id/vigETextGroup"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
+            android:layout_margin="10dp">
         <Button
             android:id="@+id/btnEnc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Encrypt"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"
+            android:layout_marginRight="5dp"
              />
         <Button
             android:id="@+id/btnDec"
@@ -80,6 +96,9 @@
             android:layout_height="wrap_content"
             android:text="Decrypt"
             android:layout_toRightOf="@+id/btnEnc"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"
+            android:layout_marginLeft="5dp"
              />
         </RelativeLayout>
 
@@ -89,7 +108,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="RESET"
-        android:layout_below="@+id/Output"/>
+        android:layout_below="@+id/OutputGroupVig"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"/>
 
 </RelativeLayout>
 </ScrollView>

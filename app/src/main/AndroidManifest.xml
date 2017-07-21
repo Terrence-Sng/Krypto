@@ -39,6 +39,10 @@
             android:theme="@style/AppTheme.NoActionBar">
             </activity>
         <activity
+            android:name=".Activities.SubCipher2"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".Game.GameActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Game.stageclear"

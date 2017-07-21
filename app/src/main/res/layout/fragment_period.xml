@@ -2,41 +2,36 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+<RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/titlePeriod"
-        android:layout_width="339dp"
-        android:layout_height="51dp"
-        android:text="Caculate Index of Coincidence using Periods"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titlePeriod"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textGroup">
+        android:id="@+id/textGroup"
+        android:background="@drawable/edittextborder"
+        android:layout_margin="10dp">
         <TextView
+            android:id="@+id/inputPrePeriod"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text = "Input Preview"
             android:scrollbars="vertical"
-            android:textColor="@color/Black"/>
+            android:textColor="@color/Dark_Green"
+            android:layout_marginTop="10dp"/>
         <TextView
         android:id="@+id/periodText"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/inputPrePeriod"
         android:inputType="textPersonName"
-        android:textIsSelectable="true"
-        android:layout_marginTop="20dp" />
+            android:textColor="@color/Neon_Green"
+        android:textIsSelectable="true" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -44,43 +39,66 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textGroup"
         android:layout_marginTop="10dp"
-        android:id="@+id/editGroup">
+        android:id="@+id/editGroup"
+        android:layout_margin="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextPeriod"
+            android:textColorHint="@color/Dark_Green"
+            app:hintTextAppearance="@style/Floating_hint">
         <EditText
         android:id="@+id/editperiod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter Period"
-        android:inputType="textPersonName" />
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:hint="Period"
+        android:inputType="textPersonName"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edittextborder"
+            android:textColor="@color/Neon_Green"/>
+        </android.support.design.widget.TextInputLayout>
         <Button
         android:id="@+id/calioc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="calculate"
-        android:layout_toRightOf="@+id/editperiod"/>
+        android:layout_toRightOf="@+id/editTextPeriod"
+            android:layout_alignBottom="@+id/editTextPeriod"
+        android:background="@drawable/buttonselector"
+            android:textColor="@color/Dark_Green"
+        android:layout_marginRight="5dp"/>
         <Button
         android:id="@+id/btnreset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="reset"
-        android:layout_toRightOf="@id/calioc"/>
+        android:layout_toRightOf="@id/calioc"
+            android:layout_alignBottom="@id/calioc"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editGroup"
-        android:layout_marginTop="10dp">
+        android:layout_margin="10dp"
+        android:background="@drawable/edittextborder">
                 <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Period Results"
-                android:textColor="@color/Black"
+                android:textColor="@color/Dark_Green"
+                    android:layout_marginTop="10dp"
                 android:id="@+id/periodResultTitle"/>
                 <TextView
                 android:id="@+id/results"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
                 android:scrollbars = "vertical"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/Neon_Green"
                 android:layout_below="@+id/periodResultTitle" />
     </RelativeLayout>
 </RelativeLayout>

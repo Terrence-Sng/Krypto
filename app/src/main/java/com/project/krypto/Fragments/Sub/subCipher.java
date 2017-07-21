@@ -93,17 +93,19 @@ public class subCipher extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_sub_cipher, container, false);
-
+        setHasOptionsMenu(true);
         //Sub this
         final Spinner dropdown = (Spinner) view.findViewById(R.id.spinner1);
         String[] items = new String[]{"a", "b", "c", "d", "e" ,"f", "g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.letters1,R.layout.spinner_text);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         dropdown.setAdapter(adapter);
 
         //with this
         final Spinner dropdown2 = (Spinner) view.findViewById(R.id.spinner2);
         String[] items2 = new String[]{"A", "B", "C", "D", "E" ,"F", "G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items2);
+        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(view.getContext(), R.array.letters2, R.layout.spinner_text);
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
         dropdown2.setAdapter(adapter2);
 
         //declare
@@ -160,8 +162,8 @@ public class subCipher extends Fragment {
                 letters2.set(index, text);
                 if(letters2.get(index).getText().toString().equalsIgnoreCase(letters1.get(index).getText().toString()))
                 {
-                    setCellColor(index, letters2, ContextCompat.getColor(view.getContext(), R.color.white));
-                    setCellColor(index, letters1, ContextCompat.getColor(view.getContext(), R.color.white));
+                    setCellResource(index, letters2);
+                    setCellResource(index, letters1);
                 }
                 Toast.makeText(view.getContext(), temp, Toast.LENGTH_SHORT).show();
             }
@@ -177,8 +179,8 @@ public class subCipher extends Fragment {
                     text.setText(letters[i]);
                     letters2.set(i, text);
                 }
-                setCellColor(-1, letters1, ContextCompat.getColor(view.getContext(), R.color.white));
-                setCellColor(-1, letters2, ContextCompat.getColor(view.getContext(), R.color.white));
+                setCellColor(-1, letters1, ContextCompat.getColor(view.getContext(), R.color.dark_grey));
+                setCellColor(-1, letters2, ContextCompat.getColor(view.getContext(), R.color.dark_grey));
             }
         });
 
@@ -252,10 +254,10 @@ public class subCipher extends Fragment {
         {
             TextView text = new TextView(view.getContext());
             text.setText(letters[i]);
-            text.setWidth(40);
+            text.setWidth(38);
             text.setGravity(Gravity.CENTER_HORIZONTAL);
-            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Black));
-
+            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Dark_Green));
+            text.setBackgroundResource(R.drawable.tablecell);
             letters1.add(text);
         }
         for(int i = 0; i < 26; i ++)
@@ -268,10 +270,10 @@ public class subCipher extends Fragment {
         {
             TextView text = new TextView(view.getContext());
             text.setText(letters[i]);
-            text.setWidth(40);
+            text.setWidth(38);
             text.setGravity(Gravity.CENTER_HORIZONTAL);
-            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Black));
-
+            text.setTextColor(ContextCompat.getColor(view.getContext(),R.color.Dark_Green));
+            text.setBackgroundResource(R.drawable.tablecell);
             letters2.add(text);
         }
         for(int i = 0; i < 26; i ++)
@@ -288,8 +290,8 @@ public class subCipher extends Fragment {
         text.setText(replace);
         letters2.set(index, text);
 
-        setCellColor(index, letters1, ContextCompat.getColor(view.getContext(), R.color.btn_logut_bg));
-        setCellColor(index, letters2, ContextCompat.getColor(view.getContext(), R.color.btn_logut_bg));
+        setCellColor(index, letters1, ContextCompat.getColor(view.getContext(), R.color.teal));
+        setCellColor(index, letters2, ContextCompat.getColor(view.getContext(), R.color.teal));
     }
 
     public void setPrevious (String choice, String replace)
@@ -305,14 +307,22 @@ public class subCipher extends Fragment {
         if(index == -1)
         {
             for(int i = 0; i < 26; i ++) {
-                letter.get(i).setBackgroundColor(color);
+                letter.get(i).setBackgroundResource(R.drawable.tablecell);
             }
         }
-        else {
+        else{
             TextView text = letter.get(index);
             text.setBackgroundColor(color);
             letter.set(index, text);
         }
 
     }
+
+    public void setCellResource (int index, ArrayList<TextView> letter)
+    {
+        TextView text = letter.get(index);
+        text.setBackgroundResource(R.drawable.tablecell);
+        letter.set(index, text);
+    }
+
 }

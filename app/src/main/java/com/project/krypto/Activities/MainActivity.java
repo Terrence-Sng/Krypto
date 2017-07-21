@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,13 +20,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Fragments.Home.HomeFrag;
-import com.project.krypto.Fragments.Sub.SubCipher2;
 import com.project.krypto.Fragments.Sub.subCipher;
 import com.project.krypto.Fragments.ioc.ioc;
 import com.project.krypto.Fragments.nGram.nGramCounter;
@@ -46,7 +48,8 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener, nGramCounter.OnFragmentInteractionListener,
-        ioc.OnFragmentInteractionListener, period.OnFragmentInteractionListener, vigenere.OnFragmentInteractionListener, subCipher.OnFragmentInteractionListener, transpo.OnFragmentInteractionListener {//, fragmentInterfaces {
+        ioc.OnFragmentInteractionListener, period.OnFragmentInteractionListener, vigenere.OnFragmentInteractionListener, subCipher.OnFragmentInteractionListener, transpo.OnFragmentInteractionListener
+        {//, fragmentInterfaces {
 
     private Toolbar toolbar;
     private ExpandableListView expandableList;
@@ -71,6 +74,17 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Krypto");
         setSupportActionBar(toolbar);
+
+        Window window = getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
 
         initFrags();
         checkExternalStorage();
@@ -169,13 +183,8 @@ public class MainActivity extends AppCompatActivity
         }
         if (id == R.id.subCipher2)
         {
-            Fragment fragment = subCipher2;
-            FragmentManager fragmentManager = getSupportFragmentManager();
-
-            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
-            toolbar.setTitle("Substitute Cipher (Keyword)");
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
+            Intent intent = new Intent(this, SubCipher2.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

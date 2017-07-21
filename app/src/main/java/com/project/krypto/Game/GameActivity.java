@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -16,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
 
 public class GameActivity extends AppCompatActivity {
@@ -194,6 +192,7 @@ public class GameActivity extends AppCompatActivity {
                 if (Plaintext.matches("open") && Enter.isPressed()) {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
+                    Enter.setEnabled(false);
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
@@ -300,14 +299,11 @@ public class GameActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.layout.zoom_in_animation);
         imageView.startAnimation(animation);
     }
-
-
-
-
-
-
-
-
-
-
+     public void onBackPressed()
+     {
+         Intent i = new Intent (getApplicationContext(),MainActivity.class);
+         startActivity(i);
+         finish();
+         super.onBackPressed();
+     }
 }

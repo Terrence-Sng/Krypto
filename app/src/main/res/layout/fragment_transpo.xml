@@ -1,63 +1,78 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/dark_grey">
+
 <RelativeLayout
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    tools:context="com.project.krypto.Fragments.transpo.transpo"
-    android:paddingTop="20dp">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextborder"
+        android:id="@+id/editTextLayoutTranspo"
+        android:layout_margin="10dp">
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/transpoTitle"
-        android:text="Transposition"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
-
+        android:layout_marginTop="5dp"
+        app:hintTextAppearance="@style/Floating_hint"
+        android:textColorHint="@color/Darker_Green">
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:ems="10"
-        android:hint="text message"
-        android:inputType="textPersonName"
-        android:text="sample text"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/transpoTitle"/>
+        android:hint="Enter text here"
+        android:gravity="top"
+        android:background="@color/transparent"
+        android:paddingTop="@dimen/floating_hint_margin"
+        android:textColor="@color/Neon_Green"
+        android:textColorHint="@color/Darker_Green"
+        android:textCursorDrawable="@null"/>
+    </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/blockSizeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/editText">
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/editTextLayoutTranspo">
         <TextView
             android:id="@+id/blockSizeTitle"
             android:layout_width="wrap_content"
             android:layout_height="51dp"
             android:gravity="center"
             android:text="Block Size :"
-            android:textSize = "20dp"/>
+            android:textColor="@color/Dark_Green"
+            android:textSize = "20dp"
+            android:layout_alignBottom="@+id/blkSizeLayout"
+            />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/blockSizeTitle"
+            android:id="@+id/blkSizeLayout"
+            android:layout_marginTop="5dp"
+            app:hintTextAppearance="@style/Floating_hint"
+            android:textColorHint="@color/Darker_Green">
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="57dp"
-            android:layout_height="51dp"
-            android:ems="10"
-            android:hint="blk/row"
-            android:inputType="number"
-            android:text="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:textAlignment="center"
-            android:layout_toRightOf="@+id/blockSizeTitle"/>
-
+            android:theme="@style/EditTextTheme"
+            android:paddingTop="@dimen/floating_hint_margin"
+            android:textColor="@color/Neon_Green"
+            android:textColorHint="@color/Darker_Green"
+            android:textCursorDrawable="@null" />
+        </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -65,38 +80,64 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonGroup"
         android:layout_below="@+id/blockSizeGroup"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <Button
             android:id="@+id/transpo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transpo by blk" />
+            android:layout_marginRight="5dp"
+            android:text="Transpo by blk"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"/>
 
         <Button
             android:id="@+id/encrypt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:text="encrypt"
-            android:layout_toRightOf="@+id/transpo"/>
+            android:layout_toRightOf="@+id/transpo"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector" />
 
         <Button
             android:id="@+id/decrypt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:text="decrypt"
-            android:layout_toRightOf="@+id/encrypt" />
+            android:layout_toRightOf="@+id/encrypt"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/outputText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="output"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:focusable="true"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/buttonGroup" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonGroup"
+        android:background="@drawable/edittextborder"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/outputTextLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Output"
+            android:textStyle="bold|italic"
+            android:textColor="@color/Dark_Green"/>
+        <TextView
+            android:id="@+id/outputText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:textAlignment="center"
+            android:textColor="@color/Neon_Green"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:scrollbars="vertical"
+            android:layout_below="@+id/outputTextLabel"/>
+    </RelativeLayout>
 
 
 <!--

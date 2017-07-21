@@ -65,7 +65,7 @@ public class viglvl extends Activity {
                 if (Plaintext.matches("open") && submit.isPressed()) {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
-
+                    submit.setEnabled(false);
                     //once correct start the 'stageclear' activity
                     Intent i = new Intent(viglvl.this, stageclear.class);
                     startActivity(i);

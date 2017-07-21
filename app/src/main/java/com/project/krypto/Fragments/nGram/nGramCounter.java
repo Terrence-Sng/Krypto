@@ -4,23 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.krypto.R;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.project.krypto.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class nGramCounter extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private com.github.mikephil.charting.charts.BarChart barChart;
-    private String[] theDates = new String [] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    private String[] theDatas = new String [] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     private Float [] letterFreq;
     private String FNAME = "hello_file";
     private String globalText = "";
@@ -132,7 +130,7 @@ public class nGramCounter extends Fragment {
                     xAxis.setGranularity(0.1f);
                     xAxis.setDrawGridLines(false);
                     xAxis.setLabelCount(25);
-                    xAxis.setValueFormatter(new MyAxisValueFormatter(theDates));
+                    xAxis.setValueFormatter(new MyAxisValueFormatter(theDatas));
 
                     barChart.setData(theData);
                     barChart.setVisibleXRange(100, 26);
@@ -195,10 +193,12 @@ public class nGramCounter extends Fragment {
         list.add("2");
         list.add("3");
         list.add("4");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter dataAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.nGram, R.layout.spinner_text);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spin.setAdapter(dataAdapter);
+
     }
+
 
     public void countFreq (View view, String text, String nGram)
     {
@@ -239,7 +239,9 @@ public class nGramCounter extends Fragment {
 
             }
             BarDataSet barDataSet = new BarDataSet(barEntries, "Frequency");
-
+            barDataSet.setColor(getResources().getColor(R.color.Neon_Green));
+            //barDataSet.setValueTextColor(getResources().getColor(R.color.Dark_Green));
+            //barDataSet.setHighLightColor(getResources().getColor(R.color.Neon_Green));
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add((IBarDataSet) barDataSet);
 
@@ -249,7 +251,8 @@ public class nGramCounter extends Fragment {
             xAxis.setGranularity(0.1f);
             xAxis.setDrawGridLines(false);
             xAxis.setLabelCount(25);
-            xAxis.setValueFormatter(new MyAxisValueFormatter(theDates));
+            //xAxis.setTextColor(getResources().getColor(R.color.Dark_Green));
+            xAxis.setValueFormatter(new MyAxisValueFormatter(theDatas));
 
             barChart.setData(theData);
             barChart.setVisibleXRange(100, 26);

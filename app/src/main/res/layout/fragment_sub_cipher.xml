@@ -2,42 +2,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/dark_grey">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="20dp">
-                    <RelativeLayout
-                        android:id="@+id/titleSub"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true">
-                        <TextView
 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Substitution Cipher"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
-                    </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/spinnerSubGroup"
-                        android:layout_below="@+id/afterBeforeDisplay"
+                        android:layout_below="@+id/AfterDisplaySub"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="10dp">
                         <Spinner
                             android:id="@+id/spinner1"
                             android:layout_width="112dp"
                             android:layout_height="48dp"
-                            android:background="@android:drawable/btn_dropdown"
+                            android:backgroundTint="@color/Dark_Green"
                             android:spinnerMode="dropdown" />
                         <Spinner
                             android:id="@+id/spinner2"
                             android:layout_width="112dp"
                             android:layout_height="48dp"
-                            android:background="@android:drawable/btn_dropdown"
+                            android:backgroundTint="@color/Dark_Green"
                             android:spinnerMode="dropdown"
                             android:layout_toRightOf="@+id/spinner1"/>
                     </RelativeLayout>
@@ -51,32 +40,41 @@
                             android:id="@+id/btnsub"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Substitute" />
+                            android:layout_marginRight="5dp"
+                            android:text="Substitute"
+                            android:textColor="@color/Dark_Green"
+                            android:background="@drawable/buttonselector"/>
                         <Button
                             android:id = "@+id/undoBtn"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:layout_marginRight="5dp"
                             android:text = "Undo"
-                            android:layout_toRightOf="@id/btnsub"/>
+                            android:layout_toRightOf="@id/btnsub"
+                            android:textColor="@color/Dark_Green"
+                            android:background="@drawable/buttonselector"/>
                         <Button
                             android:id="@+id/resetBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/undoBtn"
-                            android:text="Reset"/>
+                            android:text="Reset"
+                            android:textColor="@color/Dark_Green"
+                            android:background="@drawable/buttonselector"/>
                     </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleSub"
-                    android:id="@+id/afterBeforeDisplay">
+                    android:id="@+id/BeforeDisplaySub"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittextborder">
                         <TextView
                             android:id="@+id/beforeSubTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Before Substitution"
-                            android:textColor="@color/Black"
-                            android:paddingTop="10dp"/>
+                            android:textColor="@color/Dark_Green"
+                            android:layout_marginTop="10dp"/>
 
                         <TextView
                             android:id="@+id/before"
@@ -85,36 +83,44 @@
                             android:layout_marginTop="10dp"
                             android:textIsSelectable="true"
                             android:scrollbars="none"
-                            android:textColor="@color/Black"
+                            android:textColor="@color/Neon_Green"
                             android:layout_below="@+id/beforeSubTitle" />
-
-                        <TextView
-                            android:id="@+id/afterSubTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="17dp"
-                            android:text="After Substitution"
-                            android:textColor="@color/Black"
-                            android:layout_below="@+id/before"
-                            />
-
-                        <TextView
-                            android:id="@+id/after"
-                            android:layout_width="match_parent"
-                            android:layout_height="81dp"
-                            android:textIsSelectable="true"
-                            android:layout_below="@+id/afterSubTitle"
-                            android:textColor="@color/Black"
-                            android:layout_marginTop="10dp"/>
-         </RelativeLayout>
-
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/AfterDisplaySub"
+                        android:layout_below="@+id/BeforeDisplaySub"
+                        android:background="@drawable/edittextborder">
+                                <TextView
+                                    android:id="@+id/afterSubTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:text="After Substitution"
+                                    android:textColor="@color/Dark_Green" />
+                                <TextView
+                                    android:id="@+id/after"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="81dp"
+                                    android:textIsSelectable="true"
+                                    android:layout_below="@+id/afterSubTitle"
+                                    android:textColor="@color/Neon_Green"
+                                    android:layout_marginTop="10dp"/>
+                         </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/btnsubGroup"
+    android:layout_margin="10dp">
         <TextView
             android:id="@+id/tableLabel"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text = "Substituted Alphabets"
-            android:layout_below="@+id/btnsubGroup"
-            android:textColor="@color/Black"> </TextView>
+            android:textColor="@color/Dark_Green"/>
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,6 +136,6 @@
             android:layout_height="wrap_content"
             />
         </TableLayout>
-
+</RelativeLayout>
 </RelativeLayout>
 </ScrollView>

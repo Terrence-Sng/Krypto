@@ -38,4 +38,9 @@
         <item name="android:windowBackground">@color/Black</item>
     </style>
 
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/Neon_Green</item>
+        <item name="colorControlActivated">@color/Neon_Green</item>
+        <item name="colorControlHighlight">@color/Neon_Green</item>
+    </style>
 </resources>

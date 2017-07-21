@@ -4,32 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/userEmail"
-        android:layout_width="339dp"
-        android:layout_height="51dp"
-        android:text="Caculate Index of Coincidence"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textGroupIOC"
-        android:layout_below="@+id/userEmail">
+        android:id="@+id/previewIOC"
+        android:layout_below="@+id/userEmail"
+        android:background="@drawable/edittextborder">
     <TextView
         android:id="@+id/labelInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Input Preview:"
         android:textStyle="bold|italic"
-        android:layout_marginStart="6dp"
-        android:textColor="@color/Black"/>
+        android:paddingTop="10dp"
+        android:textColor="@color/Dark_Green"/>
 
     <TextView
         android:id="@+id/inputpreviewIOC"
@@ -38,34 +32,50 @@
         android:textIsSelectable="true"
         android:scrollbars="vertical"
         android:layout_below="@+id/labelInput"
-        />
+        android:textColor="@color/Neon_Green"
+        android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultIOC"
+        android:layout_below="@+id/previewIOC"
+        android:background="@drawable/edittextborder"
+        android:layout_marginBottom="10dp">
 
     <TextView
         android:id="@+id/labelIOC"
-        android:textColor="@color/Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Index of Coincidence:"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/inputpreviewIOC"/>
+        android:textColor="@color/Dark_Green"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/displayioc"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@+id/labelIOC"/>
+        android:layout_below="@+id/labelIOC"
+        android:textColor="@color/Neon_Green"
+        android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonGroupIOC"
-        android:layout_below="@+id/textGroupIOC">
+        android:layout_below="@+id/resultIOC">
     <Button
         android:id="@+id/calioc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="calculate"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
      />
 
     </RelativeLayout>

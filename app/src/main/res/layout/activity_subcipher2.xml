@@ -1,0 +1,146 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarSubCipher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarSubCipher"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:backgroundTint="@color/Black"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/actionBarSubCipher">
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/editKeylayout"
+        app:hintTextAppearance="@style/Floating_hint"
+        android:textColorHint="@color/Darker_Green"
+        android:layout_marginTop="10dp">
+    <EditText
+        android:id="@+id/editkey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Keyword"
+        android:inputType="textPersonName"
+        android:textIsSelectable="true"
+        android:theme="@style/EditTextTheme"
+       />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editTextLayoutVig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editKeylayout"
+        app:hintTextAppearance="@style/Floating_hint"
+        android:textColorHint="@color/Darker_Green">
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Text"
+        android:inputType="textPersonName"
+        android:textIsSelectable="true"
+        android:layout_below="@+id/editKeylayout"
+        android:theme="@style/EditTextTheme"/>
+    </android.support.design.widget.TextInputLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextLayoutVig"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:id="@+id/btngroupsub2">
+
+    <Button
+        android:id="@+id/btnenc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encrypt"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"/>
+    <Button
+        android:id="@+id/btndec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrypt"
+        android:layout_toRightOf="@id/btnenc"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/keyoutputgroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btngroupsub2"
+        android:background="@drawable/edittextborder"
+        android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/keyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:text="Key"
+        android:textColor="@color/Dark_Green"
+        />
+    <TextView
+        android:id="@+id/outputkey"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/keyLabel"
+        android:textColor="@color/Neon_Green"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/keyoutputgroup"
+        android:layout_margin="10dp"
+        android:background="@drawable/edittextborder">
+        <TextView
+            android:id="@+id/outputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="23dp"
+            android:text="Output"
+            android:textColor="@color/Dark_Green"/>
+        <TextView
+            android:id="@+id/output"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:textIsSelectable="true"
+            android:textColor="@color/Neon_Green"
+            android:layout_below="@+id/outputLabel"
+            />
+    </RelativeLayout>
+</RelativeLayout>
+</ScrollView>
+</RelativeLayout>

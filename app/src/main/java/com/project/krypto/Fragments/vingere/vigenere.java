@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.project.krypto.R;
 
@@ -34,8 +35,7 @@ public class vigenere extends Fragment {
     private static Button encrypt;
     private static Button decrypt;
     private static Button reset;
-
-    EditText displayResult;
+    private static TextView displayResult;
 
     final Handler handler = new Handler();
     test t = new test();
@@ -85,7 +85,7 @@ public class vigenere extends Fragment {
 
         encrypt = (Button) view.findViewById(R.id.btnEnc);
         decrypt = (Button) view.findViewById(R.id.btnDec);
-        displayResult = (EditText) view.findViewById(R.id.Output);
+        displayResult = (TextView) view.findViewById(R.id.Output);
         editKey = (EditText) view.findViewById(R.id.inputkey);
         editPlain = (EditText) view.findViewById(R.id.inputPT);
         //back = (Button) findViewById(R.id.btnBack);

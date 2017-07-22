@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="@color/red"
+        android:src="@drawable/ic_menu" />
+    <TextView
+        android:id="@+id/labelFreqCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toLeftOf="@+id/freqFAB"
+        android:text="Frequency Counter"
+        android:textColor="#000"
+        android:background="@drawable/round_textview"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/freqFAB"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/freqFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        app:srcCompat="@drawable/ic_shortcut_search"
+        android:layout_below="@+id/fab"
+        android:layout_alignLeft="@id/fab"
+        />
+    <TextView
+        android:id="@+id/labelIOC"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toLeftOf="@+id/iocFAB"
+        android:text="Index of Coincidence"
+        android:textColor="#000"
+        android:background="@drawable/round_textview"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/iocFAB"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/iocFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        android:src = "@drawable/ic_shortcut_search"
+        android:layout_below="@+id/freqFAB"
+        android:layout_alignLeft="@id/fab"
+        />
+    <TextView
+        android:id="@+id/labelPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toLeftOf="@+id/periodFAB"
+        android:text="Period"
+        android:textColor="#000"
+        android:background="@drawable/round_textview"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/periodFAB"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/periodFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        android:src = "@drawable/ic_shortcut_search"
+        android:layout_below="@+id/iocFAB"
+        android:layout_alignLeft="@id/fab"
+        />
+
+    <TextView
+    android:id="@+id/labelSub"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:layout_toLeftOf="@+id/subFAB"
+    android:text="Substitute Cipher"
+    android:textColor="#000"
+    android:background="@drawable/round_textview"
+    android:gravity="center"
+    android:layout_marginRight="10dp"
+    android:layout_alignBottom="@+id/subFAB"
+    />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/subFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        android:src = "@drawable/ic_shortcut_search"
+        android:layout_below="@+id/periodFAB"
+        android:layout_alignLeft="@id/fab"
+        />
+
+    <TextView
+        android:id="@+id/labelVig"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toLeftOf="@+id/vigFAB"
+        android:text="Vigenere Cipher"
+        android:textColor="#000"
+        android:background="@drawable/round_textview"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/vigFAB"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/vigFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        android:src = "@drawable/ic_shortcut_search"
+        android:layout_below="@+id/subFAB"
+        android:layout_alignLeft="@id/fab"
+        />
+    <TextView
+        android:id="@+id/labelTranspo"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toLeftOf="@+id/transpoFAB"
+        android:text="Transposition Cipher"
+        android:textColor="#000"
+        android:background="@drawable/round_textview"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/transpoFAB"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/transpoFAB"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        app:backgroundTint="@color/red"
+        android:src = "@drawable/ic_shortcut_search"
+        android:layout_below="@+id/vigFAB"
+        android:layout_alignLeft="@id/fab"
+        />
+</RelativeLayout>

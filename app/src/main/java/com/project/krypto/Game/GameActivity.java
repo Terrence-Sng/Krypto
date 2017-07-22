@@ -4,20 +4,29 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
 
-public class GameActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class GameActivity extends AppCompatActivity {
+    boolean fabOpen = false;
+    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.labelSub,R.id.vigFAB,R.id.transpoFAB};
+    int [] labelID = {R.id.labelFreqCounter, R.id.labelIOC, R.id.labelPeriod,R.id.subFAB, R.id.labelVig, R.id.labelTranspo};
+    static ArrayList<TextView> labels = new ArrayList <> ();
+    static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
+    final Handler handler = new Handler();
+    fabVisible fabVis = new fabVisible();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,23 +46,52 @@ public class GameActivity extends AppCompatActivity {
         final ImageButton paperball =(ImageButton) findViewById(R.id.imageButton6);
         final ImageButton paint =(ImageButton) findViewById(R.id.pictureFront);
         final ImageButton drawer =(ImageButton) findViewById(R.id.imageButton4);
-        final Button Enter = (Button) findViewById(R.id.button2);
-        final Button Close = (Button) findViewById(R.id.button4);
-        final Button Reset = (Button) findViewById(R.id.button3);
+        final Button Enter = (Button) findViewById(R.id.submitButton);
+        final Button ok = (Button) findViewById(R.id.okbutt);
+        final Button ok1 = (Button) findViewById(R.id.okbutt1);
+        final Button ok2 = (Button) findViewById(R.id.okbutt2);
         final EditText Password = (EditText) findViewById(R.id.editText);
-        final EditText hint1 = (EditText) findViewById(R.id.editText2);
         final ImageView Command = (ImageView) findViewById(R.id.cmdprompt);
-        final ImageView paperhint = (ImageView) findViewById(R.id.imageView5);
-        final ImageView painthint = (ImageView) findViewById(R.id.imageView);
-        final ImageView opendrawer = (ImageView) findViewById(R.id.imageView6);
-        final ImageView note = (ImageView) findViewById(R.id.imageView7);
-        final EditText hint2 = (EditText) findViewById(R.id.editText3);
-        final EditText hint31 = (EditText) findViewById(R.id.editText4);
-        final EditText hint32 = (EditText) findViewById(R.id.editText7);
-        final EditText hint33 = (EditText) findViewById(R.id.editText8);
+        final TextView paperhint = (TextView) findViewById(R.id.crushedpaper);
+        final RelativeLayout paper = (RelativeLayout) findViewById(R.id.paperLayout);
+        final RelativeLayout picture = (RelativeLayout) findViewById(R.id.pictureBackLayout);
+        final RelativeLayout openDrawer = (RelativeLayout) findViewById(R.id.opendrawer);
+        final ImageView note = (ImageView) findViewById(R.id.noteImage);
+        final EditText hint2 = (EditText) findViewById(R.id.pictback);
+        final TextView hint31 = (TextView) findViewById(R.id.hintTextDrawer);
         final EditText cipher = (EditText) findViewById(R.id.cipherlvl1);
 
+        /*FAB*/
+        initFABS();
+        //mainFAB
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(fabOpen == false) {
+                    fabOpen = true;
+                    fab.setImageResource(R.drawable.ic_close);
+                    for (int i = 0; i < fabs.size(); i++)
+                    {
+                        fabVis.counter = i;
+                        fabVis.run();
+                    }
 
+
+                }
+                else
+                {
+                    fabOpen = false;
+                    fab.setImageResource(R.drawable.ic_menu);
+                    for(int i = 0; i < fabs.size(); i++)
+                    {
+                        fabs.get(i).setVisibility(View.INVISIBLE);
+                        labels.get(i).setVisibility(View.INVISIBLE);
+                    }
+                }
+
+            }
+        });
 
         cipher.setEnabled(false);
         Password.setEnabled(true);
@@ -89,15 +127,11 @@ public class GameActivity extends AppCompatActivity {
                     Enter.setVisibility(View.VISIBLE);
                     Password.setVisibility(View.VISIBLE);
                     Command.setVisibility(View.VISIBLE);
-                    Reset.setVisibility(View.INVISIBLE);
-                    hint1.setVisibility(View.INVISIBLE);
-                    paperhint.setVisibility(View.INVISIBLE);
+                    ok.setVisibility(View.INVISIBLE);
+                    paper.setVisibility(View.INVISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
-                    painthint.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
-                    hint32.setVisibility(View.INVISIBLE);
-                    hint33.setVisibility(View.INVISIBLE);
-                    opendrawer.setVisibility(View.INVISIBLE);
+                    openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
                 }
                 else {
@@ -114,16 +148,11 @@ public class GameActivity extends AppCompatActivity {
                     papercrumple.start();
                     ring.start();
                     ring.setLooping(true);
-                    hint1.setEnabled(false);
-                    hint1.setVisibility(View.VISIBLE);
-                    paperhint.setVisibility(View.VISIBLE);
-                    Reset.setVisibility(View.VISIBLE);
+                    paper.setVisibility(View.VISIBLE);
+                    ok.setVisibility(View.VISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
-                    painthint.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
-                    hint32.setVisibility(View.INVISIBLE);
-                    hint33.setVisibility(View.INVISIBLE);
-                    opendrawer.setVisibility(View.INVISIBLE);
+                    openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
@@ -141,18 +170,12 @@ public class GameActivity extends AppCompatActivity {
                     ring.start();
                     ring.setLooping(true);
                     hint31.setEnabled(false);
-                    hint32.setEnabled(false);
-                    hint33.setEnabled(false);
                     hint31.setVisibility(View.VISIBLE);
-                    hint32.setVisibility(View.VISIBLE);
-                    hint33.setVisibility(View.VISIBLE);
-                    opendrawer.setVisibility(View.VISIBLE);
+                    openDrawer.setVisibility(View.VISIBLE);
                     note.setVisibility(View.VISIBLE);
-                    Reset.setVisibility(View.VISIBLE);
-                    hint1.setVisibility(View.INVISIBLE);
-                    paperhint.setVisibility(View.INVISIBLE);
+                    ok.setVisibility(View.VISIBLE);
+                    paper.setVisibility(View.INVISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
-                    painthint.setVisibility(View.INVISIBLE);
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
@@ -163,21 +186,17 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //btnTest.setSelected(!btnextra.isPressed());
-
                 if (paint.isPressed()) {
+                    picture.setVisibility(View.VISIBLE);
                     paintremove.start();
                     ring.start();
                     ring.setLooping(true);
                     hint2.setEnabled(false);
                     hint2.setVisibility(View.VISIBLE);
-                    painthint.setVisibility(View.VISIBLE);
-                    Reset.setVisibility(View.VISIBLE);
-                    hint1.setVisibility(View.INVISIBLE);
-                    paperhint.setVisibility(View.INVISIBLE);
+                    ok.setVisibility(View.VISIBLE);
+                    paper.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
-                    hint32.setVisibility(View.INVISIBLE);
-                    hint33.setVisibility(View.INVISIBLE);
-                    opendrawer.setVisibility(View.INVISIBLE);
+                    openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
@@ -197,14 +216,10 @@ public class GameActivity extends AppCompatActivity {
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
                     //Reset.setVisibility(View.VISIBLE);
-                    hint1.setVisibility(View.INVISIBLE);
-                    paperhint.setVisibility(View.INVISIBLE);
+                    paper.setVisibility(View.INVISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
-                    painthint.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
-                    hint32.setVisibility(View.INVISIBLE);
-                    hint33.setVisibility(View.INVISIBLE);
-                    opendrawer.setVisibility(View.INVISIBLE);
+                    openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
 
                     //once correct start the 'stageclear' activity
@@ -260,27 +275,31 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-        Reset.setOnClickListener(new View.OnClickListener() {
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Reset.isPressed()) {
-                    btnTest.setImageResource(R.drawable.door2);
-                    Reset.setVisibility(View.INVISIBLE);
-                    hint1.setVisibility(View.INVISIBLE);
-                    paperhint.setVisibility(View.INVISIBLE);
-                    hint2.setVisibility(View.INVISIBLE);
-                    painthint.setVisibility(View.INVISIBLE);
-                    hint31.setVisibility(View.INVISIBLE);
-                    hint32.setVisibility(View.INVISIBLE);
-                    hint33.setVisibility(View.INVISIBLE);
-                    opendrawer.setVisibility(View.INVISIBLE);
-                    note.setVisibility(View.INVISIBLE);
-                    Enter.setVisibility(View.INVISIBLE);
-                    Password.setVisibility(View.INVISIBLE);
-                    Command.setVisibility(View.INVISIBLE);
+                if (ok.isPressed()) {
+                    paper.setVisibility(View.INVISIBLE);
                 }
             }
         });
+        ok1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ok1.isPressed()) {
+                    picture.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        ok2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ok2.isPressed()) {
+                    openDrawer.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        /*
         Close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,16 +308,9 @@ public class GameActivity extends AppCompatActivity {
                     Close.setVisibility(View.INVISIBLE);
                 }
             }
-        });
+        });*/
     }
 
-
-
-    public void startZoomInAnimation(View view) {
-        ImageView imageView = (ImageView) findViewById(R.id.door);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.layout.zoom_in_animation);
-        imageView.startAnimation(animation);
-    }
      public void onBackPressed()
      {
          Intent i = new Intent (getApplicationContext(),MainActivity.class);
@@ -306,4 +318,21 @@ public class GameActivity extends AppCompatActivity {
          finish();
          super.onBackPressed();
      }
+     public void initFABS ()
+     {
+     }
+    class fabVisible implements Runnable
+    {
+        int counter = 0;
+        @Override
+        public void run() {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fabs.get(counter).setVisibility(View.VISIBLE);
+                    labels.get(counter).setVisibility(View.VISIBLE);
+                }
+            }, 50+(counter*25));
+        }
+    }
 }

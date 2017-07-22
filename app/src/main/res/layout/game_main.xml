@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.project.krypto.Game.GameActivity"
     android:background="@drawable/finalwall"
-    android:weightSum="2"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="0.7">
         <EditText
             android:id="@+id/cipherlvl1"
             android:layout_width="360dp"
@@ -22,255 +25,226 @@
             android:text='SFGR SAXS GR AMLQYOSAE UY RTURSGSTSGNM LGOFAQ. YNT MAAE SN SYOA "NOAM" SN NOAM SFA ENNQ. SFAQACNQA, SFA BMRWAQ GR "NOAM". G WGRF YNT DNNE JTLI.'
             android:textColor="#FFFFFF"
             android:textCursorDrawable="@null" />
+        <RelativeLayout
+            android:layout_width="305dp"
+            android:layout_height="181dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/cmdpromptlayout">
+        <ImageView
+            android:id="@+id/cmdprompt"
+            android:layout_width="305dp"
+            android:layout_height="181dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/commandprompt"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="235dp"
+                android:layout_height="11dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="37dp"
+                android:background="@null"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Password Here"
+                android:textColor="#FFFFFF"
+                android:textCursorDrawable="@null"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <RelativeLayout
+                android:id="@+id/paperLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible">
+                <TextView
+                    android:id="@+id/crushedpaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Substitute me"
+                    android:textAlignment="center"
+                    android:visibility="visible"
+                    android:background="@drawable/paper"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"/>
+                <Button
+                    android:id="@+id/okbutt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK"
+                    android:visibility="visible"
+                    android:layout_alignBottom="@+id/crushedpaper"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/pictureBackLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+            <EditText
+                android:id="@+id/pictback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pictureback"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text='Try "Bubble"'
+                android:textColor="#000000"
+                android:textCursorDrawable="@null"
+                android:visibility="visible" />
+                <Button
+                    android:id="@+id/okbutt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK"
+                    android:visibility="visible"
+                    android:layout_alignBottom="@+id/pictback"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/opendrawer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/opendrawer"
+                android:layout_centerInParent="true"
+                android:visibility="invisible">
+                <ImageView
+                    android:id="@+id/noteImage"
+                    android:layout_width="200dp"
+                    android:layout_height="120dp"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/note"
+                    android:layout_centerInParent="true"/>
+                <TextView
+                    android:id="@+id/hintTextDrawer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ems="10"
+                    android:text='A to B\nB to U\nC to L'
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:visibility="visible"
+                    android:layout_centerInParent="true" />
+                <Button
+                    android:id="@+id/okbutt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK"
+                    android:visibility="visible"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        </RelativeLayout>
+
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.7">
+            android:layout_weight="0.84">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1">
+
                 <ImageButton
                     android:id="@+id/pictureFront"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:srcCompat="@drawable/picture"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/picture" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1">
+
                 <ImageButton
                     android:id="@+id/door"
-                    android:layout_width="81dp"
-                    android:layout_height="145dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="80dp"
+                    android:layout_height="140dp"
                     android:layout_alignParentBottom="true"
-                    app:srcCompat="@drawable/door2"
-                    android:layout_marginTop="100dp"
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="296dp" />
-
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/cmdprompt"
-                    android:layout_alignEnd="@+id/editText"
-                    android:layout_alignRight="@+id/editText"
-                    android:text="Submit"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/cmdprompt"
-                    android:layout_alignEnd="@+id/door"
-                    android:layout_alignRight="@+id/door"
-                    android:layout_marginBottom="21dp"
-                    android:text="OK"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="23dp"
-                    android:text="Wrong"
-                    android:visibility="visible"
-                    android:layout_above="@+id/button2"
-                    android:layout_alignLeft="@+id/button3"
-                    android:layout_alignStart="@+id/button3" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/paper" />
-
-                <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:visibility="visible"
-                    android:text="Substitute me"
-                    android:textColor="#000000"
-                    android:background="@null"
-                    android:textCursorDrawable="@null"
-                    android:layout_above="@+id/button4"
-                    android:layout_centerHorizontal="true" />
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/pictureback"
-                    android:visibility="visible"
                     android:layout_centerHorizontal="true"
-                    android:layout_above="@+id/door" />
+                    app:srcCompat="@drawable/door2" />
 
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textColor="#000000"
-                    android:background="@null"
-                    android:text='Try "Bubble"'
-                    android:visibility="visible"
-                    android:textCursorDrawable="@null"
-                    android:layout_below="@+id/editText2"
-                    android:layout_alignLeft="@+id/button4"
-                    android:layout_alignStart="@+id/button4" />
+            </RelativeLayout>
 
-
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/opendrawer"
-                    android:layout_alignTop="@+id/button3"
-                    android:layout_alignParentStart="true" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="200dp"
-                    android:layout_height="120dp"
-                    android:layout_alignTop="@+id/editText"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/note" />
-
-                <EditText
-                    android:id="@+id/editText8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/editText7"
-                    android:layout_alignStart="@+id/editText7"
-                    android:visibility="visible"
-                    android:layout_below="@+id/editText3"
-                    android:background="@null"
-                    android:ems="10"
-                    android:text="C to L"
-                    android:textColor="#000000"
-                    android:textCursorDrawable="@null" />
-
-                <EditText
-                    android:id="@+id/editText7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:ems="10"
-                    android:text="B to U"
-                    android:textColor="#000000"
-                    android:visibility="visible"
-                    android:textCursorDrawable="@null"
-                    android:layout_alignBaseline="@+id/editText3"
-                    android:layout_alignBottom="@+id/editText3"
-                    android:layout_alignRight="@+id/imageView4"
-                    android:layout_alignEnd="@+id/imageView4" />
-
-                <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textColor="#000000"
-                    android:background="@null"
-                    android:text='A to B'
-                    android:textCursorDrawable="@null"
-                    android:layout_alignBaseline="@+id/editText2"
-                    android:visibility="visible"
-                    android:layout_alignBottom="@+id/editText2"
-                    android:layout_alignLeft="@+id/editText7"
-                    android:layout_alignStart="@+id/editText7" />
-
-               </RelativeLayout>
-            
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1">
+
                 <ImageButton
                     android:id="@+id/imageButton4"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
                     android:background="@drawable/finaldrawer"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/finaldrawer"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    />
+                    app:srcCompat="@drawable/finaldrawer" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/subcipherFAB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/finalclock"
                     android:layout_above="@+id/imageButton4"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    app:srcCompat="@drawable/finalclock" />
+
             </RelativeLayout>
         </LinearLayout>
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_weight="2">
-           <ImageButton
-               android:id="@+id/imageButton6"
-               android:layout_width="50dp"
-               android:layout_height="50dp"
-               android:background="@drawable/finalbin"
-               android:scaleType="fitXY"
-               app:srcCompat="@drawable/finalbin"
-               android:layout_alignParentBottom="true"
-               android:layout_marginLeft="50dp"
-               android:layout_marginBottom="35dp" />
-       </RelativeLayout>
-        <ImageView
-            android:id="@+id/cmdprompt"
-            android:layout_width="305dp"
-            android:layout_height="181dp"
-            android:layout_marginBottom="15dp"
-            android:scaleType="fitXY"
-            android:visibility="visible"
-            app:srcCompat="@drawable/commandprompt" />
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="235dp"
-            android:layout_height="11dp"
-            android:layout_alignEnd="@+id/cmdprompt"
-            android:layout_alignRight="@+id/cmdprompt"
-            android:layout_alignTop="@+id/cmdprompt"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="26dp"
-            android:background="@null"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Enter Password Here"
-            android:textColor="#FFFFFF"
-            android:textCursorDrawable="@null"
-            android:textSize="10sp"
-            android:visibility="visible" />
-    </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/trash"
+                />
+        </RelativeLayout>
+
+
+    </LinearLayout>
 </LinearLayout>
+
+    <include
+        android:id="@+id/includeFAB"
+        layout="@layout/fabs" />
+</RelativeLayout>

@@ -33,16 +33,16 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_main);
 
-        final ImageButton btnTest =(ImageButton) findViewById(R.id.imageButton);
+        final ImageButton btnTest =(ImageButton) findViewById(R.id.door);
         final ImageButton paperball =(ImageButton) findViewById(R.id.imageButton6);
-        final ImageButton paint =(ImageButton) findViewById(R.id.imageButton5);
+        final ImageButton paint =(ImageButton) findViewById(R.id.pictureFront);
         final ImageButton drawer =(ImageButton) findViewById(R.id.imageButton4);
         final Button Enter = (Button) findViewById(R.id.button2);
         final Button Close = (Button) findViewById(R.id.button4);
         final Button Reset = (Button) findViewById(R.id.button3);
         final EditText Password = (EditText) findViewById(R.id.editText);
         final EditText hint1 = (EditText) findViewById(R.id.editText2);
-        final ImageView Command = (ImageView) findViewById(R.id.imageView3);
+        final ImageView Command = (ImageView) findViewById(R.id.cmdprompt);
         final ImageView paperhint = (ImageView) findViewById(R.id.imageView5);
         final ImageView painthint = (ImageView) findViewById(R.id.imageView);
         final ImageView opendrawer = (ImageView) findViewById(R.id.imageView6);
@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity {
         final EditText hint31 = (EditText) findViewById(R.id.editText4);
         final EditText hint32 = (EditText) findViewById(R.id.editText7);
         final EditText hint33 = (EditText) findViewById(R.id.editText8);
-        final EditText cipher = (EditText) findViewById(R.id.editText10);
+        final EditText cipher = (EditText) findViewById(R.id.cipherlvl1);
 
 
 
@@ -295,7 +295,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void startZoomInAnimation(View view) {
-        ImageView imageView = (ImageView) findViewById(R.id.imageButton);
+        ImageView imageView = (ImageView) findViewById(R.id.door);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.layout.zoom_in_animation);
         imageView.startAnimation(animation);
     }

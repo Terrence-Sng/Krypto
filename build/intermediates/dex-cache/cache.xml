@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5011439a437ea51ec99311f27d5f70ea0d3ae8d8">
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_8cca0068762d1f1ed74bce3559a840fb566af13d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_201a8f40f235639070b141ac00475b6502ac32ae\classes.dex" />
+    </item>
+
+</items>

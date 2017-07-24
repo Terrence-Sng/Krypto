@@ -2,13 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Panda\.android\build-cache\5ba7f1f78e3526a31b3585cdfd2dfb2632a64efc\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
-        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto\app\build\intermediates\pre-dexed\debug\classes_f2212c2a0c0baaa07ecdc7d90e60eccb3ce9624d.jar" />
+        sha1="2b409e429cbde63474e3f84c51fb51c1d4c28e0f">
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_8cca0068762d1f1ed74bce3559a840fb566af13d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_201a8f40f235639070b141ac00475b6502ac32ae\classes.dex" />
     </item>
 
 </items>

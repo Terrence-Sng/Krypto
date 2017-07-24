@@ -1,10 +1,13 @@
 package com.project.krypto.Game;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
@@ -22,12 +27,12 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
     boolean fabOpen = true;
+    int [] iconsID = {R.drawable.ic_frequency, R.drawable.ic_ioc, R.drawable.ic_period, R.drawable.ic_sub, R.drawable.ic_vigenere, R.drawable.ic_transposition};
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
-    int [] labelID = {R.id.labelFreqCounter, R.id.labelIOC, R.id.labelPeriod,R.id.labelSub, R.id.labelVig, R.id.labelTranspo};
-    static ArrayList<TextView> labels = new ArrayList <> ();
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
-    final Handler handler = new Handler();
-    fabVisible fabVis = new fabVisible();
+    static ArrayList <Drawable> icons = new ArrayList<>();
+    //final Handler handler = new Handler();
+    //fabVisible fabVis = new fabVisible();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,8 +66,10 @@ public class GameActivity extends AppCompatActivity {
         final TextView hint31 = (TextView) findViewById(R.id.hintTextDrawer);
         final EditText cipher = (EditText) findViewById(R.id.cipherlvl1);
 
+
         /*FAB*/
        initFABS();
+        /*
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
         cipher.setEnabled(false);
         Password.setEnabled(true);
@@ -322,16 +329,11 @@ public class GameActivity extends AppCompatActivity {
          for (int i = 0; i < fabID.length; i ++)
          {
              FloatingActionButton temp = (FloatingActionButton) findViewById(fabID[i]);
-             //temp.setVisibility(View.INVISIBLE);
+             temp.setIcon(iconsID[i]);
              fabs.add(temp);
          }
-         for (int i = 0; i < labelID.length; i ++)
-         {
-             TextView temp = (TextView) findViewById(labelID[i]);
-            // temp.setVisibility(View.INVISIBLE);
-             labels.add(temp);
-         }
      }
+     /*
     class fabVisible implements Runnable
     {
         int counter = 0;
@@ -347,5 +349,5 @@ public class GameActivity extends AppCompatActivity {
                 }
             }, 50+(counter*25));
         }
-    }
+    }*/
 }

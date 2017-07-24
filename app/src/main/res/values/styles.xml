@@ -44,5 +44,9 @@
         <item name="colorControlHighlight">@color/Neon_Green</item>
     </style>
 
+    <style name="FABmenulabel">
+        <item name="android:background">@drawable/round_textview</item>
+        <item name="android:textColor">@color/Neon_Green</item>
+    </style>
 
 </resources>

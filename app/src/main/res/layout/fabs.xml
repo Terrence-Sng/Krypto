@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/right_labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        fab:fab_addButtonColorNormal="@color/Black"
+        fab:fab_addButtonColorPressed="@color/Black"
+        fab:fab_addButtonPlusIconColor="@color/Dark_Green"
+        fab:fab_addButtonSize="mini"
+        fab:fab_labelsPosition="right">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_title="Label on the right"
+            fab:fab_colorPressed="@color/dark_grey"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/dark_grey"
+            fab:fab_size="mini"
+            fab:fab_title="Another one on the right"
+            fab:fab_colorPressed="@color/dark_grey"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <!--
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -13,6 +46,7 @@
         android:layout_alignParentEnd="true"
         app:backgroundTint="@color/red"
         android:src="@drawable/ic_menu" />
+
     <TextView
         android:id="@+id/labelFreqCounter"
         android:layout_width="wrap_content"
@@ -35,6 +69,7 @@
         android:layout_below="@+id/fab"
         android:layout_alignLeft="@id/fab"
         />
+
     <TextView
         android:id="@+id/labelIOC"
         android:layout_width="wrap_content"
@@ -146,5 +181,5 @@
         android:src = "@drawable/ic_shortcut_search"
         android:layout_below="@+id/vigFAB"
         android:layout_alignLeft="@id/fab"
-        />
+        />!-->
 </RelativeLayout>

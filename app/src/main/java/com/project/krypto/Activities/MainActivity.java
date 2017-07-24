@@ -34,15 +34,12 @@ import com.project.krypto.Fragments.nGram.nGramCounter;
 import com.project.krypto.Fragments.period.period;
 import com.project.krypto.Fragments.transpo.transpo;
 import com.project.krypto.Fragments.vingere.vigenere;
-import com.project.krypto.Helper.SQLiteHandler;
-import com.project.krypto.Helper.SessionManager;
-import com.project.krypto.LoginRegisterActivity.LoginActivity;
+import com.project.krypto.Game.GameActivity;
 import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 
 //import com.example.panda.krypto.Interfaces.fragmentInterfaces;
 
@@ -62,9 +59,6 @@ public class MainActivity extends AppCompatActivity
     private SubCipher2 subCipher2;
     private transpo transpo;
     private TextView username, textEmail;
-
-    private SQLiteHandler db;
-    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,13 +216,9 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("Transposition Cipher");
         } else if(id == R.id.game)
         {
-            Intent i = new Intent (getApplicationContext(),LoginActivity.class);
+            Intent i = new Intent (getApplicationContext(),GameActivity.class);
             startActivity(i);
             finish();
-        }
-        else
-        {
-            logoutUser();
         }
 
         if(fragment != null) {
@@ -244,16 +234,6 @@ public class MainActivity extends AppCompatActivity
     public void onDestory()
     {
         super.onDestroy();
-        session.setLogin(false);
-
-        db.deleteUsers();
-
-        Intent intent = new Intent (MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-
-        Log.d("Destory", "Destory called");
-
     }
 
     public void initFrags()
@@ -322,40 +302,5 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void initUserSession()
-    {
-        db = new SQLiteHandler(getApplicationContext());
 
-        // session manager
-        session = new SessionManager(getApplicationContext());
-
-        if (!session.isLoggedIn()) {
-            logoutUser();
-        }
-
-        // Fetching user details from sqlite
-        HashMap<String, String> user = db.getUserDetails();
-
-        String name = user.get("name");
-        String email = user.get("email");
-
-        // Displaying the user details on the screen
-        username.setText(name);
-        textEmail.setText(email);
-    }
-
-    /**
-     * Logging out the user. Will set isLoggedIn flag to false in shared
-     * preferences Clears the user data from sqlite users table
-     * */
-    private void logoutUser() {
-        session.setLogin(false);
-
-        db.deleteUsers();
-
-        // Launching the login activity
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }

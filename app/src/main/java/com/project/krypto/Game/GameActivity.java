@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,16 +21,15 @@ import com.project.krypto.R;
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
-    boolean fabOpen = false;
-    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.labelSub,R.id.vigFAB,R.id.transpoFAB};
-    int [] labelID = {R.id.labelFreqCounter, R.id.labelIOC, R.id.labelPeriod,R.id.subFAB, R.id.labelVig, R.id.labelTranspo};
+    boolean fabOpen = true;
+    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
+    int [] labelID = {R.id.labelFreqCounter, R.id.labelIOC, R.id.labelPeriod,R.id.labelSub, R.id.labelVig, R.id.labelTranspo};
     static ArrayList<TextView> labels = new ArrayList <> ();
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
     final Handler handler = new Handler();
     fabVisible fabVis = new fabVisible();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
         final MediaPlayer opendoor= MediaPlayer.create(this,R.raw.opendoor);
@@ -62,8 +62,7 @@ public class GameActivity extends AppCompatActivity {
         final EditText cipher = (EditText) findViewById(R.id.cipherlvl1);
 
         /*FAB*/
-        initFABS();
-        //mainFAB
+       initFABS();
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,10 +73,9 @@ public class GameActivity extends AppCompatActivity {
                     for (int i = 0; i < fabs.size(); i++)
                     {
                         fabVis.counter = i;
+                        Log.d("counter", fabVis.counter+"");
                         fabVis.run();
                     }
-
-
                 }
                 else
                 {
@@ -318,8 +316,21 @@ public class GameActivity extends AppCompatActivity {
          finish();
          super.onBackPressed();
      }
+
      public void initFABS ()
      {
+         for (int i = 0; i < fabID.length; i ++)
+         {
+             FloatingActionButton temp = (FloatingActionButton) findViewById(fabID[i]);
+             //temp.setVisibility(View.INVISIBLE);
+             fabs.add(temp);
+         }
+         for (int i = 0; i < labelID.length; i ++)
+         {
+             TextView temp = (TextView) findViewById(labelID[i]);
+            // temp.setVisibility(View.INVISIBLE);
+             labels.add(temp);
+         }
      }
     class fabVisible implements Runnable
     {
@@ -329,7 +340,9 @@ public class GameActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    Log.d("counter running", "run");
                     fabs.get(counter).setVisibility(View.VISIBLE);
+                    System.out.println("counter" + fabs.get(counter).getVisibility()+View.VISIBLE);
                     labels.get(counter).setVisibility(View.VISIBLE);
                 }
             }, 50+(counter*25));

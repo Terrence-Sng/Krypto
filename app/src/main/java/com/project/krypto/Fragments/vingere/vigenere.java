@@ -1,6 +1,7 @@
 package com.project.krypto.Fragments.vingere;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
 /**
@@ -34,8 +37,11 @@ public class vigenere extends Fragment {
     private static EditText editPlain;
     private static Button encrypt;
     private static Button decrypt;
-    private static Button reset;
+    private static Button reset,back;
     private static TextView displayResult;
+    private String cipherFromGame;
+    private String level;
+    private boolean fromGame;
 
     final Handler handler = new Handler();
     test t = new test();
@@ -61,10 +67,6 @@ public class vigenere extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static vigenere newInstance(String param1, String param2) {
         vigenere fragment = new vigenere();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -72,8 +74,9 @@ public class vigenere extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            cipherFromGame = getArguments().getString("GameCipher");
+            fromGame = getArguments().getBoolean("fromGame");
+            level = getArguments().getString("level");
         }
     }
 
@@ -83,13 +86,42 @@ public class vigenere extends Fragment {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_vigenere, container, false);
 
+        back = (Button) view.findViewById(R.id.backButtonGameVig);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
+                {
+                    case "1" :  game = new Intent (getContext(), GameActivity.class);
+                        startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getContext(), viglvl.class);
+                        startActivity(game);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                }
+            }
+        });
         encrypt = (Button) view.findViewById(R.id.btnEnc);
         decrypt = (Button) view.findViewById(R.id.btnDec);
         displayResult = (TextView) view.findViewById(R.id.Output);
         editKey = (EditText) view.findViewById(R.id.inputkey);
         editPlain = (EditText) view.findViewById(R.id.inputPT);
-        //back = (Button) findViewById(R.id.btnBack);
         reset = (Button) view.findViewById(R.id.btnreset);
+
+        if(fromGame == true)
+        {
+            editPlain.setText(cipherFromGame);
+            back.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            back.setVisibility(View.GONE);
+        }
 
         encrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -133,15 +165,15 @@ public class vigenere extends Fragment {
                 String colorCodeEnd = "</font>";
                 for (int i = 0; i < tempcipher.length(); i++) {
                     String testmsg = "";
-                    test test = new test();
+                    t = new test();
                     sent += tempcipher.charAt(i);
                     testmsg = msg.substring(i+1, tempcipher.length());
                     String comb = "<(>" + sent + "<)>" + testmsg; // <(> and <)> to mark the start and end of the color change
                     comb =  comb.replace("<(>",colorCodeStart); //start of color change
                     comb=  comb.replace("<)>",colorCodeEnd); // end of color change
-                    test.cipher = comb;
-                    test.counter = i;
-                    test.run();
+                    t.cipher = comb;
+                    t.counter = i;
+                    t.run();
                 }
             }
         });
@@ -194,15 +226,15 @@ public class vigenere extends Fragment {
                 String colorCodeEnd = "</font>";
                 for (int i = 0; i < tempplaintext.length(); i++) {
                     String testmsg = "";
-                    test test = new test();
+                    t = new test();
                     sent += tempplaintext.charAt(i);
                     testmsg = msg.substring(i+1, tempplaintext.length());
                     String comb = "<(>" + sent + "<)>" + testmsg;
                     comb =  comb.replace("<(>",colorCodeStart); //start of color change
                     comb=  comb.replace("<)>",colorCodeEnd); // end of color change
-                    test.cipher = comb;
-                    test.counter = i;
-                    test.run();
+                    t.cipher = comb;
+                    t.counter = i;
+                    t.run();
                 }
             }
         });
@@ -212,6 +244,7 @@ public class vigenere extends Fragment {
                 (editKey).setText("");
                 (editPlain).setText("");
                 displayResult.setText("");
+                handler.removeMessages(0);
             }
         });
 
@@ -270,7 +303,7 @@ public class vigenere extends Fragment {
                     Log.d("cipher", cipher);
                     displayResult.setText(Html.fromHtml(cipher));
                 }
-            }, 1000*counter);
+            }, 200*counter);
         }
     }
 }

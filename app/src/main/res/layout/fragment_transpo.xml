@@ -63,7 +63,7 @@
             app:hintTextAppearance="@style/Floating_hint"
             android:textColorHint="@color/Darker_Green">
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/blksize"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:textAlignment="center"
@@ -73,6 +73,17 @@
             android:textColorHint="@color/Darker_Green"
             android:textCursorDrawable="@null" />
         </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/backButtonGameTranspo"
+            android:layout_toEndOf="@+id/blkSizeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Back To Game"
+            android:background="@drawable/buttonselector"
+            android:textColor="@color/Dark_Green"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout

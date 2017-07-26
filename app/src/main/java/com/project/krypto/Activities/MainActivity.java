@@ -39,7 +39,9 @@ import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 //import com.example.panda.krypto.Interfaces.fragmentInterfaces;
 
@@ -55,10 +57,11 @@ public class MainActivity extends AppCompatActivity
     private ioc iocFrag;
     private period periodFrag;
     private vigenere vigFrag;
-    private subCipher subcipher;
-    private SubCipher2 subCipher2;
-    private transpo transpo;
+    private subCipher subFrag;
+    private SubCipher2 subFrag2;
+    private transpo transpoFrag;
     private TextView username, textEmail;
+    private ArrayList <Fragment> listFrags = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,19 +72,13 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle("Krypto");
         setSupportActionBar(toolbar);
 
-        Window window = getWindow();
+        setStatusBar();
 
-// clear FLAG_TRANSLUCENT_STATUS flag:
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-// finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
 
         initFrags();
         checkExternalStorage();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
@@ -133,6 +130,7 @@ public class MainActivity extends AppCompatActivity
         username = (TextView) headerView.findViewById(R.id.userName);
         textEmail = (TextView) headerView.findViewById(R.id.userEmail);
        // initUserSession();
+        getIntentContents();
     }
 
     public void showHomeFrag() {
@@ -209,10 +207,10 @@ public class MainActivity extends AppCompatActivity
             fragment = vigFrag;
             toolbar.setTitle("Vigenere Cipher");
         } else if (id == R.id.nav_sub) {
-            fragment = subcipher;
+            fragment = subFrag;
             toolbar.setTitle("Substitute Cipher");
         } else if (id == R.id.nav_transpo) {
-            fragment = transpo;
+            fragment = transpoFrag;
             toolbar.setTitle("Transposition Cipher");
         } else if(id == R.id.game)
         {
@@ -238,14 +236,21 @@ public class MainActivity extends AppCompatActivity
 
     public void initFrags()
     {
-        nfrag = new nGramCounter();
         homeFrag = new HomeFrag();
+        listFrags.add(homeFrag);
+        nfrag = new nGramCounter();
+        listFrags.add(nfrag);
         iocFrag = new ioc();
+        listFrags.add(iocFrag);
         periodFrag = new period();
+        listFrags.add(periodFrag);
+        subFrag = new subCipher();
+        listFrags.add(subFrag);
         vigFrag = new vigenere();
-        subcipher = new subCipher();
-        transpo = new transpo();
-        subCipher2 = new SubCipher2();
+        listFrags.add(vigFrag);
+        transpoFrag = new transpo();
+        listFrags.add(transpoFrag);
+        subFrag2 = new SubCipher2();
     }
 
     @Override
@@ -258,7 +263,7 @@ public class MainActivity extends AppCompatActivity
         nfrag.updateText(text);
         iocFrag.updateText(text);
         periodFrag.updateText(text);
-        subcipher.updateText(text);
+        subFrag.updateText(text);
     }
 
     public void checkExternalStorage()
@@ -302,5 +307,85 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
 
+    public void getIntentContents ()
+    {
+        Intent i = getIntent();
+        String tools = i.getStringExtra("tools");
+        Fragment fragment = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Bundle bundle;
+            if (tools!=null) {
+                switch(tools) {
+                    case "1":
+                    fragment = listFrags.get(1); //nFrag
+                    bundle = new Bundle();
+                    bundle.putBoolean("fromGame", true);
+                    bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                    bundle.putString("level", "1");
+                    fragment.setArguments(bundle);
+                    toolbar.setTitle("Frequency");
+                        break;
+                    case "2": //ioc
+                        fragment = listFrags.get(2); //nFrag
+                        bundle = new Bundle();
+                        bundle.putBoolean("fromGame", true);
+                        bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                        bundle.putString("level", i.getStringExtra("level"));
+                        fragment.setArguments(bundle);
+                        toolbar.setTitle("Index of Coincidence");
+                        break;
+                    case "3" : //period
+                        fragment = listFrags.get(3); //nFrag
+                        bundle = new Bundle();
+                        bundle.putBoolean("fromGame", true);
+                        bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                        bundle.putString("level", i.getStringExtra("level"));
+                        fragment.setArguments(bundle);
+                        toolbar.setTitle("Period");
+                        break;
+                    case "4" : // sub
+                        fragment = listFrags.get(4); //nFrag
+                        bundle = new Bundle();
+                        bundle.putBoolean("fromGame", true);
+                        bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                        bundle.putString("level", i.getStringExtra("level"));
+                        fragment.setArguments(bundle);
+                        toolbar.setTitle("Substitute Cipher");
+                        break;
+                    case "5" : // vig
+                        fragment = listFrags.get(5); //nFrag
+                        bundle = new Bundle();
+                        bundle.putBoolean("fromGame", true);
+                        bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                        bundle.putString("level", i.getStringExtra("level"));
+                        fragment.setArguments(bundle);
+                        toolbar.setTitle("Vigenere Cipher");
+                        break;
+                    case "6": // transpo
+                        fragment = listFrags.get(6); //nFrag
+                        bundle = new Bundle();
+                        bundle.putBoolean("fromGame", true);
+                        bundle.putString("GameCipher", i.getStringExtra("GameCipher"));
+                        bundle.putString("level", i.getStringExtra("level"));
+                        fragment.setArguments(bundle);
+                        toolbar.setTitle("Transposition Cipher");
+                        break;
+                }
+            }
+
+            if (fragment != null) {
+                fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+            }
+        }
 }

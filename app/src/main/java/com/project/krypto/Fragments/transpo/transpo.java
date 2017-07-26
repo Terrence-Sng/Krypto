@@ -1,10 +1,10 @@
 package com.project.krypto.Fragments.transpo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
 import java.util.Arrays;
@@ -33,8 +35,10 @@ public class transpo extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String cipherFromGame;
+    private String level;
+    private boolean fromGame;
+    private Button back;
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,10 +57,6 @@ public class transpo extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static transpo newInstance(String param1, String param2) {
         transpo fragment = new transpo();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -64,8 +64,9 @@ public class transpo extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            cipherFromGame = getArguments().getString("GameCipher");
+            fromGame = getArguments().getBoolean("fromGame");
+            level = getArguments().getString("level");
         }
     }
 
@@ -75,10 +76,37 @@ public class transpo extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_transpo, container, false);
         setHasOptionsMenu(true);
+        back = (Button) view.findViewById(R.id.backButtonGameTranspo);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
+                {
+                    case "1" :  game = new Intent (getContext(), GameActivity.class);
+                        startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getContext(), viglvl.class);
+                        startActivity(game);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                }
+            }
+        });
         final EditText mEdit = (EditText) view.findViewById(R.id.editText);
-        final EditText mEdit2 = (EditText) view.findViewById(R.id.editText2);
+        if(fromGame==true)
+        {
+            mEdit.setText(cipherFromGame);
+            back.setVisibility(View.VISIBLE);
+        }
+        else{
+            back.setVisibility(View.GONE);
+        }
+        final EditText mEdit2 = (EditText) view.findViewById(R.id.blksize);
         final TextView textView = (TextView) view.findViewById(R.id.outputText);
-        textView.setMovementMethod(new ScrollingMovementMethod());
         Button transpose = (Button) view.findViewById(R.id.transpo);
         transpose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +115,7 @@ public class transpo extends Fragment {
                 int key = Integer.valueOf(String.valueOf(mEdit2.getText()));
 
                 message = "TIOXSTZHCWJOHYEKNUVEDQBFMELOUROPRAG";
+
                 textView.setText("");
                 TransposeByBlk(message, key, textView);
             }

@@ -81,7 +81,15 @@
             fab:fab_size="mini"
             fab:fab_title="@string/transpo"
             fab:fab_colorPressed="@color/dark_grey"/>
-
+<com.getbase.floatingactionbutton.FloatingActionButton
+    android:id="@+id/exitGame"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    fab:fab_icon="@drawable/ic_close"
+    fab:fab_colorNormal="@color/dark_grey"
+    fab:fab_size="mini"
+    fab:fab_title="Exit Game"
+    fab:fab_colorPressed="@color/dark_grey"/>
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

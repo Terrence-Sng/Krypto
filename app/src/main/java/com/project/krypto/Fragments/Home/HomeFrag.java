@@ -81,7 +81,6 @@ public class HomeFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 String temp = eText.getText().toString().replaceAll("[^a-zA-Z]+", "");
-                temp = "LX MKLB GR SBQQBMYB";
                 if(temp.isEmpty() == false)
                 {
                     text = temp;

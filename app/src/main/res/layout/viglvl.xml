@@ -1,125 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/redwall">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/redwall">
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
+            <TextView
+            android:id="@+id/cipherlvl2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:text=' BIG LELB SFGR SAXS GR AMLQYOSAE UY RTURSGSTSGNM LGOFAQ. YNT MAAE SN SYOA "NOAM" SN NOAM SFA ENNQ. SFAQACNQA, SFA BMRWAQ GR "NOAM". G WGRF YNT DNNE JTLI.'
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+        <RelativeLayout
+            android:id="@+id/answerGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible">
+            <TextView
+                android:id="@+id/scroll"
+                android:layout_width="305dp"
+                android:layout_height="181dp"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                android:background="@drawable/scroll"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+            <EditText
+                android:id="@+id/answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Answer"
+                android:inputType="textPersonName"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:visibility="visible"/>
+            <Button
+                android:id="@+id/btnsub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="submit"
+                android:visibility="visible"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/answer"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/hintGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible">
+            <ImageView
+                android:id="@+id/bookimg"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/book5"
+                android:visibility="visible"/>
+            <ImageButton
+                android:id="@+id/bookclose"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/closebutton"
+                android:visibility="visible"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
 
-    <ImageButton
-        android:id="@+id/book"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/book5"
-        android:background="@null"
-        android:layout_marginEnd="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="31dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
+            <ImageButton
+                android:id="@+id/door1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dbldoor1"
+                android:background="@null"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
 
-    <ImageButton
-        android:id="@+id/door1"
-        android:layout_width="123dp"
-        android:layout_height="143dp"
-        android:src="@drawable/dbldoor1"
-        android:layout_above="@+id/book"
-        android:layout_centerHorizontal="true"
-        android:background="@null"
-        android:layout_marginRight="144dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/iocFAB"
-        android:layout_marginBottom="53dp" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="269dp"
-        android:layout_height="67dp"
-        android:text='SFGR SAXS GR AMLQYOSAE UY RTURSGSTSGNM LGOFAQ. YNT MAAE SN SYOA "NOAM" SN NOAM SFA ENNQ. SFAQACNQA, SFA BMRWAQ GR "NOAM". G WGRF YNT DNNE JTLI.'
-        android:textColor="#FFFFFF"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        app:layout_constraintTop_toTopOf="@+id/iocFAB"
-        android:layout_marginTop="48dp"
-        android:layout_marginRight="71dp"
-        app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
 
-    <ImageView
-        android:id="@+id/door2"
-        android:layout_width="128dp"
-        android:layout_height="174dp"
-        android:src="@drawable/dbldoor2"
-        android:visibility="invisible"
-        android:layout_marginRight="142dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/iocFAB"
-        android:layout_marginBottom="35dp" />
+        <ImageButton
+            android:id="@+id/book"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/book5"
+            android:background="@null"
+            />
 
-    <ImageView
-        android:id="@+id/scroll"
-        android:layout_width="305dp"
-        android:layout_height="181dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="53dp"
-        android:layout_marginTop="149dp"
-        android:scaleType="fitXY"
-        android:visibility="invisible"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iocFAB"
-        android:src="@drawable/scroll" />
+    </RelativeLayout>
 
-    <EditText
-        android:id="@+id/answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="Enter Answer"
-        android:inputType="textPersonName"
-        app:layout_constraintRight_toRightOf="@+id/scroll"
-        app:layout_constraintTop_toTopOf="@+id/scroll"
-        android:visibility="invisible"/>
-
-    <Button
-        android:id="@+id/btnsub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="109dp"
-        android:text="submit"
-        app:layout_constraintBottom_toBottomOf="@+id/scroll"
-        app:layout_constraintRight_toRightOf="@+id/scroll"
-        android:visibility="invisible"/>
-
-    <ImageView
-        android:id="@+id/bookimg"
-        android:layout_width="216dp"
-        android:layout_height="235dp"
-        android:layout_marginRight="107dp"
-        android:layout_marginTop="158dp"
-        app:layout_constraintRight_toRightOf="@+id/iocFAB"
-        app:layout_constraintTop_toTopOf="@+id/iocFAB"
-        android:src="@drawable/book5"
-        android:visibility="invisible"/>
-
-    <ImageButton
-        android:id="@+id/bookclose"
-        android:layout_width="42dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="-22dp"
-        android:layout_marginTop="-31dp"
-        android:background="@null"
-        android:scaleType="fitXY"
-        app:layout_constraintRight_toRightOf="@+id/bookimg"
-        app:layout_constraintTop_toTopOf="@+id/bookimg"
-        android:src="@drawable/closebutton"
-        android:visibility="invisible"/>
-
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
+    <include
+        android:id="@+id/includeFAB"
+        layout="@layout/fabs" />
+</RelativeLayout>

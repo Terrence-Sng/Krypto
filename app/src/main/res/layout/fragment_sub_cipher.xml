@@ -111,6 +111,7 @@
                                     android:layout_marginTop="10dp"/>
                          </RelativeLayout>
 <RelativeLayout
+    android:id="@+id/subbedLettersGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/btnsubGroup"
@@ -137,5 +138,17 @@
             />
         </TableLayout>
 </RelativeLayout>
+    <Button
+        android:id="@+id/backButtonGameSub"
+        android:layout_below="@+id/subbedLettersGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Back To Game"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:visibility="gone"/>
 </RelativeLayout>
 </ScrollView>

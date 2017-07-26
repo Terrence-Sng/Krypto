@@ -1,6 +1,7 @@
 package com.project.krypto.Fragments.ioc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
 import java.text.DecimalFormat;
@@ -40,8 +43,10 @@ public class ioc extends Fragment {
     private static String globalText = "";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String cipherFromGame;
+    private String level;
+    private boolean fromGame;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,10 +65,10 @@ public class ioc extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static ioc newInstance(String param1, String param2) {
         ioc fragment = new ioc();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+      //  Bundle args = new Bundle();
+      //  args.putString(ARG_PARAM1, param1);
+      //  args.putString(ARG_PARAM2, param2);
+      //  fragment.setArguments(args);
         return fragment;
     }
 
@@ -71,8 +76,9 @@ public class ioc extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            cipherFromGame = getArguments().getString("GameCipher");
+            fromGame = getArguments().getBoolean("fromGame");
+            level = getArguments().getString("level");
         }
     }
 
@@ -82,17 +88,43 @@ public class ioc extends Fragment {
         // Inflate the layout for this fragment
         final View view  = inflater.inflate(R.layout.fragment_ioc, container, false);
 
+        back = (Button) view.findViewById(R.id.backButtonGameIOC);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
+                {
+                    case "1" :  game = new Intent (getContext(), GameActivity.class);
+                        startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getContext(), viglvl.class);
+                        startActivity(game);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                }
+            }
+        });
         calIOC = (Button) view.findViewById(R.id.calioc);
         displayIOC = (TextView)view.findViewById(R.id.displayioc);
         displayInput = (TextView)view.findViewById(R.id.inputpreviewIOC);
-        displayInput.setText(globalText);
-        //back = (Button)findViewById(R.id.btnBack);
-
+        if(fromGame == true)
+        {
+            displayInput.setText(cipherFromGame);
+            back.setVisibility(View.VISIBLE);
+        }else {
+            displayInput.setText(globalText);
+            back.setVisibility(View.GONE);
+        }
+            //back = (Button)findViewById(R.id.btnBack);
         //button for calculating IOC
         calIOC.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 //editText = (EditText) view.findViewById(R.id.editText);
-                String pt = globalText;
+                String pt = displayInput.getText().toString();
                 if (!pt.isEmpty()) {
                     String lowcontent = pt.toLowerCase();
                     String plain = lowcontent.replaceAll("[^A-Za-z]+", "");

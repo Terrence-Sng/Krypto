@@ -1,15 +1,10 @@
 package com.project.krypto.Game;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,20 +12,25 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
+    ImageButton btnTest, paperball, paint, drawer;
+    Button Enter,ok,ok1 ,ok2;
+    EditText Password,hint2;
+    ImageView Command, note;
+    TextView paperhint,hint31, cipher;
+    RelativeLayout paper,picture, openDrawer;
+
+
     boolean fabOpen = true;
-    int [] iconsID = {R.drawable.ic_frequency, R.drawable.ic_ioc, R.drawable.ic_period, R.drawable.ic_sub, R.drawable.ic_vigenere, R.drawable.ic_transposition};
-    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
+    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitGame};
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
-    static ArrayList <Drawable> icons = new ArrayList<>();
     //final Handler handler = new Handler();
     //fabVisible fabVis = new fabVisible();
     @Override
@@ -47,56 +47,28 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_main);
 
-        final ImageButton btnTest =(ImageButton) findViewById(R.id.door);
-        final ImageButton paperball =(ImageButton) findViewById(R.id.imageButton6);
-        final ImageButton paint =(ImageButton) findViewById(R.id.pictureFront);
-        final ImageButton drawer =(ImageButton) findViewById(R.id.imageButton4);
-        final Button Enter = (Button) findViewById(R.id.submitButton);
-        final Button ok = (Button) findViewById(R.id.okbutt);
-        final Button ok1 = (Button) findViewById(R.id.okbutt1);
-        final Button ok2 = (Button) findViewById(R.id.okbutt2);
-        final EditText Password = (EditText) findViewById(R.id.editText);
-        final ImageView Command = (ImageView) findViewById(R.id.cmdprompt);
-        final TextView paperhint = (TextView) findViewById(R.id.crushedpaper);
-        final RelativeLayout paper = (RelativeLayout) findViewById(R.id.paperLayout);
-        final RelativeLayout picture = (RelativeLayout) findViewById(R.id.pictureBackLayout);
-        final RelativeLayout openDrawer = (RelativeLayout) findViewById(R.id.opendrawer);
-        final ImageView note = (ImageView) findViewById(R.id.noteImage);
-        final EditText hint2 = (EditText) findViewById(R.id.pictback);
-        final TextView hint31 = (TextView) findViewById(R.id.hintTextDrawer);
-        final EditText cipher = (EditText) findViewById(R.id.cipherlvl1);
-
+        btnTest =(ImageButton) findViewById(R.id.door);
+        paperball =(ImageButton) findViewById(R.id.imageButton6);
+        paint =(ImageButton) findViewById(R.id.pictureFront);
+        drawer =(ImageButton) findViewById(R.id.imageButton4);
+       Enter = (Button) findViewById(R.id.submitButton);
+        ok = (Button) findViewById(R.id.okbutt);
+        ok1 = (Button) findViewById(R.id.okbutt1);
+        ok2 = (Button) findViewById(R.id.okbutt2);
+       Password = (EditText) findViewById(R.id.editText);
+        hint2 = (EditText) findViewById(R.id.pictback);
+        cipher = (TextView) findViewById(R.id.cipherlvl1);
+       Command = (ImageView) findViewById(R.id.cmdprompt);
+        note = (ImageView) findViewById(R.id.noteImage);
+        paperhint = (TextView) findViewById(R.id.crushedpaper);
+        hint31 = (TextView) findViewById(R.id.hintTextDrawer);
+        paper = (RelativeLayout) findViewById(R.id.paperLayout);
+         picture = (RelativeLayout) findViewById(R.id.pictureBackLayout);
+        openDrawer = (RelativeLayout) findViewById(R.id.opendrawer);
 
         /*FAB*/
        initFABS();
-        /*
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(fabOpen == false) {
-                    fabOpen = true;
-                    fab.setImageResource(R.drawable.ic_close);
-                    for (int i = 0; i < fabs.size(); i++)
-                    {
-                        fabVis.counter = i;
-                        Log.d("counter", fabVis.counter+"");
-                        fabVis.run();
-                    }
-                }
-                else
-                {
-                    fabOpen = false;
-                    fab.setImageResource(R.drawable.ic_menu);
-                    for(int i = 0; i < fabs.size(); i++)
-                    {
-                        fabs.get(i).setVisibility(View.INVISIBLE);
-                        labels.get(i).setVisibility(View.INVISIBLE);
-                    }
-                }
 
-            }
-        });*/
 
         cipher.setEnabled(false);
         Password.setEnabled(true);
@@ -251,14 +223,11 @@ public class GameActivity extends AppCompatActivity {
                             // if you are redirecting from a fragment then use getActivity() as the context.
                             Intent i = new Intent(GameActivity.this, viglvl.class);
                             startActivity(i);
+                            finish();
                         }
                     };
                     Handler h2 = new Handler();
                     h2.postDelayed(r2, 9000); // will be delayed for 2 seconds
-
-
-
-
                 }
                 else {
                     btnTest.setImageResource(R.drawable.door2);
@@ -276,7 +245,6 @@ public class GameActivity extends AppCompatActivity {
                     //once wrong start the 'stagewrong' activity
                     Intent i = new Intent(GameActivity.this, stagewrong.class);
                     startActivity(i);
-
                 }
             }
         });
@@ -329,7 +297,85 @@ public class GameActivity extends AppCompatActivity {
          for (int i = 0; i < fabID.length; i ++)
          {
              FloatingActionButton temp = (FloatingActionButton) findViewById(fabID[i]);
-             temp.setIcon(iconsID[i]);
+             //,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
+             switch(temp.getId())
+             {
+                 case R.id.freqFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "1"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+                     }
+                 });
+                     break;
+                 case R.id.iocFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "2"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+                     }
+                 });
+                     break;
+                 case R.id.periodFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "3"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+                     }
+                 });
+                     break;
+                 case R.id.subFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "4"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+                     }
+                 });
+                     break;
+                 case R.id.vigFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "5"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+                     }
+                 });
+                     break;
+                 case R.id.transpoFAB : temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {  Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         start.putExtra("tools", "6"); // 1 for freq
+                         start.putExtra("GameCipher", cipher.getText().toString());
+                         start.putExtra("level", "1");
+                         startActivity(start);
+
+                     }
+                 });
+                     break;
+                 default: temp.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                         startActivity(start);
+                         finish();
+                     }
+                 });
+
+             }
              fabs.add(temp);
          }
      }

@@ -1,6 +1,7 @@
 package com.project.krypto.Fragments.nGram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -43,12 +46,13 @@ public class nGramCounter extends Fragment {
     private String globalText = "";
     private static TextView eText;
     private static TextView vText;
-    private static Button bCount;
+    private static Button bCount,backToGame;
     private static Spinner spin;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String cipherFromGame;
+    private String level;
+    private boolean fromGame;
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,10 +71,10 @@ public class nGramCounter extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static nGramCounter newInstance(String param1, String param2) {
         nGramCounter fragment = new nGramCounter();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        //Bundle args = new Bundle();
+        //args.putString(ARG_PARAM1, param1);
+        //args.putString(ARG_PARAM2, param2);
+        //fragment.setArguments(args);
         return fragment;
     }
 
@@ -78,8 +82,9 @@ public class nGramCounter extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+           cipherFromGame = getArguments().getString("GameCipher");
+            fromGame = getArguments().getBoolean("fromGame");
+            level = getArguments().getString("level");
         }
 
     }
@@ -91,8 +96,36 @@ public class nGramCounter extends Fragment {
         //fragmentInterfaces fragInt = (fragmentInterfaces) getActivity();
         // Inflate the layout for this fragment
         //Toast.makeText(view.getContext(), globalText, Toast.LENGTH_SHORT).show();
+        backToGame = (Button) view.findViewById(R.id.backButtonGameNGram);
+        backToGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
+                {
+                    case "1" :  game = new Intent (getContext(), GameActivity.class);
+                                startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getContext(), viglvl.class);
+                                startActivity(game);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                }
+            }
+        });
         eText = (TextView) view.findViewById(R.id.EnterText);
-        eText.setText(globalText);
+        if(fromGame == false) {
+            eText.setText(globalText);
+            backToGame.setVisibility(View.GONE);
+        }
+        else
+        {
+            eText.setText(cipherFromGame);
+            backToGame.setVisibility(View.VISIBLE);
+        }
         vText = (TextView) view.findViewById(R.id.showFrequency);
         vText.setVisibility(View.INVISIBLE);
         bCount = (Button) view.findViewById(R.id.button);
@@ -104,41 +137,15 @@ public class nGramCounter extends Fragment {
         bCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = globalText;//eText.getText().toString;
+                String text = eText.getText().toString();//eText.getText().toString;
                 //Log.d("Log", "hellos " + text);
                 if (!text.isEmpty()) {
                     String value = spin.getSelectedItem().toString();
                     //Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
-
                     countFreq(view, text, value);
-                    /*
-                    barChart = (com.github.mikephil.charting.charts.BarChart) view.findViewById(R.id.barChart);
-
-                    ArrayList<BarEntry> barEntries = new ArrayList<>();
-                    for (int i = 0; i < 26; i++) {
-                        barEntries.add(new BarEntry(i, letterFreq[i]));
-
-                    }
-                    BarDataSet barDataSet = new BarDataSet(barEntries, "Frequency");
-
-                    ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-                    dataSets.add((IBarDataSet) barDataSet);
-
-                    BarData theData = new BarData(dataSets);
-
-                    XAxis xAxis = barChart.getXAxis();
-                    xAxis.setGranularity(0.1f);
-                    xAxis.setDrawGridLines(false);
-                    xAxis.setLabelCount(25);
-                    xAxis.setValueFormatter(new MyAxisValueFormatter(theDatas));
-
-                    barChart.setData(theData);
-                    barChart.setVisibleXRange(100, 26);
-                    barChart.setTouchEnabled(true);
-                    barChart.setPinchZoom(true);
-                    barChart.enableScroll();
-                    barChart.setDescription(null);
-                    barChart.invalidate();*/
+                }
+                else {
+                    Toast.makeText(getContext(), "No Input Detected!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -240,7 +247,7 @@ public class nGramCounter extends Fragment {
             }
             BarDataSet barDataSet = new BarDataSet(barEntries, "Frequency");
             barDataSet.setColor(getResources().getColor(R.color.Neon_Green));
-            //barDataSet.setValueTextColor(getResources().getColor(R.color.Dark_Green));
+            barDataSet.setValueTextColor(getResources().getColor(R.color.Dark_Green));
             //barDataSet.setHighLightColor(getResources().getColor(R.color.Neon_Green));
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add((IBarDataSet) barDataSet);
@@ -255,7 +262,12 @@ public class nGramCounter extends Fragment {
             xAxis.setValueFormatter(new MyAxisValueFormatter(theDatas));
 
             barChart.setData(theData);
+            barChart.getLegend().setTextColor(getResources().getColor(R.color.Dark_Green));
+            barChart.getXAxis().setTextColor(getResources().getColor(R.color.Dark_Green));
+            barChart.getAxisLeft().setTextColor(getResources().getColor(R.color.Dark_Green));
+            barChart.getAxisRight().setTextColor(getResources().getColor(R.color.Dark_Green));
             barChart.setVisibleXRange(100, 26);
+            barChart.setScaleEnabled(true);
             barChart.setTouchEnabled(true);
             barChart.setPinchZoom(true);
             barChart.enableScroll();

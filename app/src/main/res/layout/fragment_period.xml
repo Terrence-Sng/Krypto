@@ -14,7 +14,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/textGroup"
         android:background="@drawable/edittextborder"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/inputPrePeriod"
             android:layout_height="wrap_content"
@@ -29,8 +31,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/inputPrePeriod"
-        android:inputType="textPersonName"
-            android:textColor="@color/Neon_Green"
+        android:textColor="@color/Neon_Green"
         android:textIsSelectable="true" />
     </RelativeLayout>
 
@@ -38,7 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textGroup"
-        android:layout_marginTop="10dp"
         android:id="@+id/editGroup"
         android:layout_margin="10dp">
         <android.support.design.widget.TextInputLayout
@@ -77,13 +77,26 @@
             android:layout_marginLeft="5dp"
             android:textColor="@color/Dark_Green"
             android:background="@drawable/buttonselector"/>
+        <Button
+            android:id="@+id/backButtonGamePeriod"
+            android:layout_below="@+id/btnreset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Back To Game"
+            android:background="@drawable/buttonselector"
+            android:textColor="@color/Dark_Green"
+            android:visibility="gone"/>
+        <!-- android:layout_below="@id/calioc"!-->
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editGroup"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edittextborder">
                 <TextView
                 android:layout_width="wrap_content"

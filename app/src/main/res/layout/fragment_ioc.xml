@@ -77,9 +77,18 @@
         android:background="@drawable/buttonselector"
         android:textColor="@color/Dark_Green"
      />
-
+    <Button
+        android:id="@+id/backButtonGameIOC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Back To Game"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:visibility="gone"
+        android:layout_below="@id/calioc"
+        />
     </RelativeLayout>
-
     <!--
     <Button
         android:id="@+id/btnBack"

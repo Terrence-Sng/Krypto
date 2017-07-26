@@ -70,6 +70,7 @@
             tools:layout_editor_absoluteX="8dp"></com.github.mikephil.charting.charts.BarChart>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/buttonGroupNGram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/barChartGroup"
@@ -102,6 +103,18 @@
             android:layout_alignTop="@+id/CountNGramText"
             android:layout_toEndOf="@+id/CountNGramText" />
         </RelativeLayout>
+        <Button
+            android:id="@+id/backButtonGameNGram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonGroupNGram"
+            android:layout_margin="10dp"
+            android:text="Back To Game"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"
+            android:visibility="gone"
+            />
     </RelativeLayout>
 </ScrollView>
 </RelativeLayout>

@@ -1,11 +1,11 @@
 package com.project.krypto.Fragments.Sub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +21,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class subCipher extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText input;
-    Button sub, undo, reset;
+    Button sub, undo, reset, back;
     TextView before;
     TextView after;
     String globalText = "";
@@ -52,8 +54,9 @@ public class subCipher extends Fragment {
     String[] letters = new String[]{"A", "B", "C", "D", "E" ,"F", "G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String cipherFromGame;
+    private String level;
+    private boolean fromGame;
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,10 +75,6 @@ public class subCipher extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static subCipher newInstance(String param1, String param2) {
         subCipher fragment = new subCipher();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -83,8 +82,9 @@ public class subCipher extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            cipherFromGame = getArguments().getString("GameCipher");
+            fromGame = getArguments().getBoolean("fromGame");
+            level = getArguments().getString("level");
         }
     }
 
@@ -95,6 +95,26 @@ public class subCipher extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_sub_cipher, container, false);
         setHasOptionsMenu(true);
         //Sub this
+        back = (Button) view.findViewById(R.id.backButtonGameSub);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
+                {
+                    case "1" :  game = new Intent (getContext(), GameActivity.class);
+                        startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getContext(), viglvl.class);
+                        startActivity(game);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                }
+            }
+        });
         final Spinner dropdown = (Spinner) view.findViewById(R.id.spinner1);
         String[] items = new String[]{"a", "b", "c", "d", "e" ,"f", "g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.letters1,R.layout.spinner_text);
@@ -119,9 +139,20 @@ public class subCipher extends Fragment {
         reset = (Button) view.findViewById(R.id.resetBtn);
         Log.d ("log", "Hello " + globalText);
 
-        before.setMovementMethod(new ScrollingMovementMethod());
-        after.setMovementMethod(new ScrollingMovementMethod());
-        String beforetext = globalText;
+        //before.setMovementMethod(new ScrollingMovementMethod());
+        //after.setMovementMethod(new ScrollingMovementMethod());
+        String beforetext;
+        if(fromGame == true)
+        {
+            beforetext = cipherFromGame;
+            back.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            beforetext = globalText;
+            back.setVisibility(View.GONE);
+        }
+
         beforetext = beforetext.toLowerCase();
         before.setText(beforetext);
         if(instance == 0)
@@ -155,6 +186,8 @@ public class subCipher extends Fragment {
                 String choice = split[0];
                 String replace = split[1];
                 String initial = split[2];
+                subbedText = subbedText.replaceAll(replace, initial.toLowerCase());
+                after.setText(subbedText);
                 char c = choice.toUpperCase().charAt(0);
                 int index = c - 65;
                 TextView text = letters2.get(index);

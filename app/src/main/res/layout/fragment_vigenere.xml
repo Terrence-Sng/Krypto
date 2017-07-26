@@ -57,7 +57,9 @@
         android:focusable="true"
         android:background="@drawable/edittextborder"
         android:id="@+id/OutputGroupVig"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:touchscreenBlocksFocus="false"
+        android:descendantFocusability="afterDescendants">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +72,9 @@
             android:id="@+id/Output"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:textIsSelectable="true"
             android:textColor="@color/Dark_Green"
-            android:layout_below="@+id/outputLabelVig" />
+            android:layout_below="@+id/outputLabelVig"
+            android:textIsSelectable="true"/>
     </RelativeLayout>
 
         <RelativeLayout
@@ -102,16 +104,28 @@
             android:layout_marginLeft="5dp"
              />
         </RelativeLayout>
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/OutputGroupVig"
+    android:layout_margin="10dp">
     <Button
         android:id="@+id/btnreset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:text="RESET"
-        android:layout_below="@+id/OutputGroupVig"
         android:textColor="@color/Dark_Green"
         android:background="@drawable/buttonselector"/>
-
+    <Button
+        android:id="@+id/backButtonGameVig"
+        android:layout_toEndOf="@+id/btnreset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Back To Game"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:visibility="gone"/>
+</RelativeLayout>
 </RelativeLayout>
 </ScrollView>

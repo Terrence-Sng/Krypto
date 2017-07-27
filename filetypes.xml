@@ -1,6 +1,7 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern="click.mp3" type="PLAIN_TEXT" />
       <mapping pattern="typewriter.mp3" type="PLAIN_TEXT" />
     </extensionMap>
   </component>

@@ -34,12 +34,11 @@ import com.project.krypto.Fragments.nGram.nGramCounter;
 import com.project.krypto.Fragments.period.period;
 import com.project.krypto.Fragments.transpo.transpo;
 import com.project.krypto.Fragments.vingere.vigenere;
-import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.prologue;
 import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -74,11 +73,8 @@ public class MainActivity extends AppCompatActivity
 
         setStatusBar();
 
-
-
         initFrags();
         checkExternalStorage();
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
@@ -164,20 +160,25 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+Intent intent;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if (id == R.id.transpoHelp) {
-            Intent intent = new Intent(this, TranspoHelpActivity.class);
-            startActivity(intent);
-        }
-        if (id == R.id.subCipher2)
+        switch(id)
         {
-            Intent intent = new Intent(this, SubCipher2.class);
-            startActivity(intent);
+            case R.id.action_settings :
+            break;
+            case R.id.transpoHelp :
+                intent = new Intent(this, TranspoHelpActivity.class);
+               startActivity(intent);
+            break;
+            case R.id.subCipher2:
+                intent = new Intent(this, SubCipher2.class);
+                startActivity(intent);
+                break;
+            case R.id.vigHelp:
+                intent = new Intent (this, vigHelp.class);
+                startActivity(intent);
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -214,7 +215,7 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("Transposition Cipher");
         } else if(id == R.id.game)
         {
-            Intent i = new Intent (getApplicationContext(),GameActivity.class);
+            Intent i = new Intent (getApplicationContext(), prologue.class);
             startActivity(i);
             finish();
         }

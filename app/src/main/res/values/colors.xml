@@ -15,6 +15,7 @@
     <color name="teal">#33E3FF</color>
     <color name="darker_grey">#1c1f22</color>
     <color name="red">#FF0000</color>
+    <color name="dark_red">#a40000</color>
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>

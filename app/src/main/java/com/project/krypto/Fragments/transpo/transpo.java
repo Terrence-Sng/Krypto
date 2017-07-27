@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.finallvl;
+import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.R;
 
@@ -89,9 +92,11 @@ public class transpo extends Fragment {
                     case "2" : game = new Intent (getContext(), viglvl.class);
                         startActivity(game);
                         break;
-                    case "3":
+                    case "3": game = new Intent (getContext(), transpolvl.class);
+                        startActivity(game);
                         break;
-                    case "4":
+                    case "4": game = new Intent (getContext(), finallvl.class);
+                        startActivity(game);
                         break;
                 }
             }
@@ -112,12 +117,21 @@ public class transpo extends Fragment {
             @Override
             public void onClick(View v) {
                 String message = mEdit.getText().toString();
-                int key = Integer.valueOf(String.valueOf(mEdit2.getText()));
-
                 message = "TIOXSTZHCWJOHYEKNUVEDQBFMELOUROPRAG";
-
-                textView.setText("");
-                TransposeByBlk(message, key, textView);
+                String tkey = mEdit2.getText().toString();
+                int key = 0;
+                if(tkey!=null || !tkey.isEmpty())
+                {
+                    try{
+                        key = Integer.parseInt(tkey);
+                    }catch(NumberFormatException e)
+                    {
+                        Toast.makeText(getContext(), "BLOCK SIZE IS NOT A NUMBER VALUE!", Toast.LENGTH_SHORT).show();
+                    }
+                    TransposeByBlk(message, key, textView);
+                }else{
+                    Toast.makeText(getContext(), "BLOCK SIZE IS EMPTY", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

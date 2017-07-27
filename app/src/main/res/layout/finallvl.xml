@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/vaultwall">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/cipherlvl4"
+            android:layout_width="269dp"
+            android:layout_height="67dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="blah blah blah blah balh blah blah blah"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageButton
+                    android:id="@+id/safe"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="50dp"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/safeclosed" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+                <ImageButton
+                    android:id="@+id/vaultdoor"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:src="@drawable/vaultclosed"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/door2"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/vaultopen"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/tablet"
+                    android:layout_width="74dp"
+                    android:layout_height="91dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tablet"
+                    android:visibility="visible" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/papergroupFinal"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible">
+            <TextView
+                android:id="@+id/paper"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="Transpo After Sub"
+                android:textColor="@color/Black"
+                android:textSize="30dp"
+                android:background="@drawable/paper"/>
+
+            <Button
+                android:id="@+id/safeclose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="close"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/answerGroupfinal"
+        android:layout_width="305dp"
+        android:layout_height="181dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible">
+        <ImageView
+            android:id="@+id/screen"
+            android:layout_width="305dp"
+            android:layout_height="181dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/screen"
+            />
+        <EditText
+            android:id="@+id/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Answer"
+            android:inputType="textPersonName"
+            android:layout_centerInParent="true" />
+        <Button
+            android:id="@+id/btnsub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="submit"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/tabletgroupfinal"
+        android:layout_width="171dp"
+        android:layout_height="199dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible">
+        <TextView
+            android:id="@+id/tabletscreen"
+            android:layout_width="171dp"
+            android:layout_height="199dp"
+            android:background="@drawable/tabletscreen"
+            android:visibility="visible"
+            android:gravity="center"
+            android:textColor="@color/Black"
+            android:textSize="25dp"
+            android:text= '"Block 7" and "Bubble"'/>
+        <Button
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="close"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/includeFAB"
+        layout="@layout/fabs" />
+
+</RelativeLayout>

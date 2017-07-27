@@ -1,6 +1,8 @@
 package com.project.krypto.Game;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -24,21 +26,26 @@ import java.util.ArrayList;
 
 public class viglvl extends AppCompatActivity {
     static ArrayList<FloatingActionButton> fabs = new ArrayList <> ();
-    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
+    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
 
     TextView cipher, scroll;
     ImageView doorclose, bookclose,books, bookbig;
     Button submit;
     EditText answer;
     RelativeLayout answerGroup, hintGroup;
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viglvl);
 
         initFABS();
+        sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
-        doorclose = (ImageButton) findViewById(R.id.door1);
+        doorclose = (ImageButton) findViewById(R.id.vaultdoor);
         scroll = (TextView) findViewById(R.id.scroll);
         books = (ImageButton) findViewById(R.id.book);
         answer = (EditText) findViewById(R.id.answer);
@@ -83,6 +90,8 @@ public class viglvl extends AppCompatActivity {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
                     submit.setEnabled(false);
+                    editor.putInt(getString(R.string.high_score), 2);
+                    editor.commit();
                     //once correct start the 'stageclear' activity
                     Intent i = new Intent(viglvl.this, stageclear.class);
                     startActivity(i);
@@ -103,11 +112,11 @@ public class viglvl extends AppCompatActivity {
 
                     //startZoomInAnimation(btnTest);
                     //after door opens it will start the next activity after .. seconds
-                    Runnable r2 = new Runnable() {
-                        @Override
-                        public void run() {
-                            // if you are redirecting from a fragment then use getActivity() as the context.
-                            Intent i = new Intent(viglvl.this, GameActivity.class);
+                            Runnable r2 = new Runnable() {
+                                @Override
+                                public void run() {
+                                    // if you are redirecting from a fragment then use getActivity() as the context.
+                            Intent i = new Intent(viglvl.this, transpolvl.class);
                             startActivity(i);
                         }
                     };

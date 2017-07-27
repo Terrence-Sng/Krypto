@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="0.5">
+    <TextView
+        android:id="@+id/cipherlvl3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/attic"
+        android:gravity="center"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="TIOXSTZHCWJOHYEKNUVEDQBFMELOUROPRAG"
+        android:textColor="#FFFFFF"
+        android:textCursorDrawable="@null"
+        android:textSize="65px"
+        android:textStyle="bold" />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:background="@drawable/door_bg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+            <ImageView
+                android:id="@+id/crush_paper"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/crush_paper" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
+            </Space>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.23"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"/>
+            <ImageView
+                android:id="@+id/doorButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00ffffff"
+                android:layout_weight="0.3"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
+            <ImageView
+                android:id="@+id/clock1900"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/time1900"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        
+    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/cmdpromptgrouptranspo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible">
+        <ImageView
+            android:id="@+id/cmdImg"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/commandprompt"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="139dp"
+            android:layout_height="15dp"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter Password Here"
+            android:textColor="#FFFFFF"
+            android:textCursorDrawable="@null"
+            android:textSize="10sp"
+            android:layout_marginTop="21dp"
+            android:layout_alignTop="@+id/cmdImg"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="64dp" />
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_width="76dp"
+                android:layout_height="43dp"
+                android:text="submit"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@+id/cmdImg"
+                android:layout_alignEnd="@+id/cmdImg"
+                android:layout_marginRight="10dp"
+              />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/clock7pmgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/clock7pm"
+                android:layout_width="246dp"
+                android:layout_height="164dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/clock_7pm" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+            <ImageView
+                android:id="@+id/tableHint"
+                android:layout_width="284dp"
+                android:layout_height="182dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/table_hint" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/descpHint1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_grey"
+            android:text="check out the clock for a hint!"
+            android:layout_marginTop="100dp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/Dark_Green"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/descpHint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_grey"
+            android:text="here's another hint :)"
+            android:textColor="@color/Dark_Green"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"/>
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reset"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+    <include
+        android:id="@+id/includeFAB"
+        layout="@layout/fabs" />
+
+</RelativeLayout>

@@ -10,6 +10,8 @@ import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -85,6 +87,8 @@ public class vigenere extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_vigenere, container, false);
+
+        setHasOptionsMenu(true);
 
         back = (Button) view.findViewById(R.id.backButtonGameVig);
         back.setOnClickListener(new View.OnClickListener() {
@@ -290,7 +294,12 @@ public class vigenere extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.vighelp, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
     class test implements Runnable
     {
         String cipher = "";

@@ -1,6 +1,8 @@
 package com.project.krypto.Game;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,12 +31,16 @@ public class GameActivity extends AppCompatActivity {
 
 
     boolean fabOpen = true;
-    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitGame};
+    int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor ;
     //final Handler handler = new Handler();
     //fabVisible fabVis = new fabVisible();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
         final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
         final MediaPlayer opendoor= MediaPlayer.create(this,R.raw.opendoor);
@@ -198,7 +204,8 @@ public class GameActivity extends AppCompatActivity {
                     hint31.setVisibility(View.INVISIBLE);
                     openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
-
+                    editor.putInt(getString(R.string.high_score), 1);
+                    editor.commit();
                     //once correct start the 'stageclear' activity
                     Intent i = new Intent(GameActivity.this, stageclear.class);
                     startActivity(i);
@@ -221,6 +228,7 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             // if you are redirecting from a fragment then use getActivity() as the context.
+
                             Intent i = new Intent(GameActivity.this, viglvl.class);
                             startActivity(i);
                             finish();

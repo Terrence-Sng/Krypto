@@ -17,6 +17,8 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
 
+    <string name="high_score">HIGH_SCORE</string>
+    <integer name="default_high_score">0</integer>
 
     <string name="freqcounter">Freqeuncy Counter</string>
     <string name="ioc">Index of Coincidence</string>

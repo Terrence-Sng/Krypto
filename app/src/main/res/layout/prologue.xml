@@ -7,6 +7,16 @@ android:layout_height="match_parent"
     android:background="@color/Black">
 
     <Button
+        android:id="@+id/skippbuttonprolouge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:text="SKIP"
+        android:layout_marginRight="20dp"/>
+    <Button
         android:id="@+id/btnstart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

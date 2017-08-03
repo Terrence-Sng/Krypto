@@ -10,18 +10,6 @@
             android:id="@+id/statistic">
             <menu>
                 <item
-                    android:id="@+id/nav_frequency"
-                    android:icon="@drawable/ic_frequency"
-                    android:title="@string/freqcounter" />
-                <item
-                    android:id="@+id/nav_ioc"
-                    android:icon="@drawable/ic_ioc"
-                    android:title="@string/ioc" />
-                <item
-                    android:id="@+id/nav_period"
-                    android:icon="@drawable/ic_period"
-                    android:title="@string/period" />
-                <item
                     android:id="@+id/nav_sub"
                     android:icon="@drawable/ic_sub"
                     android:title="Substitution Cipher" />
@@ -31,20 +19,12 @@
         android:id="@+id/ciphers">
         <menu>
             <item
-                android:id="@+id/nav_vigenere"
-                android:icon="@drawable/ic_vigenere"
-                android:title="@string/vcipher" />
-            <item
                 android:id="@+id/nav_transpo"
                 android:icon="@drawable/ic_transposition"
                 android:title="@string/transpo"/>
         </menu>
     </item>
-
         <item android:title = "Practice It!"
             android:id="@+id/game"/>
-
-        <item android:title="Logout"
-            android:id ="@+id/logout"/>
     </group>
 </menu>

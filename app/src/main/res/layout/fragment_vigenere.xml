@@ -9,12 +9,38 @@
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:id="@+id/parentVig">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarvigcipher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarvigcipher"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
         <RelativeLayout
+            android:layout_below="@+id/actionBarvigcipher"
             android:id="@+id/vigETextGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gameciphervig"
+                android:background="@drawable/edittextborder"
+                android:scrollbars="vertical|horizontal"
+                android:textColor="@color/Dark_Green"
+                />
             <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/gameciphervig"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextAppearance="@style/Floating_hint"
@@ -30,48 +56,34 @@
                 android:textColor="@color/Neon_Green"
                 app:theme="@style/EditTextTheme"/>
             </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayoutVig"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/Floating_hint"
-                android:textColorHint="@color/Darker_Green"
-                android:layout_below="@id/inputKeyLayoutVig"
-                android:layout_marginTop="10dp">
-                <EditText
-                    android:id="@+id/inputPT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Text"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:textColor="@color/Neon_Green"
-                    app:theme="@style/EditTextTheme"/>
-            </android.support.design.widget.TextInputLayout>
+
         </RelativeLayout>
+<Space
+    android:id="@+id/spacevig"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/actionBarvigcipher"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/vigBtnGroup"
+        android:layout_below="@+id/spacevig"
         android:focusable="true"
         android:background="@drawable/edittextborder"
         android:id="@+id/OutputGroupVig"
-        android:layout_margin="10dp"
-        android:touchscreenBlocksFocus="false"
-        android:descendantFocusability="afterDescendants">
+        android:layout_margin="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:id="@+id/outputLabelVig"
-            android:text="Vigenere Cipher Output"
-            android:textColor="@color/Dark_Green"
-            android:focusableInTouchMode="false"/>
+            android:text="@string/vig_output_label"
+            android:textColor="@color/Dark_Green" />
         <TextView
             android:id="@+id/Output"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:textColor="@color/Dark_Green"
             android:layout_below="@+id/outputLabelVig"
             android:textIsSelectable="true"/>
@@ -83,7 +95,8 @@
             android:id="@+id/vigBtnGroup"
             android:layout_below="@+id/vigETextGroup"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:visibility="gone">
         <Button
             android:id="@+id/btnEnc"
             android:layout_width="wrap_content"
@@ -105,10 +118,12 @@
              />
         </RelativeLayout>
 <RelativeLayout
+    android:id="@+id/back_resetgroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/OutputGroupVig"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:visibility="gone">
     <Button
         android:id="@+id/btnreset"
         android:layout_width="wrap_content"
@@ -118,14 +133,25 @@
         android:background="@drawable/buttonselector"/>
     <Button
         android:id="@+id/backButtonGameVig"
-        android:layout_toEndOf="@+id/btnreset"
+        android:layout_below="@+id/btnreset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="Back To Game"
         android:background="@drawable/buttonselector"
         android:textColor="@color/Dark_Green"
-        android:visibility="gone"/>
+        />
 </RelativeLayout>
+    <Button
+        android:id="@+id/vighelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How is it done?"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"
+        android:layout_below="@+id/OutputGroupVig"
+        android:layout_alignEnd="@+id/OutputGroupVig"
+       />
 </RelativeLayout>
 </ScrollView>

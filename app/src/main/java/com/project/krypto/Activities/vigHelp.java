@@ -3,7 +3,6 @@ package com.project.krypto.Activities;
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.krypto.Fragments.vingere.vigenere;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ import java.util.ArrayList;
  * Created by Panda on 7/27/2017.
  */
 
-public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInteractionListener{
+public class vigHelp extends AppCompatActivity{
 
     TableRow tr1, tr2,tr3,tr4,tr5,tr6,tr7,tr8,tr9,tr10,tr11,tr12,tr13,tr14,tr15,tr16,tr17,tr18,tr19,tr20,tr21,tr22,tr23,tr24,tr25,tr26;
     ArrayList<TextView> letterslist = new ArrayList<>();
@@ -44,9 +42,9 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
     TextView cttv;
 
     //USE INTENT TO PASS ALL THESE VALUE FROM THE PREVIOUS ACTIVITY
-    final String keyword = "CAFE";
-    final String msg = "WOLLONGONG";
-    final String ct = "YOQPQNLSPG";
+    String keyword;// = "CAFE";
+    String msg;//= "WOLLONGONG";
+     String ct;//= "YOQPQNLSPG";
     final int choice = 0; //0=encryption 1=decryption
 
     private Toolbar toolbar;
@@ -68,6 +66,10 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                 onBackPressed();
             }
         });
+
+        keyword = getIntent().getStringExtra("KEY").toUpperCase();
+        msg = getIntent().getStringExtra("CIPHER").toUpperCase();
+        ct = getIntent().getStringExtra("RESULT").toUpperCase();
 
         tview = (TextView) findViewById(R.id.tview);
         tvfinal = (TextView) findViewById(R.id.tvfinal);
@@ -152,10 +154,10 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                 //refresh table
                 for (int i = 0; i < 26; i++) {
                     TextView tv = (TextView) row[i].getChildAt(0);
-                    tv.setBackgroundResource(R.drawable.tablecell);
+                    tv.setBackgroundResource(R.drawable.tablecellvig);
                     for (int j = 0; j < 26; j++) {
                         TextView tv2 = (TextView) row[i].getChildAt(j);
-                        tv2.setBackgroundResource(R.drawable.tablecell);
+                        tv2.setBackgroundResource(R.drawable.tablecellvig);
                     }
                 }
 
@@ -197,15 +199,17 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                         TextView tv = (TextView) row[i].getChildAt(0);
                         String text = tv.getText().toString();
                         if (text.equals(left)) {
-                            tv.setBackgroundColor(getResources().getColor(R.color.teal));
-
+                            tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                            //tv.setTextColor(getResources().getColor(R.color.Black));
                             for (int j = 0; j < 26; j++) {
                                 TextView tv2 = (TextView) row[i].getChildAt(j);
                                 String text2 = tv2.getText().toString();
                                 if (!text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.teal));
+                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                              //      tv2.setTextColor(getResources().getColor(R.color.Black));
                                 } else if (text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.teal));
+                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                               //     tv2.setTextColor(getResources().getColor(R.color.Black));
                                     break;
                                 }
                             }
@@ -217,15 +221,17 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                         TextView tv = (TextView) tr1.getChildAt(i);
                         String text = tv.getText().toString();
                         if (text.equals(top)) {
-                            tv.setBackgroundColor(getResources().getColor(R.color.teal));
-
+                            tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                           // tv.setTextColor(getResources().getColor(R.color.Black));
                             for (int j = 0; j < 26; j++) {
                                 TextView tv2 = (TextView) row[j].getChildAt(i);
                                 String text2 = tv2.getText().toString();
                                 if (!text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.teal));
+                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                 //   tv2.setTextColor(getResources().getColor(R.color.Black));
                                 } else if (text2.equals(ct)) {
-                                    tv.setBackgroundColor(getResources().getColor(R.color.teal));
+                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                 //   tv2.setTextColor(getResources().getColor(R.color.Black));
                                     break;
                                 }
                             }
@@ -315,10 +321,10 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                     //refresh table
                     for (int i = 0; i < 26; i++) {
                         TextView tv = (TextView) row[i].getChildAt(0);
-                        tv.setBackgroundResource(R.drawable.tablecell);
+                        tv.setBackgroundResource(R.drawable.tablecellvig);
                         for (int j = 0; j < 26; j++) {
                             TextView tv2 = (TextView) row[i].getChildAt(j);
-                            tv2.setBackgroundResource(R.drawable.tablecell);
+                            tv2.setBackgroundResource(R.drawable.tablecellvig);
                         }
                     }
 
@@ -352,10 +358,10 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                 //refresh table
                 for (int i = 0; i < 26; i++) {
                     TextView tv = (TextView) row[i].getChildAt(0);
-                    tv.setBackgroundResource(R.drawable.tablecell);
+                    tv.setBackgroundResource(R.drawable.tablecellvig);
                     for (int j = 0; j < 26; j++) {
                         TextView tv2 = (TextView) row[i].getChildAt(j);
-                        tv2.setBackgroundResource(R.drawable.tablecell);
+                        tv2.setBackgroundResource(R.drawable.tablecellvig);
                     }
                 }
                 keytv.setText(fullLengthKey);
@@ -383,8 +389,8 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                 text.setText(letters[i]);
                 text.setWidth(10);
                 text.setGravity(Gravity.CENTER_HORIZONTAL);
-                text.setBackgroundResource(R.drawable.tablecell);
-                text.setTextColor(getResources().getColor(R.color.dark_red));
+                text.setBackgroundResource(R.drawable.tablecellvig);
+                text.setTextColor(getResources().getColor(R.color.Neon_Green));
                 letterslist.add(text);
             }
             for (int i = 0; i < 26 ; i ++)
@@ -406,7 +412,7 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
                 text.setWidth(38);
                 text.setGravity(Gravity.CENTER_HORIZONTAL);
                 text.setBackgroundResource(R.drawable.tablecellvig);
-                text.setTextColor(getResources().getColor(R.color.dark_red));
+                text.setTextColor(getResources().getColor(R.color.Neon_Green));
                 letterslist.add(text);
             }
             for (int i = 0; i < 26; i++) {
@@ -414,12 +420,6 @@ public class vigHelp extends AppCompatActivity implements vigenere.OnFragmentInt
             }
         }
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
     public void setStatusBar()
     {
         Window window = getWindow();

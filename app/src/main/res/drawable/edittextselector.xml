@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:state_pressed="true"
-        app:backgroundTint="@color/Neon_Green" />
-    <item
-        android:state_enabled="true"
-        app:backgroundTint="@color/Neon_Green" />
-    <item
-        android:state_enabled="true"
-        android:state_focused="true"
-        app:backgroundTint="@color/Neon_Green" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:state_window_focused="false"
-        android:state_enabled="true"
-        app:backgroundTint="@color/Neon_Green" />
+        android:state_focused="true"
+        android:drawable="@drawable/edittextborder"
+        android:textColor = "@color/Neon_Green"
+        android:textColorHint = "@color/Neon_Green"/>
+    <item
+        android:drawable="@drawable/edittextborder2"
+        android:textColor = "@color/White"
+        android:textColorHint = "@color/White"/>
 
 </selector>

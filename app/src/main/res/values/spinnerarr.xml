@@ -63,4 +63,10 @@
         <item>3</item>
         <item>4</item>
         </string-array>
+    <string-array name="homearray">
+        <item>None Selected</item>
+        <item>Analysis</item>
+        <item>Encrypt</item>
+        <item>Decrypt</item>
+    </string-array>
 </resources>

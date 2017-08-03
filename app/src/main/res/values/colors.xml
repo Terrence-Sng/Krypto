@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="pink">#FF1493</color>
+    <color name="violetedpink">#C71585</color>
     <color name="White">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="Grey">#808080</color>
@@ -15,7 +17,7 @@
     <color name="teal">#33E3FF</color>
     <color name="darker_grey">#1c1f22</color>
     <color name="red">#FF0000</color>
-    <color name="dark_red">#a40000</color>
+    <color name="dark_red">#6e0000</color>
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>

@@ -21,6 +21,8 @@ import com.project.krypto.R;
 public class prologue extends AppCompatActivity {
     SharedPreferences sharedPref;
     int high;
+    Handler h,h2,h3;
+    Runnable r, r2,r3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,6 +35,7 @@ public class prologue extends AppCompatActivity {
         setContentView(R.layout.prologue);
 
 
+        final Button skip = (Button) findViewById(R.id.skippbuttonprolouge);
 
         final Button start = (Button) findViewById(R.id.btnstart);
         final Button cont = (Button) findViewById(R.id.btncontinue);
@@ -72,31 +75,32 @@ public class prologue extends AppCompatActivity {
         });
 
         //run mission text
-        Runnable r = new Runnable() {
+        r = new Runnable() {
             @Override
             public void run() {
+                //skip.setVisibility(View.INVISIBLE);
                 typing.start();
                 typing.setLooping(true);
                 tw.setText("");
-                tw.setCharacterDelay(100);
+                tw.setCharacterDelay(50);
                 tw.animateText("Mission" + "\n" + "\n" + "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ");
             }
         };
-        Handler h = new Handler();
-        h.postDelayed(r, 2000); // will be delayed for 2 seconds
+      h = new Handler();
+      h.postDelayed(r, 2000); // will be delayed for 2 seconds
 
-        //stop the tying after msg is done -> need to time manually
-        Runnable r2 = new Runnable() {
+        r2 = new Runnable() {
             @Override
             public void run() {
                 typing.stop();
             }
         };
-        Handler h2 = new Handler();
+        h2 = new Handler();
         h2.postDelayed(r2, 13000);
+        //stop the tying after msg is done -> need to time manually
 
         //after mission is complete then show button
-        Runnable r3 = new Runnable() {
+        r3 = new Runnable() {
             @Override
             public void run() {
                 start.setVisibility(View.VISIBLE);
@@ -109,9 +113,27 @@ public class prologue extends AppCompatActivity {
                 }
             }
         };
-        Handler h3 = new Handler();
+        h3 = new Handler();
         h3.postDelayed(r3, 14000);
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                h.removeCallbacksAndMessages(null);
+                h2.removeCallbacksAndMessages(null);
+                h3.removeCallbacksAndMessages(null);
 
+                tw.setText("Mission" + "\n" + "\n" + "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ");
+                start.setVisibility(View.VISIBLE);
+                if(!testForCont()){
+                    cont.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    cont.setVisibility(View.VISIBLE);
+                }
+                skip.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     public boolean testForCont ()

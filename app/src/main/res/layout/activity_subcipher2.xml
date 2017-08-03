@@ -29,75 +29,14 @@
 
     <RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/actionBarSubCipher">
     <!-- TODO: Update blank fragment layout -->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/editKeylayout"
-        app:hintTextAppearance="@style/Floating_hint"
-        android:textColorHint="@color/Darker_Green"
-        android:layout_marginTop="10dp">
-    <EditText
-        android:id="@+id/editkey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Keyword"
-        android:inputType="textPersonName"
-        android:textIsSelectable="true"
-        android:theme="@style/EditTextTheme"
-       />
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/editTextLayoutVig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/editKeylayout"
-        app:hintTextAppearance="@style/Floating_hint"
-        android:textColorHint="@color/Darker_Green">
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Text"
-        android:inputType="textPersonName"
-        android:textIsSelectable="true"
-        android:layout_below="@+id/editKeylayout"
-        android:theme="@style/EditTextTheme"/>
-    </android.support.design.widget.TextInputLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextLayoutVig"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:id="@+id/btngroupsub2">
 
-    <Button
-        android:id="@+id/btnenc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encrypt"
-        android:textColor="@color/Dark_Green"
-        android:background="@drawable/buttonselector"/>
-    <Button
-        android:id="@+id/btndec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Decrypt"
-        android:layout_toRightOf="@id/btnenc"
-        android:textColor="@color/Dark_Green"
-        android:background="@drawable/buttonselector"/>
-    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/keyoutputgroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btngroupsub2"
         android:background="@drawable/edittextborder"
         android:layout_margin="10dp">
     <TextView
@@ -118,6 +57,7 @@
         android:textColor="@color/Neon_Green"/>
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/subcipheroutputGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/keyoutputgroup"
@@ -141,6 +81,25 @@
             android:layout_below="@+id/outputLabel"
             />
     </RelativeLayout>
+    <Button
+        android:id="@+id/btnhelp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="How is it Done?"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"
+        android:layout_below="@id/subcipheroutputGroup"
+        android:layout_margin="10dp">
+    </Button>
+    <Button
+        android:id="@+id/btnshare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"
+        android:layout_toEndOf="@+id/btnhelp"
+        android:layout_alignBaseline="@+id/btnhelp"/>
 </RelativeLayout>
 </ScrollView>
 </RelativeLayout>

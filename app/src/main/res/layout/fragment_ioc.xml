@@ -8,13 +8,25 @@
     android:background="@color/dark_grey">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="10dp">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarioc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarioc"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/previewIOC"
-        android:layout_below="@+id/userEmail"
+        android:layout_below="@+id/actionBarioc"
         android:background="@drawable/edittextborder">
     <TextView
         android:id="@+id/labelInput"

@@ -16,6 +16,9 @@ import android.widget.TextView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
+import com.project.krypto.act_tools.nGram.nGramCounter;
+import com.project.krypto.act_tools.transpo.transpo;
+import com.project.krypto.act_tools.vingere.vigenere;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,7 @@ public class transpolvl extends AppCompatActivity {
     SharedPreferences.Editor editor ;
     static ArrayList<FloatingActionButton> fabs = new ArrayList <> ();
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
-
+    String level = "3";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,88 +175,82 @@ public class transpolvl extends AppCompatActivity {
             FloatingActionButton temp = (FloatingActionButton) findViewById(fabID[i]);
             //,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB};
             switch (temp.getId()) {
-                case R.id.freqFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "1"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
-                        }
-                    });
+                case R.id.freqFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getBaseContext(), nGramCounter.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
+                    }
+                });
+                break;
+                case R.id.iocFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
+                    }
+                });
                     break;
-                case R.id.iocFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "2"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
-                        }
-                    });
+                case R.id.periodFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
+                    }
+                });
                     break;
-                case R.id.periodFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "3"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
-                        }
-                    });
+                case R.id.subFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
+                    }
+                });
                     break;
-                case R.id.subFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "4"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
-                        }
-                    });
+                case R.id.vigFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), vigenere.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
+                    }
+                });
                     break;
-                case R.id.vigFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "5"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
-                        }
-                    });
-                    break;
-                case R.id.transpoFAB:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            start.putExtra("tools", "6"); // 1 for freq
-                            start.putExtra("GameCipher", cipher.getText().toString());
-                            start.putExtra("level", "2");
-                            startActivity(start);
+                case R.id.transpoFAB : temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), transpo.class);
+                        start.putExtra("GAME", true); // 1 for freq
+                        start.putExtra("GAMECIPHER", cipher.getText().toString());
+                        start.putExtra("LEVEL", level);
+                        startActivity(start);
 
-                        }
-                    });
+                    }
+                });
                     break;
-                default:
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent start = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(start);
-                            finish();
-                        }
-                    });
+                default: temp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        startActivity(start);
+                        finish();
+                    }
+                });
+
             }
             fabs.add(temp);
         }

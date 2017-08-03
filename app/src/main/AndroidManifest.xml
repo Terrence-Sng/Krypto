@@ -23,15 +23,33 @@
         </activity>
 
         <!--sub activites (like help, subcipher2, etc) !-->
+        <activity android:name=".act_tools.nGram.nGramCounter"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".act_tools.ioc.ioc"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".act_tools.period.period"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".act_tools.vingere.vigenere"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".act_tools.transpo.transpo"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activities.TranspoHelpActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             </activity>
+
         <activity
-            android:name=".Activities.SubCipher2"
+            android:name=".act_tools.Sub.SubCipher2"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".Activities.vigHelp"
             android:label="Krypto"
             android:theme="@style/AppTheme.NoActionBar"/>

@@ -18,6 +18,9 @@ import android.widget.TextView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
+import com.project.krypto.act_tools.nGram.nGramCounter;
+import com.project.krypto.act_tools.transpo.transpo;
+import com.project.krypto.act_tools.vingere.vigenere;
 
 import java.util.ArrayList;
 
@@ -29,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
     TextView paperhint,hint31, cipher;
     RelativeLayout paper,picture, openDrawer;
 
-
+    String level = "1";
     boolean fabOpen = true;
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
@@ -311,10 +314,10 @@ public class GameActivity extends AppCompatActivity {
                  case R.id.freqFAB : temp.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
-                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "1"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                         Intent start = new Intent (getBaseContext(), nGramCounter.class);
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
                      }
                  });
@@ -323,9 +326,9 @@ public class GameActivity extends AppCompatActivity {
                      @Override
                      public void onClick(View v) {
                          Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "2"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
                      }
                  });
@@ -334,9 +337,9 @@ public class GameActivity extends AppCompatActivity {
                      @Override
                      public void onClick(View v) {
                          Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "3"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
                      }
                  });
@@ -345,9 +348,9 @@ public class GameActivity extends AppCompatActivity {
                      @Override
                      public void onClick(View v) {
                          Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "4"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
                      }
                  });
@@ -355,20 +358,21 @@ public class GameActivity extends AppCompatActivity {
                  case R.id.vigFAB : temp.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
-                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "5"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                         Intent start = new Intent (getApplicationContext(), vigenere.class);
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
                      }
                  });
                      break;
                  case R.id.transpoFAB : temp.setOnClickListener(new View.OnClickListener() {
                      @Override
-                     public void onClick(View v) {  Intent start = new Intent (getApplicationContext(), MainActivity.class);
-                         start.putExtra("tools", "6"); // 1 for freq
-                         start.putExtra("GameCipher", cipher.getText().toString());
-                         start.putExtra("level", "1");
+                     public void onClick(View v) {
+                         Intent start = new Intent (getApplicationContext(), transpo.class);
+                         start.putExtra("GAME", true); // 1 for freq
+                         start.putExtra("GAMECIPHER", cipher.getText().toString());
+                         start.putExtra("LEVEL", level);
                          startActivity(start);
 
                      }

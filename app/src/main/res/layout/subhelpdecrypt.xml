@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/editText3"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:clickable="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_toRightOf="@+id/decryptedtextlabel"
+        android:layout_above="@+id/editText8"
+        android:layout_alignTop="@+id/ciphertextlabel"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3">
+
+        <TableRow
+            android:id="@+id/Row1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_span="26"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/Key"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="Cipher Text : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KA"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KB"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KC"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KD"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KE"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KF"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KG"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KH"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KI"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KJ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KK"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KL"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KM"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KN"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KO"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KP"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_span="26"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="Clear Text :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CA"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CB"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CC"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="C"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CD"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="D"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CE"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="E"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CF"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="F"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CG"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="G"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CH"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="H"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CI"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:clickable="false"
+                android:gravity="center"
+                android:longClickable="false"
+                android:text="I"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CJ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="J"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CK"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="K"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CL"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="L"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CM"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="M"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CN"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="N"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CO"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="O"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CP"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="P"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/BlankRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <Button
+                android:id="@+id/button35"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Button" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="Cipher Text :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KQ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KR"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KS"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KT"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KU"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KV"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KW"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KX"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KY"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/KZ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="Clear Text :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CQ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="Q"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CR"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="R"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CS"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="S"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CT"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="T"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CU"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="U"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CV"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="V"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CW"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="W"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CX"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="X"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CY"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="Y"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/CZ"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tablecell"
+                android:gravity="center"
+                android:text="Z"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/editText6"
+        android:layout_width="248dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/header"
+        android:layout_alignLeft="@+id/keyheader"
+        android:layout_alignRight="@+id/header"
+        android:layout_alignStart="@+id/keyheader"
+        android:layout_below="@+id/editText4"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:textColor="#000064"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:longClickable="false"
+        android:text="Actual key after removing duplicated characters : "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/editText5"
+        android:layout_width="248dp"
+        android:layout_height="39dp"
+        android:layout_alignTop="@+id/editText6"
+        android:layout_toRightOf="@+id/editText6"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:longClickable="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4" />
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:layout_alignBottom="@+id/cipherheader"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/cipherheader"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/cipherheader"
+        android:layout_toRightOf="@+id/cipherheader"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:longClickable="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/editText4"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:longClickable="false"
+        android:clickable="false"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_toRightOf="@+id/keyheader"
+        android:layout_alignBottom="@+id/keyheader"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignTop="@+id/keyheader" />
+
+    <TextView
+        android:id="@+id/editText8"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:longClickable="false"
+        android:clickable="false"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_alignTop="@+id/decryptedtextlabel"
+        android:layout_toRightOf="@+id/decryptedtextlabel"
+        android:layout_alignBottom="@+id/decryptedtextlabel"
+        android:layout_alignRight="@+id/nextbtn"
+        android:layout_alignEnd="@+id/nextbtn" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Substitution Cipher Example"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:inputType="textNoSuggestions"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#000064"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/editText7"
+        android:layout_alignLeft="@+id/editText7"
+        android:textColor="#000064"
+        android:layout_alignRight="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_below="@+id/editText7"
+        android:inputType="textNoSuggestions"
+        android:text="Relationship between cipher text and clear text :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/cipherheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:textColor="#000064"
+        android:text="Cipher : "
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_below="@+id/header"
+        android:layout_alignLeft="@+id/header"
+        android:layout_alignStart="@+id/header" />
+
+    <TextView
+        android:id="@+id/keyheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000064"
+        android:text="Entered Key : "
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_below="@+id/cipherheader"
+        android:layout_alignLeft="@+id/cipherheader"
+        android:layout_alignStart="@+id/cipherheader"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        android:id="@+id/decryptedtextlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000064"
+        android:text="Decrypted Text : "
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:background="@null"
+        android:layout_below="@+id/ciphertextlabel"
+        android:layout_alignLeft="@+id/ciphertextlabel"
+        android:layout_alignStart="@+id/ciphertextlabel" />
+
+    <TextView
+        android:id="@+id/ciphertextlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textColor="#000064"
+        android:text="Original Cipher : "
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/editText7"
+        android:layout_width="248dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/editText2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_below="@+id/editText2"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:longClickable="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/editText2"
+        android:layout_width="248dp"
+        android:layout_height="20dp"
+        android:background="@null"
+        android:clickable="false"
+        android:textColor="#000064"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:longClickable="false"
+        android:text="Reconstructed keystring by adding missing characters : "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="45dp"
+        android:layout_below="@+id/editText6"
+        android:layout_alignLeft="@+id/editText6"
+        android:layout_alignStart="@+id/editText6"
+        android:layout_alignRight="@+id/editText5"
+        android:layout_alignEnd="@+id/editText5" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_alignLeft="@+id/tableLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/tableLayout"
+        android:layout_below="@+id/tableLayout"
+        android:clickable="false"
+        android:gravity="center"
+        android:longClickable="false"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:text="     "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#ff0000"
+        android:textSize="25dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/nextbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_toRightOf="@+id/exitbtn"
+        android:layout_alignBaseline="@+id/exitbtn"
+        android:layout_alignBottom="@+id/exitbtn"
+       />
+    <Button
+        android:id="@+id/exitbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/previousbtn"
+        android:layout_alignBottom="@+id/previousbtn"
+        android:layout_toRightOf="@+id/previousbtn"
+        android:text="EXIT"
+        />
+
+    <Button
+        android:id="@+id/previousbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/decryptedtextlabel"
+        android:layout_alignStart="@+id/decryptedtextlabel"
+        android:layout_marginBottom="10dp"
+        android:text="PREVIOUS"
+        android:layout_below="@+id/decryptedtextlabel"
+        android:layout_marginTop="10dp"
+        />
+
+</RelativeLayout>
+</ScrollView>

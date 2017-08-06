@@ -27,6 +27,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.krypto.Help.vigHelp;
 import com.project.krypto.act_tools.Home.HomeFrag;
 import com.project.krypto.act_tools.Sub.SubCipher2;
 import com.project.krypto.act_tools.Sub.subCipher;
@@ -169,7 +170,7 @@ Intent intent;
             case R.id.action_settings :
             break;
             case R.id.transpoHelp :
-                intent = new Intent(this, TranspoHelpActivity.class);
+                intent = new Intent(this, transposliderhelp.class);
                startActivity(intent);
             break;
             case R.id.subCipher2:

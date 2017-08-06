@@ -29,30 +29,43 @@
         </activity>
         <activity android:name=".act_tools.ioc.ioc"
             android:label="Krypto"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".act_tools.period.period"
             android:label="Krypto"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".act_tools.vingere.vigenere"
             android:label="Krypto"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".act_tools.transpo.transpo"
             android:label="Krypto"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".Activities.TranspoHelpActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".act_tools.Sub.SubCipher2"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activities.transposliderhelp"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            </activity>
 
-        <activity android:name=".Activities.vigHelp"
+
+        <activity android:name=".Help.vigHelp"
             android:label="Krypto"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Help.helpmenu"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Help.transpohelp"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Help.subdecrypthelp"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Help.subencrypthelp"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
         <!--Games-->
         <activity

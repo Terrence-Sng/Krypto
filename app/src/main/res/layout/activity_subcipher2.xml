@@ -26,55 +26,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_below="@id/actionBarSubCipher">
-
     <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@+id/actionBarSubCipher">
-    <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout
-        android:id="@+id/keyoutputgroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittextborder"
-        android:layout_margin="10dp">
-    <TextView
-        android:id="@+id/keyLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
-        android:text="Key"
-        android:textColor="@color/Dark_Green"
-        />
-    <TextView
-        android:id="@+id/outputkey"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:layout_below="@id/keyLabel"
-        android:textColor="@color/Neon_Green"/>
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:id="@+id/encdecbuttongroupsub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeinputgroupsub"
+            android:visibility="gone"
+            >
+            <Button
+                android:id="@+id/btnenc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Encrypt"
+                android:textColor="@color/Dark_Green"
+                android:background="@drawable/buttonselector"
+                />
+            <Button
+                android:id="@+id/btndec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Decrypt"
+                android:textColor="@color/Dark_Green"
+                android:background="@drawable/buttonselector"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/btnenc"
+                />
+            <Button
+                android:layout_toRightOf="@+id/btndec"
+                android:layout_marginLeft="5dp"
+                android:text="Back to Game"
+                android:textColor="@color/Dark_Green"
+                android:background="@drawable/buttonselector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/backtogamesub"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/homeinputgroupsub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            >
+                    <RelativeLayout
+                        android:id="@+id/inputfromhomegroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edittextborder"
+                        android:layout_margin="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/inputfromhomelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="Input"
+                            android:textColor="@color/Dark_Green"
+                            />
+                        <TextView
+                            android:id="@+id/inputfromhome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_below="@id/inputfromhomelabel"
+                            android:textColor="@color/Neon_Green"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/keyinputhomegroup"
+                        android:layout_below="@id/inputfromhomegroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittextborder"
+                        android:layout_margin="10dp">
+                    <TextView
+                        android:id="@+id/keyLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Key"
+                        android:textColor="@color/Dark_Green"
+                        />
+                    <TextView
+                        android:id="@+id/keyfromhome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_below="@id/keyLabel"
+                        android:textColor="@color/Neon_Green"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:id="@+id/gamekeyinputgroupsub"
+                        android:layout_below="@id/inputfromhomegroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittextborder"
+                        android:visibility="gone">
+                        <android.support.design.widget.TextInputLayout
+                            android:paddingTop="10dp"
+                            android:id="@+id/inputkeylayoutSub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintTextAppearance="@style/Floating_hint"
+                            android:textColorHint="@color/Darker_Green">
+                            <EditText
+                                android:id="@+id/inputkeysub"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:hint="Enter Keyword"
+                                android:textColor="@color/Neon_Green"
+                                app:theme="@style/EditTextTheme" />
+                        </android.support.design.widget.TextInputLayout>
+                    </RelativeLayout>
+        </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/subcipheroutputGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/keyoutputgroup"
         android:layout_margin="10dp"
-        android:background="@drawable/edittextborder">
+        android:background="@drawable/edittextborder"
+        android:layout_below="@+id/homeinputgroupsub">
         <TextView
             android:id="@+id/outputLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="14dp"
             android:text="Output"
             android:textColor="@color/Dark_Green"/>
         <TextView
             android:id="@+id/output"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textIsSelectable="true"
             android:textColor="@color/Neon_Green"
@@ -82,14 +176,15 @@
             />
     </RelativeLayout>
     <Button
-        android:id="@+id/btnhelp"
+        android:id="@+id/btnhelpsub"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="How is it Done?"
         android:textColor="@color/Dark_Green"
         android:background="@drawable/buttonselector"
         android:layout_below="@id/subcipheroutputGroup"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        >
     </Button>
     <Button
         android:id="@+id/btnshare"
@@ -98,8 +193,9 @@
         android:text="Share"
         android:textColor="@color/Dark_Green"
         android:background="@drawable/buttonselector"
-        android:layout_toEndOf="@+id/btnhelp"
-        android:layout_alignBaseline="@+id/btnhelp"/>
+        android:layout_below="@id/subcipheroutputGroup"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"/>
 </RelativeLayout>
 </ScrollView>
 </RelativeLayout>

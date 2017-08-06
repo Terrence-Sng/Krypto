@@ -2,9 +2,12 @@ package com.project.krypto.act_tools.transpo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +21,7 @@ import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
+import com.project.krypto.Help.helpmenu;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -31,10 +35,13 @@ public class transpo extends AppCompatActivity {
 
     // TODO: Rename and change types of parameters
     private RelativeLayout gameoutput, blocksizegroup,buttongroup, blksizefromhome, outputgroup;
-    private String cipherFromGame, cipherfromhome,keyfromhome, type;
+    private TextInputLayout blksizelayout;
+    private TextView mtext, outputview, keyview;
+    private  EditText mEdit2;
+    private String cipherFromGame, cipherfromhome,keyfromhome, type, mastercipher, masterkey;
     private String level;
     private boolean fromGame;
-    private Button back;
+    private Button back,help;
     double cols, rows;
     char [][] ct;
     ArrayList <String> cipherText,outputct;
@@ -65,6 +72,7 @@ public class transpo extends AppCompatActivity {
         gameoutput = (RelativeLayout) findViewById(R.id.gamecipherinput);
         blocksizegroup = (RelativeLayout) findViewById(R.id.blockSizeGroup);
         buttongroup = (RelativeLayout) findViewById(R.id.buttonGroupTranspo);
+        blksizelayout = (TextInputLayout) findViewById(R.id.blkSizeLayout);
         back = (Button) findViewById(R.id.backButtonGameTranspo);
 
         fromGame = getIntent().getBooleanExtra("GAME", false);
@@ -73,6 +81,14 @@ public class transpo extends AppCompatActivity {
         cipherfromhome=getIntent().getStringExtra("CIPHER");
         keyfromhome=getIntent().getStringExtra("KEY");
         type=getIntent().getStringExtra("TYPE");
+
+
+        mtext = (TextView)findViewById(R.id.inputviewtranspo);
+        mEdit2 = (EditText) findViewById(R.id.blksize);
+        mEdit2.addTextChangedListener(new MyTextWatcher(mEdit2));
+       outputview = (TextView) findViewById(R.id.outputText);
+        keyview = (TextView) findViewById(R.id.blksizefromhome);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,14 +111,44 @@ public class transpo extends AppCompatActivity {
                 }
             }
         });
-        final TextView mtext = (TextView)findViewById(R.id.inputviewtranspo);
-        final EditText mEdit2 = (EditText) findViewById(R.id.blksize);
-        final TextView outputview = (TextView) findViewById(R.id.outputText);
-        final TextView keyview = (TextView) findViewById(R.id.blksizefromhome);
+
+        help = (Button) findViewById(R.id.transpohelpbtn);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(fromGame==true) {
+                   mastercipher = cipherFromGame.replaceAll("[^A-Za-z]+", "");
+                   masterkey = mEdit2.getText().toString().trim();
+                   if(masterkey.isEmpty())
+                   {
+                        blksizelayout.setError("Key cannot be empty");
+                        blksizelayout.setErrorEnabled(true);
+                        return;
+                   }
+               }
+               else
+               {
+                   mastercipher = cipherfromhome.replaceAll("[^A-Za-z]+", "");
+                   masterkey = keyfromhome;
+               }
+
+               if(mastercipher.length() > 20)
+               {
+                   mastercipher = mastercipher.substring(0,20);
+               }
+
+                Intent mIntent = new Intent (getBaseContext(), helpmenu.class);
+                mIntent.putExtra("CIPHER", mastercipher);
+                mIntent.putExtra("KEY",masterkey);
+                mIntent.putExtra("TYPECIPHER", "T");
+                startActivity(mIntent);
+            }
+        });
+
 
         if(fromGame==true)
         {
-            mtext.setText(cipherFromGame);
+            mtext.setText(cipherFromGame.replaceAll("[^A-Za-z]+", ""));
             back.setVisibility(View.VISIBLE);
             gameoutput.setVisibility(View.VISIBLE);
             blocksizegroup.setVisibility(View.VISIBLE);
@@ -152,6 +198,7 @@ public class transpo extends AppCompatActivity {
             if(type.equals("0")) // enc
             {
                 String message = cipherfromhome;
+
                 int blksize = Integer.parseInt(keyfromhome);
                 mtext.setText(cipherfromhome);
                 keyview.setText(blksize + "");
@@ -178,15 +225,15 @@ public class transpo extends AppCompatActivity {
 
     public void enc(String message, int blksize, TextView output) {
         cols = blksize;
-        System.out.println("pt.length = :" + message.length());
+        //System.out.println("pt.length = :" + message.length());
         rows = Math.ceil(message.length() / (double) cols);
         float remainder = message.length() % (int)cols;
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "x";
+            message = message + "X";
         }
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];
         int jtemp = 0;
         for (int i = 0; i < rows; i++) {
@@ -231,21 +278,22 @@ public class transpo extends AppCompatActivity {
         }
         output.setText("Decrypted Block is: \n" + tempct +
                 "\n\n" + "Decrypted Message is: \n" + tempout);
+        output.setTextSize(14);
     }
 
     public void dec (String message, int blksize, TextView output)
     {
         rows = blksize;
-        System.out.println("pt.length = :" + message.length());
+       // System.out.println("pt.length = :" + message.length());
         cols = Math.ceil(message.length() / rows);
-        System.out.println("cols : " + cols);
+        //System.out.println("cols : " + cols);
         float remainder = message.length() % (int)rows;
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "x";
+            message = message + "X";
         }
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];
         int jtemp = 0;
         for (int i = 0; i < rows; i++) {
@@ -265,7 +313,7 @@ public class transpo extends AppCompatActivity {
         for (int i = 0; i < rows; i++) {
             String temp = "";
             for (int j = 0; j < cols; j++) {
-                temp += String.format("%5s", ct[i][j]);
+                temp += String.format("%1s", ct[i][j]);
             }
             temp += "\n";
             cipherText.add(temp);
@@ -294,6 +342,8 @@ public class transpo extends AppCompatActivity {
         }
         output.setText("Decrypted Block is: \n" + tempct +
                             "\n\n" + "Decrypted Message is: \n" + tempout);
+        output.setTextSize(14);
+
     }
 
     public void setStatusBar()
@@ -307,4 +357,47 @@ public class transpo extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
     }
 
+    public boolean validateKey()
+    {
+        String temp = mEdit2.getText().toString().trim();
+
+
+        if(temp.isEmpty())
+        {
+            blksizelayout.setError("Key Not entered");
+            return false;
+        }
+        else
+        {
+            blksizelayout.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch(view.getId())
+            {
+                case R.id.inputkey : validateKey();
+                    break;
+            }
+        }
+    }
 }

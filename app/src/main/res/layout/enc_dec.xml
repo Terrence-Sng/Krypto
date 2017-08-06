@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_grey">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarhelpmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarhelpmenu"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    <Button
+        android:id="@+id/helpmenuenc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encrypt"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"/>
+    <TextView
+        android:layout_margin="20dp"
+        android:id="@+id/tvhelpOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Dark_Green"
+        android:text="OR"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/helpmenuenc"/>
+    <Button
+        android:id="@+id/helpmenudec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrypt"
+        android:layout_below="@+id/tvhelpOR"
+        android:textColor="@color/Dark_Green"
+        android:background="@drawable/buttonselector"/>
+    </RelativeLayout>
+</RelativeLayout>

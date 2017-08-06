@@ -74,7 +74,8 @@
                 android:layout_height="200dp"
                 android:layout_width="match_parent"
                 android:id="@+id/showFrequency"
-                android:layout_below ="@+id/hist">
+                android:layout_below ="@+id/hist"
+                android:textColor="@color/Dark_Green">
             </TextView>
             <com.github.mikephil.charting.charts.BarChart
             android:layout_height="200dp"

@@ -2,17 +2,32 @@ package com.project.krypto.act_tools.Sub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.finallvl;
+import com.project.krypto.Game.transpolvl;
+import com.project.krypto.Game.viglvl;
+import com.project.krypto.Help.helpmenu;
+import com.project.krypto.Help.subdecrypthelp;
+import com.project.krypto.Help.subencrypthelp;
 import com.project.krypto.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Panda on 7/20/2017.
@@ -21,18 +36,18 @@ import com.project.krypto.R;
 public class SubCipher2  extends AppCompatActivity {
     private Toolbar toolbar;
     private EditText editkey;
-    private EditText editText;
-    Button encrypt;
-    Button help;
-    Button share;
+    private TextView inputfromgameTV;
+    Button encrypt, decrypt, help,share,back;
     TextView outputkey;
     TextView outputtext;
 
-
-    public static String p1 = "abcdefghijklmnopqrstuvwxys";
-    public static String k1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static String ch1;
-
+    private static String preset_plaintext_p1 = "abcdefghijklmnopqrstuvwxys";
+    private static String key_ch1;
+    private String level, cipherFromGame;
+    private String type, cipher, key;
+    private String mastercipher, masterkey;
+    boolean fromGame;
+    TextInputLayout keyinputlayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,112 +60,184 @@ public class SubCipher2  extends AppCompatActivity {
 
         setStatusBarColor();
 
-        final int type = Integer.parseInt(getIntent().getStringExtra("TYPE"));
-        String cipher = getIntent().getStringExtra("CIPHER");
-        String key = getIntent().getStringExtra("KEY");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }
+        });
 
-        help = (Button) findViewById(R.id.btnhelp);
+
+        type = getIntent().getStringExtra("TYPE");
+        cipher = getIntent().getStringExtra("CIPHER");
+        key = getIntent().getStringExtra("KEY");
+        level = getIntent().getStringExtra("LEVEL");
+        cipherFromGame = getIntent().getStringExtra("GAMECIPHER");
+        fromGame = getIntent().getBooleanExtra("GAME", false);
+
+        help = (Button) findViewById(R.id.btnhelpsub);
+        help.setOnClickListener(new View.OnClickListener() {
+            String SHORT_KEY;
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "clicked", Toast.LENGTH_SHORT).show();
+                if(fromGame==true) {
+                    mastercipher = cipherFromGame.replaceAll("[^A-Za-z]+", "");
+                    masterkey = editkey.getText().toString();
+                    Pattern p = Pattern.compile("[^A-za-z]");
+                    Matcher m = p.matcher(masterkey);
+                    if(masterkey.trim().isEmpty())
+                    {
+                        keyinputlayout.setError("Key is empty!");
+                        keyinputlayout.setErrorEnabled(true);
+                        return;
+                    }else if(m.find())
+                    {
+                        keyinputlayout.setError("Only alphabets allowed!");
+                        keyinputlayout.setErrorEnabled(true);
+                        return;
+                    }
+                    Intent mIntent = new Intent(getBaseContext(), helpmenu.class);
+                    mIntent.putExtra("CIPHER", mastercipher);
+                    mIntent.putExtra("KEY", key);
+                    mIntent.putExtra("KEYSTRING", key_ch1);
+                    // mIntent.putExtra("RESULT", displayResult.getText().toString());
+                    mIntent.putExtra("TYPECIPHER", "S");
+                    startActivity(mIntent);
+                }
+                else
+                {
+                    mastercipher = cipher;
+                    masterkey = key;
+                    if(type.equals("0"))
+                    {
+                        Intent mIntent = new Intent(getBaseContext(), subencrypthelp.class);
+                        mIntent.putExtra("CIPHER", mastercipher);
+                        mIntent.putExtra("KEY", key);
+                        mIntent.putExtra("KEYSTRING", key_ch1);
+                        // mIntent.putExtra("RESULT", displayResult.getText().toString());
+                        mIntent.putExtra("TYPECIPHER", "S");
+                        startActivity(mIntent);
+                    }
+                    else
+                    {
+                        Intent mIntent = new Intent(getBaseContext(), subdecrypthelp.class);
+                        mIntent.putExtra("CIPHER", mastercipher);
+                        mIntent.putExtra("KEY", key);
+                        mIntent.putExtra("KEYSTRING", key_ch1);
+                        // mIntent.putExtra("RESULT", displayResult.getText().toString());
+                        mIntent.putExtra("TYPECIPHER", "S");
+                        startActivity(mIntent);
+
+                    }
+
+                }
+
+            }
+        });
         share = (Button) findViewById(R.id.btnshare);
-        outputkey = (TextView) findViewById(R.id.outputkey);
+        //outputkey = (TextView) findViewById(R.id.outputkey);
         outputtext = (TextView) findViewById(R.id.output);
+        editkey = (EditText) findViewById(R.id.inputkeysub);
+        editkey.addTextChangedListener(new MyTextWatcher(editkey));
+        keyinputlayout = (TextInputLayout) findViewById(R.id.inputkeylayoutSub);
 
-        if (type == 1) {
-            //editkey = (EditText) findViewById(R.id.editkey);
-            String ch = key;
-            String tempkey = key;
-            char so[] = ch.toCharArray();
-                /*for (int i = 0; i < ch.length();)
+        back = (Button) findViewById(R.id.backtogamesub);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent game;
+                switch (level)
                 {
-                    int b = (int)so[i];
-                    if ((b >= 65 && b <= 90) || (b >= 97 && b <= 122))
-                    {i++;}
-                    else
-                    {
-                        System.out.println("The key should contain only character (A-Z)");
-                        System.exit(0);
-                    }
-                }*/
-            int count = 0, len = 0;
-            do {
-                try {
-                    char name[] = ch.toCharArray();
-                    len = name.length;
-                    count = 0;
-                    for (int j = 0; j < len; j++) {
-                        if ((name[0] == name[j]) && ((name[0] >= 65 && name[0] <= 91) || (name[0] >= 97 && name[0] <= 123)))
-                            count++;
-                    }
-
-                    if (count != 0)
-                        ch = ch.replace("" + name[0], "");
-                    tempkey += name[0];
-
-                } catch (Exception ex) {
+                    case "1" :  game = new Intent (getBaseContext(), GameActivity.class);
+                        startActivity(game);
+                        break;
+                    case "2" : game = new Intent (getBaseContext(), viglvl.class);
+                        startActivity(game);
+                        break;
+                    case "3":
+                        game = new Intent (getBaseContext(), transpolvl.class);
+                        startActivity(game);
+                        break;
+                    case "4":game = new Intent (getBaseContext(), finallvl.class);
+                        startActivity(game);
+                        break;
                 }
             }
-            while (len != 0);
+        });
 
-            String k1 = keygen(key.toUpperCase());
-            outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + k1);
-            ch1 = k1;
-            editText = (EditText) findViewById(R.id.editText);
-            String ct = key;
-            String de = doDecryption(ct.toUpperCase());
-            outputtext.setText(de);
-        }
-        else {
-            String ch = key;
-            String tempkey = key;
-            char so[]= ch.toCharArray();
-                /*for (int i = 0; i < ch.length();)
-                {
-                    int b = (int)so[i];
-                    if ((b >= 65 && b <= 90) || (b >= 97 && b <= 122))
-                    {i++;}
-                    else
-                    {
-                        System.out.println("The key should contain only character (A-Z)");
-                        System.exit(0);
-                    }
-                }*/
-            int count=0,len=0;
-            do
-            {
-                try
-                {
-                    char name[]=ch.toCharArray();
-                    len=name.length;
-                    count=0;
-                    for(int j=0;j<len;j++)
-                    {
-                        if((name[0]==name[j])&&((name[0]>=65&&name[0]<=91)||(name[0]>=97&&name[0]<=123)))
-                            count++;
-                    }
+         if(fromGame == true)
+         {
+        RelativeLayout gamekeyinputgroupsub = (RelativeLayout) findViewById(R.id.gamekeyinputgroupsub);
+        gamekeyinputgroupsub.setVisibility(View.VISIBLE);
+        RelativeLayout encdecbuttongroupsub = (RelativeLayout)findViewById(R.id.encdecbuttongroupsub);
+        encdecbuttongroupsub.setVisibility(View.VISIBLE);
+        RelativeLayout subcipheroutputgroup = (RelativeLayout)findViewById(R.id.subcipheroutputGroup);
+        RelativeLayout keyinputgroupsub = (RelativeLayout)findViewById(R.id.keyinputhomegroup);
+        keyinputgroupsub.setVisibility(View.GONE);
+        share.setVisibility(View.GONE);
+        encrypt = (Button) findViewById(R.id.btnenc);
+        decrypt = (Button) findViewById(R.id.btndec);
 
-                    if(count!=0)
-                        ch=ch.replace(""+name[0],"");
-                    tempkey += name[0];
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        p.setMargins(30,30,30,30);
+        p.addRule(RelativeLayout.BELOW, R.id.encdecbuttongroupsub);
+        subcipheroutputgroup.setLayoutParams(p);
 
-                }
-                catch(Exception ex){}
+
+        inputfromgameTV = (TextView) findViewById(R.id.inputfromhome);
+        inputfromgameTV.setText(cipherFromGame);
+        decrypt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String key_ch = editkey.getText().toString();
+                String actual_key_k1 = keygen(key_ch.toUpperCase());
+                //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
+                key_ch1 = actual_key_k1;
+
+                String temporary_cipher_ct = cipherFromGame;
+                String decrypted_text = doDecryption(temporary_cipher_ct.toUpperCase());
+                outputtext.setText(decrypted_text);
             }
-            while(len!=0);
-            String k1 = keygen(key.toUpperCase());
-            outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + k1);
-            ch1 = k1;
-            editText = (EditText) findViewById(R.id.editText);
-            String pl = key;
-            String en = doEncryption(pl.toLowerCase());
-            outputtext.setText(en);
-        }
+        });
 
+        encrypt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String key_ch = editkey.getText().toString();
+                String actual_key_k1 = keygen(key_ch.toUpperCase());
+                //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
+                key_ch1 = actual_key_k1;
+                System.out.println(key_ch + "&" + key_ch1);
+                String temporary_plaintext_pl = cipherFromGame;
+                String encrypted_text_en = doEncryption(temporary_plaintext_pl.toLowerCase());
+                outputtext.setText(encrypted_text_en);
+            }
+        });
+    }
+    else
+    {
+        TextView inputfromhome = (TextView) findViewById(R.id.inputfromhome);
+        inputfromhome.setText(cipher);
+        TextView keyfromhome = (TextView) findViewById(R.id.keyfromhome);
+        key_ch1 = keygen(key.toUpperCase());
+        keyfromhome.setText(key + "\n" + "\nNew Key is : " + key_ch1);
+
+        if(type.equals("0"))//enc
+        {
+            outputtext.setText(doEncryption(cipher.toLowerCase()));
+        }
+        else
+        {
+            outputtext.setText(doDecryption(cipher.toLowerCase()));
+        }
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 String sharetext = outputtext.getText().toString();
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                if(type == 0)//
+                if(type.equals("0"))//
                 {
                     shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my encrypted cipher! Try to decrypt it!\n Cipher:\n" + sharetext);
                 }
@@ -162,14 +249,7 @@ public class SubCipher2  extends AppCompatActivity {
                 startActivity(Intent.createChooser(shareIntent,"Share using..."));
             }
         });
-
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+    }
     }
 
     public void setStatusBarColor ()
@@ -186,85 +266,127 @@ public class SubCipher2  extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
 
     }
-    public static String keygen(String s)
+    public static String keygen(String keyword_s)
     {
-        String c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String c1 = s + c;
+        String temporary_key_preset_c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String temporary_key_c1 = keyword_s + temporary_key_preset_c;
         String realkey = "";
-        int count=0,len=0;
+        int count=0,length_len=0;
         do
         {
             try
             {
-                char name[]=c1.toCharArray();
-                len=name.length;
+                char character_name[]=temporary_key_c1.toCharArray();
+                length_len=character_name.length;
                 count=0;
-                for(int j=0;j<len;j++)
+                for(int j=0;j<length_len;j++)
                 {
-                    if((name[0]==name[j])&&((name[0]>=65&&name[0]<=91)||(name[0]>=97&&name[0]<=123)))
+                    if((character_name[0]==character_name[j])&&((character_name[0]>=65&&character_name[0]<=91)||(character_name[0]>=97&&character_name[0]<=123)))
                         count++;
                 }
 
                 if(count!=0)
-                    c1=c1.replace(""+name[0],"");
-                realkey += name[0];
+                    temporary_key_c1=temporary_key_c1.replace(""+character_name[0],"");
+                realkey += character_name[0];
 
             }
             catch(Exception ex){}
         }
-        while(len!=0);
+        while(length_len!=0);
         return (new String(realkey));
     }
 
-    public static String doEncryption(String s)
-    {	char[] ch = ch1.toCharArray();
-        char[] k = k1.toCharArray();
-        char[] p = p1.toCharArray();
-        char so[]= s.toCharArray();
-        char c[] = new char[(s.length())];
-        for (int i = 0; i < s.length(); i++)
-        {	int b = (int)so[i];
+    public static String doEncryption(String plaintext_s)
+    {	char[] key_array_ch = key_ch1.toCharArray();
+        char[] temporary_plaintext_p = preset_plaintext_p1.toCharArray();
+        char plaintext_array_so[]= plaintext_s.toCharArray();
+        char encrypted_text_c[] = new char[(plaintext_s.length())];
+        for (int i = 0; i < plaintext_s.length(); i++)
+        {	int b = (int)plaintext_array_so[i];
             if ( b < 97 || b > 122)
             {
-                c[i] = s.charAt(i);
+                encrypted_text_c[i] = plaintext_s.charAt(i);
             }
             else
                 for (int j = 0; j < 26; j++)
                 {
-                    if (p[j] == s.charAt(i))
+                    if (temporary_plaintext_p[j] == plaintext_s.charAt(i))
                     {
-                        c[i] = ch[j];
+                        encrypted_text_c[i] = key_array_ch[j];
                         break;
                     }
 
                 }
         }
-        return (new String(c));
+        return (new String(encrypted_text_c));
     }
 
-    public static String doDecryption(String s)
-    {	char[] ch = ch1.toCharArray();
-        char[] k = k1.toCharArray();
-        char[] p = p1.toCharArray();
-        char so[]= s.toCharArray();
-        char p1[] = new char[(s.length())];
-        for (int i = 0; i < s.length(); i++)
-        {	int b = (int)so[i];
+
+    public static String doDecryption(String cipher_s)
+    {	char[] key_array_ch = key_ch1.toCharArray();
+        char[] p = preset_plaintext_p1.toCharArray();
+        char cipher_array_so[]= cipher_s.toCharArray();
+        char plaintext_p1[] = new char[(cipher_s.length())];
+        for (int i = 0; i < cipher_s.length(); i++)
+        {	int b = (int)cipher_array_so[i];
             if ( b < 65 || b > 90)
             {
-                p1[i] = s.charAt(i);
+                plaintext_p1[i] = cipher_s.charAt(i);
             }
             else
                 for (int j = 0; j < 26; j++)
                 {
-                    if (ch[j] == s.charAt(i))
+                    if (key_array_ch[j] == cipher_s.charAt(i))
                     {
-                        p1[i] = p[j];
+                        plaintext_p1[i] = p[j];
                         break;
                     }
                 }
         }
-        return (new String(p1));
+        return (new String(plaintext_p1));
     }
 
+    public boolean validateKey()
+    {
+        String temp = editkey.getText().toString().trim();
+
+
+        if(temp.isEmpty())
+        {
+            keyinputlayout.setError("Key Not entered");
+            return false;
+        }
+        else
+        {
+            keyinputlayout.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch(view.getId())
+            {
+                case R.id.inputkeysub : validateKey();
+                    break;
+            }
+        }
+    }
 }

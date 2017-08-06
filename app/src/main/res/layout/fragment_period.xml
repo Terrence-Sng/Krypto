@@ -77,20 +77,11 @@
             android:layout_marginLeft="5dp"
             android:textColor="@color/Dark_Green"
             android:background="@drawable/buttonselector"/>
-        <Button
-            android:id="@+id/backButtonGamePeriod"
-            android:layout_below="@+id/btnreset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Back To Game"
-            android:background="@drawable/buttonselector"
-            android:textColor="@color/Dark_Green"
-            android:visibility="gone"/>
         <!-- android:layout_below="@id/calioc"!-->
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/periodresultslayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editGroup"
@@ -108,11 +99,21 @@
                 <TextView
                 android:id="@+id/results"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="wrap_content"
                 android:scrollbars = "vertical"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/Neon_Green"
                 android:layout_below="@+id/periodResultTitle" />
     </RelativeLayout>
+    <Button
+        android:id="@+id/backButtonGamePeriod"
+        android:layout_below="@+id/periodresultslayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Back To Game"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:visibility="gone"/>
 </RelativeLayout>
 </ScrollView>

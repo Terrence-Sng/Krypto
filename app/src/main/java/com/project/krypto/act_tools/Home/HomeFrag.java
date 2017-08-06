@@ -332,6 +332,7 @@ public class HomeFrag extends Fragment {
                             mIntent.putExtra("CIPHER", cipher);
                             mIntent.putExtra("KEY", keyword);
                             mIntent.putExtra("TYPE", enc_dec_choice + "");
+                            startActivity(mIntent);
                     } else if (cipherchoice.equals("Vigenere")) {
                         if(m.find())
                         {

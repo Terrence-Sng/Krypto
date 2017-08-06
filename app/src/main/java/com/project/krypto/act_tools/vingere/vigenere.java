@@ -19,9 +19,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.krypto.Activities.vigHelp;
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.viglvl;
+import com.project.krypto.Help.helpmenu;
+import com.project.krypto.Help.vigHelp;
 import com.project.krypto.R;
 
 import java.util.regex.Matcher;
@@ -90,6 +91,7 @@ public class vigenere extends AppCompatActivity {
                 }
             }
         });
+        final TextInputLayout vigkeyinputlayout = (TextInputLayout) findViewById(R.id.inputKeyLayoutVig);
         help = (Button) findViewById(R.id.vighelp);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +105,30 @@ public class vigenere extends AppCompatActivity {
                 {
                     tempcipher = mastercipher;
                 }
-                Intent mIntent = new Intent (getBaseContext(), vigHelp.class);
-                mIntent.putExtra("CIPHER", tempcipher);
-                mIntent.putExtra("KEY", key);
-                mIntent.putExtra("RESULT", displayResult.getText().toString());
-                startActivity(mIntent);
+
+                if(key.trim().isEmpty())
+                {
+                    vigkeyinputlayout.setError("Key is empty!");
+                    vigkeyinputlayout.setErrorEnabled(true);
+                    return;
+                }
+                if(fromGame == true) {
+                    Intent mIntent = new Intent(getBaseContext(), helpmenu.class);
+                    mIntent.putExtra("CIPHER", tempcipher);
+                    mIntent.putExtra("KEY", key);
+                    mIntent.putExtra("RESULT", displayResult.getText().toString());
+                    mIntent.putExtra("TYPECIPHER", "V");
+                    startActivity(mIntent);
+                }
+                else
+                {
+                    Intent mIntent = new Intent(getBaseContext(), vigHelp.class);
+                    mIntent.putExtra("CIPHER", tempcipher);
+                    mIntent.putExtra("KEY", key);
+                    mIntent.putExtra("RESULT", displayResult.getText().toString());
+                    mIntent.putExtra("TYPECIPHER", "V");
+                    startActivity(mIntent);
+                }
             }
         });
 
@@ -118,7 +139,7 @@ public class vigenere extends AppCompatActivity {
         RelativeLayout key_cipherview = (RelativeLayout) findViewById(R.id.vigETextGroup);
         RelativeLayout back_resetview = (RelativeLayout) findViewById(R.id.back_resetgroup);
         RelativeLayout enc_decview = (RelativeLayout) findViewById(R.id.vigBtnGroup);
-        final TextInputLayout vigkeyinputlayout = (TextInputLayout) findViewById(R.id.inputKeyLayoutVig);
+
 
         editKey = (EditText) findViewById(R.id.inputkey);
         gamecipheroutput_input = (TextView) findViewById(R.id.gameciphervig);
@@ -143,11 +164,11 @@ public class vigenere extends AppCompatActivity {
 
             encrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    String keyword = editKey.getText().toString();
+                    key = editKey.getText().toString();
                     String msg = gamecipheroutput_input.getText().toString();
                     Pattern p = Pattern.compile("[^A-za-z]");
-                    Matcher m = p.matcher(keyword);
-                    if(keyword.trim().isEmpty())
+                    Matcher m = p.matcher(key);
+                    if(key.trim().isEmpty())
                     {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is empty!");
@@ -158,15 +179,15 @@ public class vigenere extends AppCompatActivity {
                     else {
                         msg = msg.replaceAll("[^A-Za-z]+", "");
                         msg = msg.toLowerCase();
-
+                        mastercipher = msg;
 
                         String tempcipher = "";
                         int counter = 0;
                         while (counter <= (msg.length() - 1)) {
-                            for (int i = 0; i < keyword.length(); i++) {
+                            for (int i = 0; i < key.length(); i++) {
                                 if (counter <= (msg.length() - 1)) {
                                     //keyword char index
-                                    char tmp = keyword.charAt(i);
+                                    char tmp = key.charAt(i);
                                     int temp = (int) tmp - 97; //a = 0
 
                                     //PT char index
@@ -194,13 +215,13 @@ public class vigenere extends AppCompatActivity {
             decrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     //editKey = (EditText) view.findViewById(R.id.inputkey);
-                    String keyword = editKey.getText().toString();
-                    keyword = keyword.replaceAll("[^A-Za-z]+","");
-                    keyword = keyword.toLowerCase();
+                    key = editKey.getText().toString();
+                    key = key.replaceAll("[^A-Za-z]+","");
+                    key = key.toLowerCase();
                     String msg = gamecipheroutput_input.getText().toString();
                     Pattern p = Pattern.compile("[^A-za-z]");
-                    Matcher m = p.matcher(keyword);
-                    if(keyword.trim().isEmpty())
+                    Matcher m = p.matcher(key);
+                    if(key.trim().isEmpty())
                     {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is empty!");
@@ -213,15 +234,16 @@ public class vigenere extends AppCompatActivity {
                     {
                         msg = msg.replaceAll("[^A-Za-z]+", "");
                         msg = msg.toLowerCase();
+                        mastercipher=msg;
                         String plaintext = "";
 
                         String tempplaintext = "";
                         int counter2 = 0;
 
                         while (counter2 <= (msg.length() - 1)) {
-                            for (int i = 0; i < keyword.length(); i++) {
+                            for (int i = 0; i < key.length(); i++) {
                                 if (counter2 <= (msg.length() - 1)) {
-                                    char tmp = keyword.charAt(i);
+                                    char tmp = key.charAt(i);
                                     double temp = (double) tmp - 97; //a = 0
                                     char cipTmp = msg.charAt(counter2);
                                     double cipTemp = (double) cipTmp - 97;

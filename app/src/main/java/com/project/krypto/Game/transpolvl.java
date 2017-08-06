@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.project.krypto.Activities.MainActivity;
 import com.project.krypto.R;
+import com.project.krypto.act_tools.Sub.SubCipher2;
+import com.project.krypto.act_tools.ioc.ioc;
 import com.project.krypto.act_tools.nGram.nGramCounter;
+import com.project.krypto.act_tools.period.period;
 import com.project.krypto.act_tools.transpo.transpo;
 import com.project.krypto.act_tools.vingere.vigenere;
 
@@ -189,7 +192,7 @@ public class transpolvl extends AppCompatActivity {
                 case R.id.iocFAB : temp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        Intent start = new Intent (getApplicationContext(), ioc.class);
                         start.putExtra("GAME", true); // 1 for freq
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
@@ -200,7 +203,7 @@ public class transpolvl extends AppCompatActivity {
                 case R.id.periodFAB : temp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        Intent start = new Intent (getApplicationContext(), period.class);
                         start.putExtra("GAME", true); // 1 for freq
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
@@ -211,7 +214,7 @@ public class transpolvl extends AppCompatActivity {
                 case R.id.subFAB : temp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent start = new Intent (getApplicationContext(), MainActivity.class);
+                        Intent start = new Intent (getApplicationContext(), SubCipher2.class);
                         start.putExtra("GAME", true); // 1 for freq
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);

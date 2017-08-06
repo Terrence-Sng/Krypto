@@ -100,7 +100,7 @@ public class subdecrypthelp extends AppCompatActivity {
         String keystring = intent.getExtras().getString("KEYSTRING");
 
         String[] arr = cipher.split("\\s+");
-        int N = 3;
+        int N = arr.length;
         String newcipher = "";
         for (int i = 0; i < N; i++) {
             newcipher = newcipher + " " + arr[i];

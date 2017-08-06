@@ -84,7 +84,7 @@ public class SubCipher2  extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "clicked", Toast.LENGTH_SHORT).show();
                 if(fromGame==true) {
                     mastercipher = cipherFromGame.replaceAll("[^A-Za-z]+", "");
-                    masterkey = editkey.getText().toString();
+                    masterkey = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
                     Pattern p = Pattern.compile("[^A-za-z]");
                     Matcher m = p.matcher(masterkey);
                     if(masterkey.trim().isEmpty())
@@ -191,7 +191,7 @@ public class SubCipher2  extends AppCompatActivity {
         inputfromgameTV.setText(cipherFromGame);
         decrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String key_ch = editkey.getText().toString();
+                String key_ch = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
                 String actual_key_k1 = keygen(key_ch.toUpperCase());
                 //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
                 key_ch1 = actual_key_k1;
@@ -204,7 +204,7 @@ public class SubCipher2  extends AppCompatActivity {
 
         encrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String key_ch = editkey.getText().toString();
+                String key_ch = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
                 String actual_key_k1 = keygen(key_ch.toUpperCase());
                 //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
                 key_ch1 = actual_key_k1;

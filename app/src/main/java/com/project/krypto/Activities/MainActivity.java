@@ -14,8 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +25,9 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.krypto.Game.prologue;
 import com.project.krypto.Help.vigHelp;
+import com.project.krypto.R;
 import com.project.krypto.act_tools.Home.HomeFrag;
 import com.project.krypto.act_tools.Sub.SubCipher2;
 import com.project.krypto.act_tools.Sub.subCipher;
@@ -36,8 +36,6 @@ import com.project.krypto.act_tools.nGram.nGramCounter;
 import com.project.krypto.act_tools.period.period;
 import com.project.krypto.act_tools.transpo.transpo;
 import com.project.krypto.act_tools.vingere.vigenere;
-import com.project.krypto.Game.prologue;
-import com.project.krypto.R;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -113,16 +111,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        Menu menu = navigationView.getMenu();
-
-        MenuItem menuitem = menu.findItem(R.id.statistic);
-        SpannableString s = new SpannableString(menuitem.getTitle());
-        s.setSpan(new TextAppearanceSpan(this, R.style.menuTitle), 0, s.length(),0);
-        menuitem.setTitle(s);
-        menuitem = menu.findItem(R.id.ciphers);
-        s = new SpannableString(menuitem.getTitle());
-        s.setSpan(new TextAppearanceSpan(this, R.style.menuTitle), 0, s.length(),0);
-        menuitem.setTitle(s);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.userName);

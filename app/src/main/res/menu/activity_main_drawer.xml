@@ -6,25 +6,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
-        <item android:title = "Statistical Attack"
-            android:id="@+id/statistic">
-            <menu>
-                <item
-                    android:id="@+id/nav_sub"
-                    android:icon="@drawable/ic_sub"
-                    android:title="Substitution Cipher" />
-            </menu>
-    </item>
-    <item android:title="Ciphers"
-        android:id="@+id/ciphers">
-        <menu>
-            <item
-                android:id="@+id/nav_transpo"
-                android:icon="@drawable/ic_transposition"
-                android:title="@string/transpo"/>
-        </menu>
-    </item>
-        <item android:title = "Practice It!"
-            android:id="@+id/game"/>
     </group>
+    <item android:title = "Practice It!"
+        android:id="@+id/game"/>
 </menu>

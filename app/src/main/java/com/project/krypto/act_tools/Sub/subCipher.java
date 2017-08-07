@@ -130,7 +130,7 @@ public class subCipher extends Fragment {
 
         //declare
         sub = (Button)  view.findViewById(R.id.btnsub);
-        reset = (Button)  view.findViewById(R.id.btnreset);
+        //reset = (Button)  view.findViewById(R.id.btnreset);
         before = (TextView)  view.findViewById(R.id.before);
         before.setTextIsSelectable(true);
         after = (TextView)  view.findViewById(R.id.after);
@@ -250,7 +250,7 @@ public class subCipher extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.subcipher2, menu);
+        inflater.inflate(R.menu.subcipherhelp, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
     /**

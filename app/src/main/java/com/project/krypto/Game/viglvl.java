@@ -3,10 +3,14 @@ package com.project.krypto.Game;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,14 +46,23 @@ public class viglvl extends AppCompatActivity {
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor ;
     String level = "2";
+    MediaPlayer ring, opendoor, wrong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viglvl);
 
+        setStatusBar();
         initFABS();
         sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
+       // ring= MediaPlayer.create(this,R.raw.background);
+        opendoor= MediaPlayer.create(this,R.raw.opendoor);
+        wrong= MediaPlayer.create(this,R.raw.wrong);
+       // ring.start();
+       // ring.setLooping(false);
 
         doorclose = (ImageButton) findViewById(R.id.vaultdoor);
         scroll = (TextView) findViewById(R.id.scroll);
@@ -95,8 +108,9 @@ public class viglvl extends AppCompatActivity {
                 if (Plaintext.matches("open") && submit.isPressed()) {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
+                    //opendoor.start();
                     submit.setEnabled(false);
-                    editor.putInt(getString(R.string.high_score), 2);
+                    editor.putInt(getString(R.string.high_score), 3);
                     editor.commit();
                     //once correct start the 'stageclear' activity
                     Intent i = new Intent(viglvl.this, stageclear.class);
@@ -107,14 +121,14 @@ public class viglvl extends AppCompatActivity {
                         @Override
                         public void run() {
                             // if you are redirecting from a fragment then use getActivity() as the context.
-                            //opendoor.start();
+                            opendoor.start();
                             //btnTest.setImageResource(R.drawable.door1);
 
                             doorclose.setImageResource(R.drawable.dbldoor2);
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 6000); // will be delayed for 2 seconds
+                    h.postDelayed(r, 2000); // will be delayed for 2 seconds
 
                     //startZoomInAnimation(btnTest);
                     //after door opens it will start the next activity after .. seconds
@@ -127,11 +141,11 @@ public class viglvl extends AppCompatActivity {
                         }
                     };
                     Handler h2 = new Handler();
-                    h2.postDelayed(r2, 9000); // will be delayed for 2 seconds
+                    h2.postDelayed(r2, 4500); // will be delayed for 2 seconds
 
                 }
                 else {
-                    //wrong.start();
+                    wrong.start();
                     //once wrong start the 'stagewrong' activity
                     Intent i = new Intent(viglvl.this, stagewrong.class);
                     startActivity(i);
@@ -155,6 +169,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -166,6 +181,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -177,6 +193,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -188,6 +205,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -199,6 +217,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -211,6 +230,7 @@ public class viglvl extends AppCompatActivity {
                         start.putExtra("LEVEL", level);
                         startActivity(start);
 
+
                     }
                 });
                     break;
@@ -220,6 +240,7 @@ public class viglvl extends AppCompatActivity {
                         Intent start = new Intent (getApplicationContext(), MainActivity.class);
                         startActivity(start);
                         finish();
+
                     }
                 });
 
@@ -227,4 +248,21 @@ public class viglvl extends AppCompatActivity {
             fabs.add(temp);
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
 }

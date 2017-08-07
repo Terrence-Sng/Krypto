@@ -24,39 +24,74 @@
     </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
-            android:layout_below="@+id/actionBarvigcipher"
-            android:id="@+id/vigETextGroup"
+            android:id="@+id/inputcipherlayoutvig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:visibility="gone">
+            android:layout_below="@id/actionBarvigcipher"
+            android:background="@drawable/edittextborder"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/inputlabelvig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input"
+                android:textColor="@color/Dark_Green"
+                android:layout_margin="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/gameciphervig"
-                android:background="@drawable/edittextborder"
+                android:layout_below="@+id/inputlabelvig"
                 android:scrollbars="vertical|horizontal"
-                android:textColor="@color/Dark_Green"
-                />
-            <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/gameciphervig"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/Floating_hint"
-                android:textColorHint="@color/Darker_Green"
-                android:id="@+id/inputKeyLayoutVig">
-            <EditText
-                android:id="@+id/inputkey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Keyword"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:textColor="@color/Neon_Green"
-                app:theme="@style/EditTextTheme"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_margin="10dp"
+                />
+        </RelativeLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/inputcipherlayoutvig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/Floating_hint"
+            android:textColorHint="@color/Darker_Green"
+            android:id="@+id/inputKeyLayoutVig"
+            android:layout_margin="10dp"
+            android:paddingTop="5dp"
+            android:visibility="gone">
+        <EditText
+            android:id="@+id/inputkey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Keyword"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColor="@color/Neon_Green"
+            app:theme="@style/EditTextTheme"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inputcipherlayoutvig"
+            android:layout_margin="10dp"
+            android:id="@+id/keyoutputgroup"
+            android:background="@drawable/edittextborder">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/keyoutputlabel"
+                android:text="Key"
+                android:textColor="@color/Dark_Green"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/keyoutputfromhome"
+                android:layout_below="@id/keyoutputlabel"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"
+                />
         </RelativeLayout>
 <Space
     android:id="@+id/spacevig"
@@ -67,7 +102,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spacevig"
+        android:layout_below="@+id/keyoutputgroup"
         android:focusable="true"
         android:background="@drawable/edittextborder"
         android:id="@+id/OutputGroupVig"
@@ -84,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/Dark_Green"
+            android:textColor="@color/Neon_Green"
             android:layout_below="@+id/outputLabelVig"
             android:textIsSelectable="true"/>
     </RelativeLayout>
@@ -93,8 +128,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/vigBtnGroup"
-            android:layout_below="@+id/vigETextGroup"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/inputKeyLayoutVig"
+            android:layout_alignParentStart="true"
             android:layout_margin="10dp"
             android:visibility="gone">
         <Button
@@ -121,19 +156,13 @@
     android:id="@+id/back_resetgroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/OutputGroupVig"
-    android:layout_margin="10dp"
+    android:layout_below="@+id/vighelp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     android:visibility="gone">
     <Button
-        android:id="@+id/btnreset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RESET"
-        android:textColor="@color/Dark_Green"
-        android:background="@drawable/buttonselector"/>
-    <Button
         android:id="@+id/backButtonGameVig"
-        android:layout_below="@+id/btnreset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -147,11 +176,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How is it done?"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:textColor="@color/Dark_Green"
         android:background="@drawable/buttonselector"
         android:layout_below="@+id/OutputGroupVig"
-        android:layout_alignEnd="@+id/OutputGroupVig"
+        android:layout_alignParentStart="true"
        />
+    <Button
+        android:id="@+id/vigsharebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:background="@drawable/buttonselector"
+        android:textColor="@color/Dark_Green"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/OutputGroupVig"
+        android:layout_marginRight="10dp"/>
 </RelativeLayout>
 </ScrollView>

@@ -7,7 +7,10 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -44,21 +47,20 @@ public class finallvl extends Activity {
     static ArrayList<FloatingActionButton> fabs = new ArrayList <> ();
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
     String level = "4";
+    MediaPlayer ring, opendoor, wrong, ipad,safedoor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
-        final MediaPlayer opendoor= MediaPlayer.create(this,R.raw.vault);
-        final MediaPlayer ipad= MediaPlayer.create(this,R.raw.beep);
-        final MediaPlayer safedoor= MediaPlayer.create(this,R.raw.click);
-        final MediaPlayer wrong= MediaPlayer.create(this,R.raw.wrong);
-        ring.start();
-        ring.setLooping(true);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finallvl);
 
+        opendoor = MediaPlayer.create(this,R.raw.vault);
+        ipad = MediaPlayer.create(this,R.raw.beep);
+        safedoor= MediaPlayer.create(this,R.raw.click);
+        wrong= MediaPlayer.create(this,R.raw.wrong);
+
         initFABS();
+        setStatusBar();
         tabletgroup = (RelativeLayout) findViewById(R.id.tabletgroupfinal);
         papergroup = (RelativeLayout) findViewById(R.id.papergroupFinal);
         answergroup = (RelativeLayout) findViewById(R.id.answerGroupfinal);
@@ -80,19 +82,20 @@ public class finallvl extends Activity {
             @Override
             public void onClick(View view) {
                 answergroup.setVisibility(View.VISIBLE);
+
             }
         });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                screen.setVisibility(View.INVISIBLE);
-                answer.setVisibility(View.INVISIBLE);
-                submit.setVisibility(View.INVISIBLE);
+                //screen.setVisibility(View.INVISIBLE);
+                //answer.setVisibility(View.INVISIBLE);
+               // submit.setVisibility(View.INVISIBLE);
                 close.setVisibility(View.INVISIBLE);
                 safeclose.setVisibility(View.INVISIBLE);
                 papergroup.setVisibility(View.INVISIBLE);
-                tabletgroup.setVisibility(View.INVISIBLE);
+                tabletgroup.setVisibility(View.GONE);
                 safe.setImageResource(R.drawable.safeclosed);
             }
         });
@@ -101,8 +104,9 @@ public class finallvl extends Activity {
             @Override
             public void onClick(View view) {
                 ipad.start();
-                safeclose.setVisibility(View.VISIBLE);
                 tabletgroup.setVisibility(View.VISIBLE);
+                close.setVisibility(View.VISIBLE);
+                answergroup.setVisibility(View.GONE);
             }
         });
 
@@ -156,7 +160,7 @@ public class finallvl extends Activity {
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 6000); // will be delayed for 2 seconds
+                    h.postDelayed(r, 2000); // will be delayed for 2 seconds
 
                     //startZoomInAnimation(btnTest);
                     //after door opens it will start the next activity after .. seconds
@@ -164,19 +168,20 @@ public class finallvl extends Activity {
                         @Override
                         public void run() {
                             // if you are redirecting from a fragment then use getActivity() as the context.
-                            ring.stop();
+                            //ring.stop();
                             Intent i = new Intent(finallvl.this, ending.class);
                             startActivity(i);
                         }
                     };
                     Handler h2 = new Handler();
-                    h2.postDelayed(r2, 9000); // will be delayed for 2 seconds
+                    h2.postDelayed(r2, 4500); // will be delayed for 2 seconds
 
                 }
                 else {
                     //wrong.start();
                     //once wrong start the 'stagewrong' activity
                     wrong.start();
+                    answergroup.setVisibility(View.GONE);
                     Intent i = new Intent(finallvl.this, stagewrong.class);
                     startActivity(i);
                 }
@@ -270,4 +275,30 @@ public class finallvl extends Activity {
             fabs.add(temp);
         }
     }
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
+
 }
+
+

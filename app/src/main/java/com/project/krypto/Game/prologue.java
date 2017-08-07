@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,17 +26,20 @@ public class prologue extends AppCompatActivity {
     int high;
     Handler h,h2,h3;
     Runnable r, r2,r3;
+
+    SharedPreferences.Editor editor ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         final MediaPlayer typing= MediaPlayer.create(this, R.raw.typewriter);
         final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
-        ring.start();
-        ring.setLooping(true);
+       // ring.start();
+       // ring.setLooping(true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prologue);
 
+        setStatusBar();
 
         final Button skip = (Button) findViewById(R.id.skippbuttonprolouge);
 
@@ -68,7 +74,11 @@ public class prologue extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ring.stop();
+                //ring.stop();
+                sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
+                editor = sharedPref.edit();
+                editor.putInt(getString(R.string.high_score), 1);
+                editor.commit();
                 Intent i = new Intent(prologue.this, GameActivity.class);
                 startActivity(i);
             }
@@ -78,9 +88,8 @@ public class prologue extends AppCompatActivity {
         r = new Runnable() {
             @Override
             public void run() {
-                //skip.setVisibility(View.INVISIBLE);
+                skip.setVisibility(View.INVISIBLE);
                 typing.start();
-                typing.setLooping(true);
                 tw.setText("");
                 tw.setCharacterDelay(50);
                 tw.animateText("Mission" + "\n" + "\n" + "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ");
@@ -96,7 +105,7 @@ public class prologue extends AppCompatActivity {
             }
         };
         h2 = new Handler();
-        h2.postDelayed(r2, 13000);
+        h2.postDelayed(r2, 10000);
         //stop the tying after msg is done -> need to time manually
 
         //after mission is complete then show button
@@ -114,7 +123,7 @@ public class prologue extends AppCompatActivity {
             }
         };
         h3 = new Handler();
-        h3.postDelayed(r3, 14000);
+        h3.postDelayed(r3, 11000);
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +151,7 @@ public class prologue extends AppCompatActivity {
         int highScore = getResources().getInteger(R.integer.default_high_score);
         high = sharedPref.getInt(getString(R.string.high_score), highScore);
 
-        Toast.makeText(getApplicationContext(), high + "", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), high + "", Toast.LENGTH_SHORT).show();
 
         if(high > 0)
         {
@@ -153,5 +162,17 @@ public class prologue extends AppCompatActivity {
             return false;
         }
     }
+
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
 
 }

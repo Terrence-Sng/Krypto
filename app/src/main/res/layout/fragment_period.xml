@@ -9,10 +9,23 @@
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarperiod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarperiod"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textGroup"
+        android:layout_below="@+id/actionBarperiod"
         android:background="@drawable/edittextborder"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -49,34 +62,25 @@
             app:hintTextAppearance="@style/Floating_hint">
         <EditText
         android:id="@+id/editperiod"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
         android:hint="Period"
         android:inputType="textPersonName"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/edittextborder"
-            android:textColor="@color/Neon_Green"/>
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edittextborder"
+        android:textColor="@color/Neon_Green"/>
         </android.support.design.widget.TextInputLayout>
         <Button
         android:id="@+id/calioc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="calculate"
-        android:layout_toRightOf="@+id/editTextPeriod"
-            android:layout_alignBottom="@+id/editTextPeriod"
+        android:layout_toEndOf="@id/editTextPeriod"
+            android:layout_alignParentBottom="true"
         android:background="@drawable/buttonselector"
             android:textColor="@color/Dark_Green"
         android:layout_marginRight="5dp"/>
-        <Button
-        android:id="@+id/btnreset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reset"
-        android:layout_toRightOf="@id/calioc"
-            android:layout_alignBottom="@id/calioc"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/Dark_Green"
-            android:background="@drawable/buttonselector"/>
+
         <!-- android:layout_below="@id/calioc"!-->
     </RelativeLayout>
 

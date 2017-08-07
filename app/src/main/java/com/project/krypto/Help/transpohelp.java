@@ -52,7 +52,7 @@ public class transpohelp extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -155,8 +155,10 @@ public class transpohelp extends AppCompatActivity {
                 next.setEnabled(true);
                 previous = (Button) findViewById(R.id.transpohelpprevious);
                 previous.setEnabled(true);
+                reset = (Button) findViewById(R.id.transpohelpreset);
+                reset.setEnabled(true);
 
-                rl = (LinearLayout) findViewById(R.id.outputlayout);
+           rl = (LinearLayout) findViewById(R.id.outputlayout);
                 textcontainer = (LinearLayout) findViewById(R.id.textContainer);
 
                 if (counter == 0) {

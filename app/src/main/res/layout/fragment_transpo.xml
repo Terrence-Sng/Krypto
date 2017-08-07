@@ -90,24 +90,26 @@
             <TextView
                 android:id="@+id/blockSizeTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Block Size :"
                 android:textColor="@color/Dark_Green"
                 android:textSize = "20dp"
-                android:layout_alignBottom="@+id/blkSizeLayout"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/blockSizeTitle"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/blockSizeTitle"
                 android:id="@+id/blkSizeLayout"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 app:hintTextAppearance="@style/Floating_hint"
                 android:textColorHint="@color/Darker_Green">
             <EditText
                 android:id="@+id/blksize"
-                android:layout_width="50dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:textAlignment="center"
                 android:theme="@style/EditTextTheme"
@@ -120,13 +122,10 @@
 
         <Button
             android:id="@+id/backButtonGameTranspo"
-            android:layout_toEndOf="@+id/buttonGroupTranspo"
-            android:layout_alignBottom="@id/buttonGroupTranspo"
-            android:layout_width="wrap_content"
+            android:layout_below="@+id/transpohelpbtn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:text="Back To Game"
             android:background="@drawable/buttonselector"
             android:textColor="@color/Dark_Green"
@@ -195,7 +194,17 @@
             android:text="How is it done?"
             android:background="@drawable/buttonselector"
             android:layout_below="@id/transpooutput"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:id="@+id/sharetranspo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_below="@id/transpooutput"
+            android:text="Share"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"
             android:layout_marginRight="10dp"/>
         </RelativeLayout>
 </RelativeLayout>

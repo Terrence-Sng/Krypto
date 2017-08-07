@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -65,7 +67,7 @@ public class nGramCounter extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+            //    Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -288,5 +290,24 @@ public class nGramCounter extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ngramhelp, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.ngramhelpex:
+                // do your sign-out stuff
+                break;
+            default:
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
     }
 }

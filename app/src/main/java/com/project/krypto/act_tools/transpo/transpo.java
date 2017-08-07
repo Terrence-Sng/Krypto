@@ -1,13 +1,18 @@
 package com.project.krypto.act_tools.transpo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -62,7 +67,7 @@ public class transpo extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+         //       Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -132,10 +137,6 @@ public class transpo extends AppCompatActivity {
                    masterkey = keyfromhome;
                }
 
-               if(mastercipher.length() > 20)
-               {
-                   mastercipher = mastercipher.substring(0,20);
-               }
 
                 Intent mIntent = new Intent (getBaseContext(), helpmenu.class);
                 mIntent.putExtra("CIPHER", mastercipher);
@@ -145,9 +146,31 @@ public class transpo extends AppCompatActivity {
             }
         });
 
+        Button share = (Button) findViewById(R.id.sharetranspo);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sharetext = outputview.getText().toString().trim();
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                if(type.equals("0"))//
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my encrypted cipher! Try to decrypt it!\n Cipher:\n" + sharetext);
+                }
+                else
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my decrypted cipher! cool right?!\n Cipher: \n " + sharetext);
+                }
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent,"Share using..."));
+            }
+        });
+
 
         if(fromGame==true)
         {
+            help.setVisibility(View.INVISIBLE);
+            share.setVisibility(View.INVISIBLE);
             mtext.setText(cipherFromGame.replaceAll("[^A-Za-z]+", ""));
             back.setVisibility(View.VISIBLE);
             gameoutput.setVisibility(View.VISIBLE);
@@ -166,14 +189,44 @@ public class transpo extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String message = mtext.getText().toString();
-                    int blksize = Integer.valueOf(String.valueOf(mEdit2.getText()));
-
+                    String size = mEdit2.getText().toString();
+                    mEdit2.addTextChangedListener(new MyTextWatcher(mEdit2));
+                    if(size.isEmpty())
+                    {
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
+                    int blksize;
+                    try{
+                        blksize = Integer.parseInt(size);
+                    }catch(Exception e)
+                    {
+                        blksizelayout.setError("Only alphabets allowed!");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
+                    blksizelayout.setErrorEnabled(false);
+                   if(blksize > 13)
+                    {
+                        blksizelayout.setError("Block size too large");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }else if (blksize <= 0)
+                    {
+                        blksizelayout.setError("Block size is 0");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
                     //sample text
                     //message = "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG";
 
 
                     outputview.setText("");
                     enc(message, blksize, outputview);
+                    help.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -182,14 +235,44 @@ public class transpo extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String message = mtext.getText().toString();
-                    int blksize = Integer.valueOf(String.valueOf(mEdit2.getText()));
-
+                    String size = mEdit2.getText().toString();
+                    mEdit2.addTextChangedListener(new MyTextWatcher(mEdit2));
+                    if(size.isEmpty())
+                    {
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
+                    int blksize;
+                    try{
+                        blksize = Integer.parseInt(size);
+                    }catch(Exception e)
+                    {
+                        blksizelayout.setError("Only alphabets allowed!");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
+                    blksizelayout.setErrorEnabled(false);
+                    if(blksize > 13)
+                    {
+                        blksizelayout.setError("Block size too large");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }else if (blksize <= 0)
+                    {
+                        blksizelayout.setError("Block size is 0");
+                        blksizelayout.setErrorEnabled(true);
+                        help.setVisibility(View.INVISIBLE);
+                        return;
+                    }
                     //sample message
                     //message = "TXZWHKVQMOOAOTCOEUDFLRRISHJYNEBEUPG";
 
                     int choice = 2;
                     outputview.setText("");
                     dec(message, blksize, outputview);
+                    help.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -210,6 +293,7 @@ public class transpo extends AppCompatActivity {
             {
                 String message = cipherfromhome;
                 int blksize = Integer.parseInt(keyfromhome);
+                mtext.setText(cipherfromhome);
                 keyview.setText(blksize + "");
 
                 outputview.setText("");
@@ -217,11 +301,7 @@ public class transpo extends AppCompatActivity {
             }
         }
 
-
-
     }
-
-
 
     public void enc(String message, int blksize, TextView output) {
         cols = blksize;
@@ -251,7 +331,7 @@ public class transpo extends AppCompatActivity {
         for (int i = 0; i < rows; i++) {
             String temp = "";
             for (int j = 0; j < cols; j++) {
-                    temp += String.format("%5s", ct[i][j]);
+                    temp += String.format("%1s", ct[i][j]);
                 }
                 temp += "\n";
             cipherText.add(temp);
@@ -276,8 +356,8 @@ public class transpo extends AppCompatActivity {
         {
             tempout += outputct.get(i);
         }
-        output.setText("Decrypted Block is: \n" + tempct +
-                "\n\n" + "Decrypted Message is: \n" + tempout);
+        output.setText("Encrypted Block is: \n" + tempct +
+                "\n\n" + "Encrypted Message is: \n" + tempout);
         output.setTextSize(14);
     }
 
@@ -400,4 +480,26 @@ public class transpo extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.transpohelp, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.transpohelpex:
+                // do your sign-out stuff
+                break;
+            default:
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
+    }
+
+
 }

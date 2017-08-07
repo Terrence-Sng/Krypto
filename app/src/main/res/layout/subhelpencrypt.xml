@@ -28,21 +28,18 @@
     <TextView
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ciphertextlabel"
         android:background="@null"
         android:cursorVisible="false"
         android:longClickable="false"
         android:clickable="false"
         android:ems="10"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:inputType="textMultiLine|textNoSuggestions"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="45dp"
-        android:layout_toRightOf="@+id/decryptedtextlabel"
-        android:layout_above="@+id/editText8"
-        android:layout_alignTop="@+id/ciphertextlabel"
-        android:layout_alignRight="@+id/textView8"
-        android:layout_alignEnd="@+id/textView8"
+        android:layout_below="@+id/ciphertextlabel"
         android:textColor="@color/Dark_Green"/>
 
     <TableLayout
@@ -51,7 +48,8 @@
         android:layout_height="100dp"
         android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3">
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginRight="10dp">
 
         <TableRow
             android:id="@+id/Row2"
@@ -776,6 +774,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:cursorVisible="false"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:longClickable="false"
         android:clickable="false"
@@ -783,11 +782,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:layout_editor_absoluteX="125dp"
         tools:layout_editor_absoluteY="45dp"
-        android:layout_alignTop="@+id/decryptedtextlabel"
-        android:layout_toRightOf="@+id/decryptedtextlabel"
-        android:layout_alignBottom="@+id/decryptedtextlabel"
-        android:layout_alignRight="@+id/nextbtn"
-        android:layout_alignEnd="@+id/nextbtn"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_below="@id/decryptedtextlabel"
         android:textColor="@color/Dark_Green"/>
 
     <TextView
@@ -854,17 +850,13 @@
         android:id="@+id/decryptedtextlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ciphertextlabel"
-        android:layout_alignLeft="@+id/ciphertextlabel"
-        android:layout_alignRight="@+id/ciphertextlabel"
-        android:layout_alignStart="@+id/ciphertextlabel"
-        android:layout_below="@+id/ciphertextlabel"
+        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@id/editText3"
         android:background="@null"
         android:text="Ecrypted Text : "
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/Dark_Green"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="45dp" />
+         />
 
     <TextView
         android:id="@+id/ciphertextlabel"
@@ -943,7 +935,7 @@
         android:id="@+id/nextbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:background="@drawable/ic_skip_next"
         android:layout_alignBaseline="@+id/previousbtn"
         android:layout_alignBottom="@+id/previousbtn"
         android:layout_alignParentEnd="true"/>
@@ -955,18 +947,18 @@
         android:layout_alignBaseline="@+id/previousbtn"
         android:layout_alignBottom="@+id/previousbtn"
         android:layout_centerHorizontal="true"
-        android:text="EXIT" />
+        android:background="@drawable/ic_refresh" />
 
     <Button
         android:id="@+id/previousbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/decryptedtextlabel"
+        android:layout_below="@id/editText8"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="10dp"
-        android:text="PREVIOUS" />
+        android:background="@drawable/ic_skip_previous"/>
 
         </RelativeLayout>
     </RelativeLayout>

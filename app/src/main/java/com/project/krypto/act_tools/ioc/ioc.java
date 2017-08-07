@@ -6,6 +6,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,7 +52,7 @@ public class ioc extends AppCompatActivity {
         setContentView(R.layout.fragment_ioc);
 
         toolbar = (Toolbar) findViewById(R.id.toolbarioc);
-        toolbar.setTitle("Frequency");
+        toolbar.setTitle("Index of Conincidence");
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setBackgroundColor(getResources().getColor(R.color.Black));
         setSupportActionBar(toolbar);
@@ -59,7 +61,7 @@ public class ioc extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -170,4 +172,23 @@ public class ioc extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.iochelp, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.iochelpex:
+                // do your sign-out stuff
+                break;
+            default:
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
+    }
+
 }

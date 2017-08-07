@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -24,11 +29,28 @@ public class subdecrypthelp extends AppCompatActivity {
     int k = 1;
     private String colorCodeStart = "<font color='#EE0000'>";
     private String colorCodeEnd = "</font>";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subhelpdecrypt);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbarsubhelpdecrypt);
+        toolbar.setTitle("Decrypt");
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.Black));
+        toolbar.showOverflowMenu();
+        setSupportActionBar(toolbar);
+        setStatusBar();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            //    Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }
+        });
 
         final TextView viewcipher = (TextView) findViewById(R.id.editText);
         final Button next = (Button) findViewById(R.id.nextbtn);
@@ -99,6 +121,31 @@ public class subdecrypthelp extends AppCompatActivity {
         //String shortkey = intent.getExtras().getString("shortkey");
         String keystring = intent.getExtras().getString("KEYSTRING");
 
+        String temporary_key_c1 = key.toUpperCase();
+        String shortkey = "";
+        int count=0,length_len=0;
+        do
+        {
+            try
+            {
+                char character_name[]=temporary_key_c1.toCharArray();
+                length_len=character_name.length;
+                count=0;
+                for(int j=0;j<length_len;j++)
+                {
+                    if((character_name[0]==character_name[j])&&((character_name[0]>=65&&character_name[0]<=91)||(character_name[0]>=97&&character_name[0]<=123)))
+                        count++;
+                }
+
+                if(count!=0)
+                    temporary_key_c1=temporary_key_c1.replace(""+character_name[0],"");
+                shortkey += character_name[0];
+
+            }
+            catch(Exception ex){}
+        }
+        while(length_len!=0);
+
         String[] arr = cipher.split("\\s+");
         int N = arr.length;
         String newcipher = "";
@@ -108,7 +155,7 @@ public class subdecrypthelp extends AppCompatActivity {
         viewcipher.setText(newcipher);
         decrypted.setText(newcipher);
         viewkey.setText(key);
-       // shortedkey.setText(shortkey);
+        shortedkey.setText(shortkey);
         finalkey.setText(keystring);
         String[] keystringarray = keystring.split("(?!^)");
         String stringkey1 = keystringarray[0];
@@ -973,4 +1020,16 @@ public class subdecrypthelp extends AppCompatActivity {
         });
 
     }
+
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
 }

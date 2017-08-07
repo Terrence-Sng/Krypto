@@ -249,22 +249,22 @@
                 android:id="@+id/btnext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="next"
-                android:layout_toLeftOf="@+id/btnback"
+                android:background="@drawable/ic_skip_next"
+                android:layout_toRightOf="@+id/btnrestart"
                 android:layout_alignParentBottom="true"/>
             <Button
                 android:id="@+id/btnrestart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="restart"
-                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_refresh"
+                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 />
             <Button
                 android:id="@+id/btnback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="back"
+                android:background="@drawable/ic_skip_previous"
                 android:layout_toLeftOf="@+id/btnrestart"
                 android:layout_alignParentBottom="true"
                  />

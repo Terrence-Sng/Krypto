@@ -271,9 +271,8 @@ public class HomeFrag extends Fragment {
 
                 //String choice = dropdown.getSelectedItem().toString(); //encrypt or decrypt --> so if encrypt run the encryption algo at the cipher page, same for decryption
                 cipher = input.getText().toString().replaceAll("[^A-Za-z]+","");
-                String keyword = inputkey.getText().toString();
-
-                Toast.makeText(getContext(), keyword, Toast.LENGTH_SHORT).show();
+                String keyword = inputkey.getText().toString();//
+                //Toast.makeText(getContext(), keyword, Toast.LENGTH_SHORT).show();
 
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -300,14 +299,33 @@ public class HomeFrag extends Fragment {
                     }
                     if(keyword.trim().isEmpty())
                     {
+                        builder.setTitle("ERROR!")
+                                .setMessage("Key field is empty! Are you sure you have entered?")
+                                .setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // continue with delete
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
                         homekey.setError("Key Not entered");
                     }
                     else
                     {
+
                         homekey.setErrorEnabled(false);
                     }
                     if(cipher.trim().isEmpty())
                     {
+                        builder.setTitle("ERROR!")
+                                .setMessage("Cipher field is empty! Are you sure you have entered?")
+                                .setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // continue with delete
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
                         homeinput.setError("Cipher not Entered!");
                     }
                     else
@@ -317,11 +335,13 @@ public class HomeFrag extends Fragment {
                 }
                 else {
                     //get cipher choice
-                    Pattern p = Pattern.compile("[^A-Za-z]");
-                    Matcher m = p.matcher(keyword);
+
                     String cipherchoice = radiochoice.getText().toString();
                     if (cipherchoice.equals("Subsitution")) {
                         //pass values and go to sub
+                        keyword.replaceAll("[^A-Za-z]+","");
+                        Pattern p = Pattern.compile("[^A-Za-z]");
+                        Matcher m = p.matcher(keyword);
                         if(m.find())
                         {
                             homekey.setErrorEnabled(true);
@@ -334,6 +354,9 @@ public class HomeFrag extends Fragment {
                             mIntent.putExtra("TYPE", enc_dec_choice + "");
                             startActivity(mIntent);
                     } else if (cipherchoice.equals("Vigenere")) {
+                        keyword.replaceAll("[^A-Za-z]+","");
+                        Pattern p = Pattern.compile("[^A-Za-z]");
+                        Matcher m = p.matcher(keyword);
                         if(m.find())
                         {
                             homekey.setErrorEnabled(true);
@@ -349,6 +372,29 @@ public class HomeFrag extends Fragment {
                         //pass values and go to vig
                     } else if (cipherchoice.equals("Transposition")) {
                         //pass values and go to trans
+                        int blksize;
+                        try{
+                            blksize = Integer.parseInt(keyword);
+                        }catch(Exception e)
+                        {
+                            homekey.setError("Only alphabets allowed!");
+                            homekey.setErrorEnabled(true);
+                            return;
+                        }
+                        homekey.setErrorEnabled(false);
+                        if(blksize > 13)
+                        {
+                            homekey.setError("Block size too large");
+                            homekey.setErrorEnabled(true);
+                            return;
+                        }else if (blksize <= 0)
+                        {
+                            homekey.setError("Block size is 0");
+                            homekey.setErrorEnabled(true);
+                            return;
+                        }
+                        Pattern p = Pattern.compile("[^A-Za-z]");
+                        Matcher m = p.matcher(keyword);
                         p = Pattern.compile("[0-9]");
                         m = p.matcher(keyword);
                         if(m.find())
@@ -364,6 +410,7 @@ public class HomeFrag extends Fragment {
                         {
                             homekey.setErrorEnabled(true);
                             homekey.setError("Keyword must contain number only");
+                            return;
                         }
 
                     } else {

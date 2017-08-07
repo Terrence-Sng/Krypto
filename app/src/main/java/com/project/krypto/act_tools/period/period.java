@@ -2,9 +2,18 @@ package com.project.krypto.act_tools.period;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +28,8 @@ import com.project.krypto.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class period extends AppCompatActivity {
     // TODO: Rename parameter arguments, choose names that match
@@ -30,18 +41,34 @@ public class period extends AppCompatActivity {
     private  TextView displayResult;
     private  Button back;
     private static String globalText = "";
-
+    TextInputLayout periodlayout;
     // TODO: Rename and change types of parameters
     private String cipherFromGame;
     private String level;
     private boolean fromGame;
-
+    Toolbar toolbar;
 
     // TODO: Rename and change types and number of parameters
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_period);
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbarperiod);
+        toolbar.setTitle("Period");
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.Black));
+        setSupportActionBar(toolbar);
+        setStatusBar();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }
+        });
 
         fromGame = getIntent().getBooleanExtra("GAME", false);
         level = getIntent().getStringExtra("LEVEL");
@@ -72,6 +99,7 @@ public class period extends AppCompatActivity {
         gText = (TextView) findViewById(R.id.periodText);
         if(fromGame == true)
         {
+            gText.setText("");
             gText.setText(cipherFromGame);
             back.setVisibility(View.VISIBLE);
         }
@@ -84,16 +112,9 @@ public class period extends AppCompatActivity {
         displayResult = (TextView) findViewById(R.id.results);
         //back = (Button) findViewById(R.id.btnBack);
         editPeriod = (EditText) findViewById(R.id.editperiod);
-        Button reset = (Button) findViewById(R.id.btnreset);
-
-        reset.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //(editText).setText("");
-                gText.setText("");
-                displayResult.setText("");
-            }
-        });
-
+        editPeriod.addTextChangedListener(new MyTextWatcher(editPeriod));
+        //Button reset = (Button) findViewById(R.id.btnreset);
+        periodlayout = (TextInputLayout) findViewById(R.id.editTextPeriod);
         calIOC.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String pt = gText.getText().toString();
@@ -101,12 +122,28 @@ public class period extends AppCompatActivity {
                     String lowcontent = pt.toLowerCase();
                     String finalInput = lowcontent.replaceAll("[^A-Za-z]+", "");
 
+
                     String period = editPeriod.getText().toString();
+                    Pattern patt = Pattern.compile("[^0-9]");
+                    Matcher m = patt.matcher(period);
                     if(period.isEmpty())
                     {
-                        Toast.makeText(getBaseContext(), "Period is empty!", Toast.LENGTH_SHORT).show();
+                        periodlayout.setErrorEnabled(true);
+                        periodlayout.setError("Period is empty!");
                         return;
                     }
+                    else if(m.find())
+                    {
+                        periodlayout.setError("Only numbers allowed!");
+                        periodlayout.setErrorEnabled(true);
+                        return;
+                    }else if (period.equals("0"))
+                    {
+                        periodlayout.setError("Period cannot be 0");
+                        periodlayout.setErrorEnabled(true);
+                        return;
+                    }
+
                     int p = Integer.valueOf(period);
 
                     //init the p strings
@@ -188,10 +225,77 @@ public class period extends AppCompatActivity {
         });
     }
 
-
-
-    public void updateText (String text)
+    public void setStatusBar()
     {
-        globalText = text;
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.periodhelp, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.periodhelpex:
+                // do your sign-out stuff
+                break;
+            default:
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
+    }
+
+    public boolean validateKey()
+    {
+        String temp = editPeriod.getText().toString().trim();
+
+
+        if(temp.isEmpty())
+        {
+            periodlayout.setError("Key Not entered");
+            return false;
+        }
+        else
+        {
+            periodlayout.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch(view.getId())
+            {
+                case R.id.editperiod : validateKey();
+                    break;
+            }
+        }
     }
 }

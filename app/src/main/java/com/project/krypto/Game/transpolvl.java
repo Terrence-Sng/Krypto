@@ -3,10 +3,14 @@ package com.project.krypto.Game;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,10 +41,17 @@ public class transpolvl extends AppCompatActivity {
     static ArrayList<FloatingActionButton> fabs = new ArrayList <> ();
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
     String level = "3";
+    MediaPlayer ring, opendoor, wrong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transpolvl);
+
+        setStatusBar();
+
+       opendoor= MediaPlayer.create(this,R.raw.opendoor);
+        wrong= MediaPlayer.create(this,R.raw.wrong);
 
         sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
@@ -86,11 +97,12 @@ public class transpolvl extends AppCompatActivity {
                                 if (submitBtn.isPressed()) {
                                     Password.getText();
                                     if (passInput.equals("7") || passInput.equals("seven")) {
+                                        opendoor.start();
                                         //show clear sign
                                         //tableHint.setVisibility(View.VISIBLE); //for testing
                                         isCorrect[0] = true;
 
-                                        editor.putInt(getString(R.string.high_score), 3);
+                                        editor.putInt(getString(R.string.high_score), 4);
                                         editor.commit();
 
                                         Intent i = new Intent(transpolvl.this, stageclear.class);
@@ -105,13 +117,15 @@ public class transpolvl extends AppCompatActivity {
                                             }
                                         };
                                         Handler h2 = new Handler();
-                                        h2.postDelayed(r2, 9000); // will be delayed for 2 seconds
+                                        h2.postDelayed(r2, 6000); // will be delayed for 2 seconds
+
                                     } else {
+                                        wrong.start();
                                         Intent i = new Intent(transpolvl.this, stagewrong.class);
                                         startActivity(i);
                                         //show fail sign
                                         numTries[0] += 1;
-                                        clock7pm.setVisibility(View.VISIBLE); //for testing
+                                        //clock7pm.setVisibility(View.VISIBLE); //for testing
 
                                         int tempCheck = numTries[0];
 
@@ -186,6 +200,7 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                 break;
@@ -197,6 +212,7 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -208,6 +224,7 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -219,6 +236,7 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -230,6 +248,7 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
+
                     }
                 });
                     break;
@@ -241,7 +260,6 @@ public class transpolvl extends AppCompatActivity {
                         start.putExtra("GAMECIPHER", cipher.getText().toString());
                         start.putExtra("LEVEL", level);
                         startActivity(start);
-
                     }
                 });
                     break;
@@ -258,4 +276,22 @@ public class transpolvl extends AppCompatActivity {
             fabs.add(temp);
         }
     }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+    }
+
+    public void setStatusBar()
+    {
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
 }

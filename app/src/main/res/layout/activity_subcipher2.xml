@@ -57,15 +57,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/btnenc"
                 />
-            <Button
-                android:layout_toRightOf="@+id/btndec"
-                android:layout_marginLeft="5dp"
-                android:text="Back to Game"
-                android:textColor="@color/Dark_Green"
-                android:background="@drawable/buttonselector"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/backtogamesub"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -86,7 +77,7 @@
                             android:id="@+id/inputfromhomelabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="14dp"
+                            android:layout_margin="10dp"
                             android:text="Input"
                             android:textColor="@color/Dark_Green"
                             />
@@ -110,7 +101,7 @@
                         android:id="@+id/keyLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
+                        android:layout_margin="10dp"
                         android:text="Key"
                         android:textColor="@color/Dark_Green"
                         />
@@ -162,7 +153,7 @@
             android:id="@+id/outputLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_margin="10dp"
             android:text="Output"
             android:textColor="@color/Dark_Green"/>
         <TextView
@@ -196,6 +187,18 @@
         android:layout_below="@id/subcipheroutputGroup"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"/>
+        <Button
+            android:text="Back to Game"
+            android:textColor="@color/Dark_Green"
+            android:background="@drawable/buttonselector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/backtogamesub"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/btnhelpsub"
+            android:visibility="gone"/>
 </RelativeLayout>
 </ScrollView>
 </RelativeLayout>

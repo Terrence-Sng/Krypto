@@ -110,7 +110,7 @@ public class helpmenu extends AppCompatActivity {
                         mIntent.putExtra("CIPHER", cipher);
                         mIntent.putExtra("KEY",key);
                         // mIntent.putExtra("RESULT",extras);
-                        mIntent.putExtra("TYPE", "0");//enc=0; // vig does not need to state;
+                        mIntent.putExtra("TYPE", "1");//enc=0; // vig does not need to state;
                         startActivity(mIntent);
                         break;
                 }

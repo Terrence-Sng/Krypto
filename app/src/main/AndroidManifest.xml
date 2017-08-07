@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <!--sub activites (like help, subcipher2, etc) !-->
+        <!--sub activites (like help, subcipherhelp, etc) !-->
         <activity android:name=".act_tools.nGram.nGramCounter"
             android:label="Krypto"
             android:theme="@style/AppTheme.NoActionBar">

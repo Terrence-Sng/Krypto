@@ -6,8 +6,12 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,11 +40,11 @@ public class GameActivity extends AppCompatActivity {
     RelativeLayout paper,picture, openDrawer;
 
     String level = "1";
-    boolean fabOpen = true;
     int [] fabID = {R.id.freqFAB,R.id.iocFAB,R.id.periodFAB,R.id.subFAB,R.id.vigFAB,R.id.transpoFAB, R.id.exitFAB};
     static ArrayList <FloatingActionButton> fabs = new ArrayList <> ();
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor ;
+    MediaPlayer ring, opendoor, papercrumple, paintremove,draweropen, wrong;
     //final Handler handler = new Handler();
     //fabVisible fabVis = new fabVisible();
     @Override
@@ -48,34 +52,32 @@ public class GameActivity extends AppCompatActivity {
         sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.high_score), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
-        final MediaPlayer opendoor= MediaPlayer.create(this,R.raw.opendoor);
-        final MediaPlayer papercrumple= MediaPlayer.create(this,R.raw.papercrumple);
-        final MediaPlayer paintremove= MediaPlayer.create(this,R.raw.paintremove);
-        final MediaPlayer draweropen= MediaPlayer.create(this,R.raw.draweropen);
-        final MediaPlayer wrong= MediaPlayer.create(this,R.raw.wrong);
-        ring.start();
-        ring.setLooping(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_main);
+        setStatusBar();
+        opendoor= MediaPlayer.create(this,R.raw.opendoor);
+        papercrumple= MediaPlayer.create(this,R.raw.papercrumple);
+        paintremove= MediaPlayer.create(this,R.raw.paintremove);
+        draweropen= MediaPlayer.create(this,R.raw.draweropen);
+        wrong= MediaPlayer.create(this,R.raw.wrong);
 
         btnTest =(ImageButton) findViewById(R.id.door);
         paperball =(ImageButton) findViewById(R.id.imageButton6);
         paint =(ImageButton) findViewById(R.id.pictureFront);
         drawer =(ImageButton) findViewById(R.id.imageButton4);
-       Enter = (Button) findViewById(R.id.submitButton);
+        Enter = (Button) findViewById(R.id.submitButton);
         ok = (Button) findViewById(R.id.okbutt);
         ok1 = (Button) findViewById(R.id.okbutt1);
         ok2 = (Button) findViewById(R.id.okbutt2);
-       Password = (EditText) findViewById(R.id.editText);
+        Password = (EditText) findViewById(R.id.editText);
         hint2 = (EditText) findViewById(R.id.pictback);
         cipher = (TextView) findViewById(R.id.cipherlvl1);
-       Command = (ImageView) findViewById(R.id.cmdprompt);
+        Command = (ImageView) findViewById(R.id.cmdprompt);
         note = (ImageView) findViewById(R.id.noteImage);
         paperhint = (TextView) findViewById(R.id.crushedpaper);
         hint31 = (TextView) findViewById(R.id.hintTextDrawer);
         paper = (RelativeLayout) findViewById(R.id.paperLayout);
-         picture = (RelativeLayout) findViewById(R.id.pictureBackLayout);
+        picture = (RelativeLayout) findViewById(R.id.pictureBackLayout);
         openDrawer = (RelativeLayout) findViewById(R.id.opendrawer);
 
         /*FAB*/
@@ -135,8 +137,8 @@ public class GameActivity extends AppCompatActivity {
 
                 if (paperball.isPressed()) {
                     papercrumple.start();
-                    ring.start();
-                    ring.setLooping(true);
+                   // ring.start();
+                   // ring.setLooping(true);
                     paper.setVisibility(View.VISIBLE);
                     ok.setVisibility(View.VISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
@@ -146,6 +148,7 @@ public class GameActivity extends AppCompatActivity {
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
+                    ok1.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -156,8 +159,8 @@ public class GameActivity extends AppCompatActivity {
 
                 if (drawer.isPressed()) {
                     draweropen.start();
-                    ring.start();
-                    ring.setLooping(true);
+                   // ring.start();
+                   // ring.setLooping(true);
                     hint31.setEnabled(false);
                     hint31.setVisibility(View.VISIBLE);
                     openDrawer.setVisibility(View.VISIBLE);
@@ -168,6 +171,7 @@ public class GameActivity extends AppCompatActivity {
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
+                    ok1.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -178,11 +182,11 @@ public class GameActivity extends AppCompatActivity {
                 if (paint.isPressed()) {
                     picture.setVisibility(View.VISIBLE);
                     paintremove.start();
-                    ring.start();
-                    ring.setLooping(true);
+                    //ring.start();
+                    //ring.setLooping(true);
                     hint2.setEnabled(false);
                     hint2.setVisibility(View.VISIBLE);
-                    ok.setVisibility(View.VISIBLE);
+                    ok1.setVisibility(View.VISIBLE);
                     paper.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
                     openDrawer.setVisibility(View.INVISIBLE);
@@ -204,13 +208,14 @@ public class GameActivity extends AppCompatActivity {
                     Enter.setVisibility(View.INVISIBLE);
                     Password.setVisibility(View.INVISIBLE);
                     Command.setVisibility(View.INVISIBLE);
+                    ok1.setVisibility(View.INVISIBLE);
                     //Reset.setVisibility(View.VISIBLE);
                     paper.setVisibility(View.INVISIBLE);
                     hint2.setVisibility(View.INVISIBLE);
                     hint31.setVisibility(View.INVISIBLE);
                     openDrawer.setVisibility(View.INVISIBLE);
                     note.setVisibility(View.INVISIBLE);
-                    editor.putInt(getString(R.string.high_score), 1);
+                    editor.putInt(getString(R.string.high_score), 2);
                     editor.commit();
                     //once correct start the 'stageclear' activity
                     Intent i = new Intent(GameActivity.this, stageclear.class);
@@ -226,7 +231,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 6000); // will be delayed for 2 seconds
+                    h.postDelayed(r, 3000); // will be delayed for 2 seconds
 
                     //startZoomInAnimation(btnTest);
                     //after door opens it will start the next activity after .. seconds
@@ -241,7 +246,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                     };
                     Handler h2 = new Handler();
-                    h2.postDelayed(r2, 9000); // will be delayed for 2 seconds
+                    h2.postDelayed(r2, 4500); // will be delayed for 2 seconds
                 }
                 else {
                     btnTest.setImageResource(R.drawable.door2);
@@ -322,6 +327,7 @@ public class GameActivity extends AppCompatActivity {
                          start.putExtra("GAMECIPHER", cipher.getText().toString());
                          start.putExtra("LEVEL", level);
                          startActivity(start);
+
                      }
                  });
                      break;
@@ -333,6 +339,7 @@ public class GameActivity extends AppCompatActivity {
                          start.putExtra("GAMECIPHER", cipher.getText().toString());
                          start.putExtra("LEVEL", level);
                          startActivity(start);
+
                      }
                  });
                      break;
@@ -344,6 +351,7 @@ public class GameActivity extends AppCompatActivity {
                          start.putExtra("GAMECIPHER", cipher.getText().toString());
                          start.putExtra("LEVEL", level);
                          startActivity(start);
+
                      }
                  });
                      break;
@@ -366,6 +374,7 @@ public class GameActivity extends AppCompatActivity {
                          start.putExtra("GAMECIPHER", cipher.getText().toString());
                          start.putExtra("LEVEL", level);
                          startActivity(start);
+
                      }
                  });
                      break;
@@ -394,21 +403,27 @@ public class GameActivity extends AppCompatActivity {
              fabs.add(temp);
          }
      }
-     /*
-    class fabVisible implements Runnable
+
+    @Override
+    protected void onPause() {
+//        ring.setLooping(false);
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    public void setStatusBar()
     {
-        int counter = 0;
-        @Override
-        public void run() {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d("counter running", "run");
-                    fabs.get(counter).setVisibility(View.VISIBLE);
-                    System.out.println("counter" + fabs.get(counter).getVisibility()+View.VISIBLE);
-                    labels.get(counter).setVisibility(View.VISIBLE);
-                }
-            }, 50+(counter*25));
-        }
-    }*/
+        Window window = getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
 }

@@ -2,7 +2,7 @@
 <menu  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/vigHelp"
+        android:id="@+id/vighelpex"
         android:orderInCategory = "10"
         android:title="Help"
         android:icon="@drawable/ic_help"

@@ -1,11 +1,16 @@
 package com.project.krypto.act_tools.vingere;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,10 +25,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
+import com.project.krypto.Game.finallvl;
+import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.Help.helpmenu;
 import com.project.krypto.Help.vigHelp;
 import com.project.krypto.R;
+import com.project.krypto.act_tools.Sub.SubCipher2;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,18 +42,19 @@ public class vigenere extends AppCompatActivity {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static EditText editKey;
-    private static TextView gamecipheroutput_input;
+    private static TextView gamecipheroutput_input, keyinputfromhome;
+    private TextInputLayout vigkeyinputlayout;
     private static Button encrypt;
     private static Button decrypt;
     private static Button help;
-    private static Button reset,back;
+    private static Button reset,back,share;
     private static TextView displayResult;
     private String mastercipher;
     private String cipherFromGame;
     private String level;
     private boolean fromGame;
-    Toolbar toolbar;
-    int type;
+    private Toolbar toolbar;
+    private String type;
     String cipher, key;
 
     @Override
@@ -64,7 +73,7 @@ public class vigenere extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -84,16 +93,18 @@ public class vigenere extends AppCompatActivity {
                     case "2" : game = new Intent (getBaseContext(), viglvl.class);
                         startActivity(game);
                         break;
-                    case "3":
+                    case "3": game = new Intent (getBaseContext(), transpolvl.class);
+                        startActivity(game);
                         break;
-                    case "4":
+                    case "4": game = new Intent (getBaseContext(),finallvl.class);
+                        startActivity(game);
                         break;
                 }
             }
         });
-        final TextInputLayout vigkeyinputlayout = (TextInputLayout) findViewById(R.id.inputKeyLayoutVig);
+       vigkeyinputlayout = (TextInputLayout) findViewById(R.id.inputKeyLayoutVig);
         help = (Button) findViewById(R.id.vighelp);
-        help.setOnClickListener(new View.OnClickListener() {
+       help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String tempcipher = mastercipher;
@@ -132,27 +143,51 @@ public class vigenere extends AppCompatActivity {
             }
         });
 
+        share = (Button) findViewById(R.id.vigsharebtn);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sharetext = displayResult.getText().toString().trim();
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                if(type.equals("0"))//
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my encrypted cipher! Try to decrypt it!\n Cipher:\n" + sharetext);
+                }
+                else
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my decrypted cipher! cool right?!\n Cipher: \n " + sharetext);
+                }
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent,"Share using..."));
+            }
+        });
         encrypt = (Button) findViewById(R.id.btnEnc);
         decrypt = (Button) findViewById(R.id.btnDec);
         displayResult = (TextView) findViewById(R.id.Output);
         RelativeLayout outputview = (RelativeLayout) findViewById(R.id.OutputGroupVig);
-        RelativeLayout key_cipherview = (RelativeLayout) findViewById(R.id.vigETextGroup);
+        RelativeLayout key_cipherview = (RelativeLayout) findViewById(R.id.keyoutputgroup);
         RelativeLayout back_resetview = (RelativeLayout) findViewById(R.id.back_resetgroup);
         RelativeLayout enc_decview = (RelativeLayout) findViewById(R.id.vigBtnGroup);
 
-
         editKey = (EditText) findViewById(R.id.inputkey);
         gamecipheroutput_input = (TextView) findViewById(R.id.gameciphervig);
-        reset = (Button) findViewById(R.id.btnreset);
+        keyinputfromhome = (TextView) findViewById(R.id.keyoutputfromhome);
 
         if(fromGame == true)
         {
+            help.setVisibility(View.INVISIBLE);
             level = getIntent().getStringExtra("LEVEL");
             cipherFromGame = getIntent().getStringExtra("GAMECIPHER");
+            help.setVisibility(View.INVISIBLE);
             mastercipher=cipherFromGame;
 
             gamecipheroutput_input.setText(cipherFromGame);
-            key_cipherview.setVisibility(View.VISIBLE);
+            editKey.setVisibility(View.VISIBLE);
+            key_cipherview.setVisibility(View.GONE);
+            vigkeyinputlayout.setVisibility(View.VISIBLE);
+            share.setVisibility(View.GONE);
+
             enc_decview.setVisibility(View.VISIBLE);
             back_resetview.setVisibility(View.VISIBLE);
 
@@ -164,17 +199,21 @@ public class vigenere extends AppCompatActivity {
 
             encrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    displayResult.setText("");
                     key = editKey.getText().toString();
+                    editKey.addTextChangedListener(new MyTextWatcher(editKey));
                     String msg = gamecipheroutput_input.getText().toString();
-                    Pattern p = Pattern.compile("[^A-za-z]");
+                    Pattern p = Pattern.compile("[^A-Za-z]");
                     Matcher m = p.matcher(key);
                     if(key.trim().isEmpty())
                     {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is empty!");
+                        help.setVisibility(View.INVISIBLE);
                     }else if(m.find()) {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is must only contain alphabets & no spacing!!");
+                        help.setVisibility(View.INVISIBLE);
                     }
                     else {
                         msg = msg.replaceAll("[^A-Za-z]+", "");
@@ -208,27 +247,31 @@ public class vigenere extends AppCompatActivity {
                         displayResult.setMovementMethod(new ScrollingMovementMethod());
                         //displayResult.setText(msg);
                         displayResult.setText(tempcipher);
+                        help.setVisibility(View.VISIBLE);
                     }
                 }
             });
 
             decrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    displayResult.setText("");
                     //editKey = (EditText) view.findViewById(R.id.inputkey);
                     key = editKey.getText().toString();
-                    key = key.replaceAll("[^A-Za-z]+","");
+                    editKey.addTextChangedListener(new MyTextWatcher(editKey));
                     key = key.toLowerCase();
                     String msg = gamecipheroutput_input.getText().toString();
-                    Pattern p = Pattern.compile("[^A-za-z]");
+                    Pattern p = Pattern.compile("[^A-Za-z]");
                     Matcher m = p.matcher(key);
                     if(key.trim().isEmpty())
                     {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is empty!");
+                        help.setVisibility(View.INVISIBLE);
                     }else if(m.find())
                     {
                         vigkeyinputlayout.setErrorEnabled(true);
                         vigkeyinputlayout.setError("Key is must only contain alphabets & no spacing!");
+                        help.setVisibility(View.INVISIBLE);
                     } else
                     // editPlain = (EditText) view.findViewById(R.id.inputPT);
                     {
@@ -262,34 +305,32 @@ public class vigenere extends AppCompatActivity {
                         }
                         displayResult.setMovementMethod(new ScrollingMovementMethod());
                         displayResult.setText(tempplaintext);
+                        help.setVisibility(View.VISIBLE);
                     }
-                }
-            });
-
-            reset.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    (editKey).setText("");
-                    displayResult.setText("");
                 }
             });
         }
         else
         {
-            key_cipherview.setVisibility(View.GONE);
+            key_cipherview.setVisibility(View.VISIBLE);
             enc_decview.setVisibility(View.GONE);
             back_resetview.setVisibility(View.GONE);
 
             RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
-            p.addRule(RelativeLayout.BELOW, R.id.spacevig);
+            p.addRule(RelativeLayout.BELOW, R.id.keyoutputgroup);
+            p.setMargins(30, 30, 30, 30);
             outputview.setLayoutParams(p);
 
-            type = Integer.parseInt(getIntent().getStringExtra("TYPE"));
+            type = getIntent().getStringExtra("TYPE");
             cipher = getIntent().getStringExtra("CIPHER");
             key = getIntent().getStringExtra("KEY");
             mastercipher = cipher;
 
-            if(type == 0) // enc
+            gamecipheroutput_input.setText(cipher);
+            keyinputfromhome.setText(key);
+
+            if(type.equals("0")) // enc
             {
                 //cipher = cipher.replaceAll("[^A-Za-z]+","");
                 cipher = cipher.toLowerCase();
@@ -368,6 +409,26 @@ public class vigenere extends AppCompatActivity {
             }
 
         }
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sharetext = displayResult.getText().toString();
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                if(type.equals("0"))//
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my encrypted cipher! Try to decrypt it!\n Cipher:\n" + sharetext);
+                }
+                else
+                {
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my decrypted cipher! cool right?!\n Cipher: \n " + sharetext);
+                }
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent,"Share using..."));
+            }
+        });
+
     }
 
     @Override
@@ -379,10 +440,11 @@ public class vigenere extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.vigHelp: {
+            case R.id.vighelpex:
                 // do your sign-out stuff
                 break;
-            }
+            default:
+                break;
             // case blocks for other MenuItems (if any)
         }
         return false;
@@ -397,6 +459,51 @@ public class vigenere extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.Black));
+    }
+
+
+    public boolean validateKey()
+    {
+        String temp = editKey.getText().toString().trim();
+
+
+        if(temp.isEmpty())
+        {
+            vigkeyinputlayout.setError("Key Not entered");
+            return false;
+        }
+        else
+        {
+            vigkeyinputlayout.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch(view.getId())
+            {
+                case R.id.inputkeysub : validateKey();
+                    break;
+            }
+        }
     }
 
 }

@@ -62,7 +62,7 @@ public class vigHelp extends AppCompatActivity{
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -343,14 +343,8 @@ public class vigHelp extends AppCompatActivity{
                     finaltemp = finaltemp.substring(0, finaltemp.length() - 1);
                     tvfinal.setText(finaltemp);
                 }
-
-
-
-
-
             }
         });
-
 
         //restart the process
         restart.setOnClickListener(new View.OnClickListener() {

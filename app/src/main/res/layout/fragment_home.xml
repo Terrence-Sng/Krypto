@@ -7,27 +7,22 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     android:clickable="true"
-    android:focusableInTouchMode="true">
-
+    android:focusableInTouchMode="true"
+    >
     <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-        android:focusableInTouchMode="true"
-        >
-
+    >
     <android.support.design.widget.TextInputLayout
         android:layout_alignParentTop="true"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/inputHome"
         android:padding="20dp"
         android:layout_margin="10dp"
         android:background="@drawable/edittextborder"
         app:hintTextAppearance="@style/Floating_hint"
-        android:textColorHint="@color/Dark_Green"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:textColorHint="@color/Dark_Green">
         <EditText
             android:id="@+id/homeText"
             android:layout_width="match_parent"
@@ -53,15 +48,9 @@
         android:layout_height="wrap_content"
         android:text="Select one"
         android:textColor="@color/Neon_Green"
-        android:layout_alignStart="@+id/spinnergrouphome1"/>
-    <RelativeLayout
-    android:id="@+id/spinnergrouphome1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/edittextborder"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/spinnerlabel">
+        />
     <Spinner
+        android:layout_below="@+id/spinnerlabel"
         android:id="@+id/spinnerchoice"
         android:layout_width="220dp"
         android:layout_height="50dp"
@@ -70,7 +59,7 @@
         android:visibility="visible"
         />
     </RelativeLayout>
-    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/homebuttongroup"
         android:layout_width="wrap_content"
@@ -121,10 +110,11 @@
         android:layout_width="393dp"
         android:layout_height="80dp"
         android:orientation="horizontal"
+
         android:id="@+id/radioGroup"
         android:visibility="invisible"
         android:layout_below="@+id/spinnergrouphome"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         >
         <RadioButton
             android:id="@+id/radsub"

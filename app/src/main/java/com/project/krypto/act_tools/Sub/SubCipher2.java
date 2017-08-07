@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -63,7 +65,7 @@ public class SubCipher2  extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
+            //    Toast.makeText(getApplicationContext(), "Back Pressed", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         });
@@ -98,9 +100,12 @@ public class SubCipher2  extends AppCompatActivity {
                         keyinputlayout.setErrorEnabled(true);
                         return;
                     }
+                    String actual_key_k1 = keygen(masterkey.toUpperCase());
+                    //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
+                    key_ch1 = actual_key_k1;
                     Intent mIntent = new Intent(getBaseContext(), helpmenu.class);
                     mIntent.putExtra("CIPHER", mastercipher);
-                    mIntent.putExtra("KEY", key);
+                    mIntent.putExtra("KEY", masterkey);
                     mIntent.putExtra("KEYSTRING", key_ch1);
                     // mIntent.putExtra("RESULT", displayResult.getText().toString());
                     mIntent.putExtra("TYPECIPHER", "S");
@@ -169,10 +174,12 @@ public class SubCipher2  extends AppCompatActivity {
 
          if(fromGame == true)
          {
+             help.setVisibility(View.INVISIBLE);
         RelativeLayout gamekeyinputgroupsub = (RelativeLayout) findViewById(R.id.gamekeyinputgroupsub);
         gamekeyinputgroupsub.setVisibility(View.VISIBLE);
         RelativeLayout encdecbuttongroupsub = (RelativeLayout)findViewById(R.id.encdecbuttongroupsub);
         encdecbuttongroupsub.setVisibility(View.VISIBLE);
+             back.setVisibility(View.VISIBLE);
         RelativeLayout subcipheroutputgroup = (RelativeLayout)findViewById(R.id.subcipheroutputGroup);
         RelativeLayout keyinputgroupsub = (RelativeLayout)findViewById(R.id.keyinputhomegroup);
         keyinputgroupsub.setVisibility(View.GONE);
@@ -191,7 +198,21 @@ public class SubCipher2  extends AppCompatActivity {
         inputfromgameTV.setText(cipherFromGame);
         decrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String key_ch = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
+                String key_ch = editkey.getText().toString();
+                editkey.addTextChangedListener(new MyTextWatcher(editkey));
+                Pattern patt = Pattern.compile("[^A-Za-z]");
+                Matcher m = patt.matcher(key_ch);
+                if(m.find())
+                {
+                    keyinputlayout.setError("Only alphabets allowed!");
+                    keyinputlayout.setErrorEnabled(true);
+                    help.setVisibility(View.INVISIBLE);
+                    return;
+                }else if(key_ch.isEmpty())
+                {
+                    help.setVisibility(View.INVISIBLE);
+                    return;
+                }
                 String actual_key_k1 = keygen(key_ch.toUpperCase());
                 //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
                 key_ch1 = actual_key_k1;
@@ -199,12 +220,27 @@ public class SubCipher2  extends AppCompatActivity {
                 String temporary_cipher_ct = cipherFromGame;
                 String decrypted_text = doDecryption(temporary_cipher_ct.toUpperCase());
                 outputtext.setText(decrypted_text);
+                help.setVisibility(View.VISIBLE);
             }
         });
 
         encrypt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String key_ch = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
+                String key_ch = editkey.getText().toString();//
+                editkey.addTextChangedListener(new MyTextWatcher(editkey));
+                Pattern patt = Pattern.compile("[^A-Za-z]");
+                Matcher m = patt.matcher(key_ch);
+                if(m.find())
+                {
+                    keyinputlayout.setError("Only alphabets allowed!");
+                    keyinputlayout.setErrorEnabled(true);
+                    help.setVisibility(View.INVISIBLE);
+                    return;
+                }else if(key_ch.isEmpty())
+                {
+                    help.setVisibility(View.INVISIBLE);
+                    return;
+                }
                 String actual_key_k1 = keygen(key_ch.toUpperCase());
                 //outputkey.setText("Plaintext: " + "\n" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n" + "Ciphertext: " + "\n" + actual_key_k1);
                 key_ch1 = actual_key_k1;
@@ -212,6 +248,7 @@ public class SubCipher2  extends AppCompatActivity {
                 String temporary_plaintext_pl = cipherFromGame;
                 String encrypted_text_en = doEncryption(temporary_plaintext_pl.toLowerCase());
                 outputtext.setText(encrypted_text_en);
+                help.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -229,12 +266,14 @@ public class SubCipher2  extends AppCompatActivity {
         }
         else
         {
-            outputtext.setText(doDecryption(cipher.toLowerCase()));
+            System.out.println(cipher.toUpperCase());
+            System.out.println(doDecryption(cipher.toUpperCase()));
+            outputtext.setText(doDecryption(cipher.toUpperCase()));
         }
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String sharetext = outputtext.getText().toString();
+                String sharetext = outputtext.getText().toString().trim();
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 if(type.equals("0"))//
@@ -389,4 +428,25 @@ public class SubCipher2  extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.subcipherhelp, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.subhelpex:
+                // do your sign-out stuff
+                break;
+            default:
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
+    }
+
+
 }

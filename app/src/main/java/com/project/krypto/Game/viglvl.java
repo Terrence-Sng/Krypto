@@ -105,7 +105,7 @@ public class viglvl extends AppCompatActivity {
             public void onClick(View view) {
 
                 String Plaintext = answer.getText().toString();
-                if (Plaintext.matches("open") && submit.isPressed()) {
+                if (Plaintext.matches("awesome") && submit.isPressed()) {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
                     //opendoor.start();

@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
@@ -39,7 +38,7 @@ public class SubCipher2  extends AppCompatActivity {
     private Toolbar toolbar;
     private EditText editkey;
     private TextView inputfromgameTV;
-    Button encrypt, decrypt, help,share,back;
+    Button encrypt, decrypt, help,share,back, exit;
     TextView outputkey;
     TextView outputtext;
 
@@ -83,7 +82,7 @@ public class SubCipher2  extends AppCompatActivity {
             String SHORT_KEY;
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "clicked", Toast.LENGTH_SHORT).show();
                 if(fromGame==true) {
                     mastercipher = cipherFromGame.replaceAll("[^A-Za-z]+", "");
                     masterkey = editkey.getText().toString().replaceAll("[^A-Za-z]+", "");
@@ -289,7 +288,9 @@ public class SubCipher2  extends AppCompatActivity {
             }
         });
     }
+
     }
+
 
     public void setStatusBarColor ()
     {

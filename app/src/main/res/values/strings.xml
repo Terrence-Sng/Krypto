@@ -33,4 +33,7 @@
     <string name="vig_output_label"><u>Vigenere Cipher Output</u></string>
     <string name="transpo_label"><u>Cipher / Message</u></string>
     <string name="output"><u>Output</u></string>
+
+    <string name="viglvlciper">dcbqjbhivsuwcxkzcirswsgydwsrdzfjwqwosfoujdvojbzwdlmsvsfutcblisbopuzsfwmkwvdcshrsuhvsfhgaynfofymorhyxpfagzbhmymtssdzfobcoffhyliwgvwwszskbkscgnsuygexcl</string>
+    <string name="transpolvlcipher">TKOOLHBXVAERJEZQOURYUWMTDINPHOCFSEG</string>
 </resources>

@@ -16,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -56,8 +55,8 @@ public class subencrypthelp extends AppCompatActivity {
 
             final TextView viewcipher = (TextView) findViewById(R.id.editText);
             final Button next = (Button) findViewById(R.id.nextbtn);
+            Button exit = (Button) findViewById(R.id.exitbtn);
             final Button back = (Button) findViewById(R.id.previousbtn);
-            final Button exit = (Button) findViewById(R.id.exitbtn);
             final TextView viewkey = (TextView) findViewById(R.id.editText4);
             final TextView finalcipher = (TextView) findViewById(R.id.editText3);
             final TextView shortedkey = (TextView) findViewById(R.id.editText5);
@@ -1028,6 +1027,27 @@ public class subencrypthelp extends AppCompatActivity {
                     });
                     builder.show();
                 }
+            }
+        });
+
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                i = 1;
+                k = 1;
+                decrypted.setText(cipher4);
+                finalcipher.setText(s1);
+                AlertDialog.Builder builder = new AlertDialog.Builder(subencrypthelp.this);
+                builder.setCancelable(true);
+                builder.setTitle("Reset!");
+                builder.setMessage("Process Restarted!");
+                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
             }
         });
         }

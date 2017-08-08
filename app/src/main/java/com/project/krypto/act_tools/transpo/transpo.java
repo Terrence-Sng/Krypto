@@ -1,12 +1,9 @@
 package com.project.krypto.act_tools.transpo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -20,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
@@ -311,7 +307,7 @@ public class transpo extends AppCompatActivity {
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "X";
+            message = message + "x";
         }
         //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];
@@ -371,7 +367,7 @@ public class transpo extends AppCompatActivity {
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "X";
+            message = message + "x";
         }
         //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];

@@ -16,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -1018,7 +1017,25 @@ public class subdecrypthelp extends AppCompatActivity {
                 }
             }
         });
-
+        exit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                i = 1;
+                k = 1;
+                decrypted.setText(clear4);
+                finalcipher.setText(s1);
+                AlertDialog.Builder builder = new AlertDialog.Builder(subdecrypthelp.this);
+                builder.setCancelable(true);
+                builder.setTitle("Reset!");
+                builder.setMessage("Process Restarted!");
+                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 
     public void setStatusBar()

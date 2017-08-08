@@ -22,7 +22,7 @@
         android:gravity="center"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="TIOXSTZHCWJOHYEKNUVEDQBFMELOUROPRAG"
+        android:text="@string/transpolvlcipher"
         android:textColor="#FFFFFF"
         android:textCursorDrawable="@null"
         android:textSize="65px"

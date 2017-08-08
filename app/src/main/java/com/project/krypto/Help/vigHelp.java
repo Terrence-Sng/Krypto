@@ -15,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -350,6 +349,17 @@ public class vigHelp extends AppCompatActivity{
         restart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //refresh table
+                AlertDialog.Builder builder = new AlertDialog.Builder(vigHelp.this);
+                builder.setCancelable(true);
+                builder.setTitle("Reset!");
+                builder.setMessage("Process Restarted!");
+                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
                 for (int i = 0; i < 26; i++) {
                     TextView tv = (TextView) row[i].getChildAt(0);
                     tv.setBackgroundResource(R.drawable.tablecellvig);

@@ -16,10 +16,10 @@
             android:id="@+id/cipherlvl2"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:text=' BIG LELB SFGR SAXS GR AMLQYOSAE UY RTURSGSTSGNM LGOFAQ. YNT MAAE SN SYOA "NOAM" SN NOAM SFA ENNQ. SFAQACNQA, SFA BMRWAQ GR "NOAM". G WGRF YNT DNNE JTLI.'
             android:textColor="#FFFFFF"
             android:gravity="center"
             android:layout_centerInParent="true"
+            android:text="@string/viglvlciper"
             />
         <RelativeLayout
             android:id="@+id/answerGroup"

@@ -2,6 +2,7 @@ package com.project.krypto.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +16,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -26,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Game.prologue;
-import com.project.krypto.Help.vigHelp;
 import com.project.krypto.R;
 import com.project.krypto.act_tools.Home.HomeFrag;
 import com.project.krypto.act_tools.Sub.SubCipher2;
@@ -61,11 +60,14 @@ public class MainActivity extends AppCompatActivity
     private transpo transpoFrag;
     private TextView username, textEmail;
     private ArrayList <Fragment> listFrags = new ArrayList<>();
-
+    private static final String PREF_FILE = "MyPrefsFile"; // Name of prefs file; don't change this after it's saved something
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences settings = getSharedPreferences(PREF_FILE, 0);
+        boolean firstRun = settings.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Krypto");
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -117,7 +119,15 @@ public class MainActivity extends AppCompatActivity
         username.setTextColor(getResources().getColor(R.color.Dark_Green));
         textEmail = (TextView) headerView.findViewById(R.id.userEmail);
         textEmail.setTextColor(getResources().getColor(R.color.Dark_Green));
-       // initUserSession();
+        // initUserSession();
+
+        if (firstRun) {
+            Log.w("activity", "first time");
+            SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
+            editor.putBoolean("firstRun", false); // It is no longer the first run
+            editor.commit(); // Save all changed settings
+        }
+
     }
 
     public void showHomeFrag() {

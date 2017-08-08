@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -92,7 +91,7 @@ public class prologue extends AppCompatActivity {
                 typing.start();
                 tw.setText("");
                 tw.setCharacterDelay(50);
-                tw.animateText("Mission" + "\n" + "\n" + "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ");
+                tw.animateText("Mission" + "\n" + "\n" + "You are tasked to recover a treasure from a vault. However, the vault in deep within many levels of rooms. Each door is locked and you will have to solve a cryptography cipher in order to unlock all the doors and get to the treasure. Put what you have learnt to use! Good Luck! ");
             }
         };
       h = new Handler();

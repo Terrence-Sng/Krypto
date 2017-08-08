@@ -14,7 +14,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.R;
 
@@ -74,7 +73,7 @@ public class transpohelp extends AppCompatActivity {
            textList = new ArrayList<TextView>();
            rltxView = new ArrayList<TextView>();
 
-           Toast.makeText(getApplicationContext(), "checked", Toast.LENGTH_SHORT).show();
+          // Toast.makeText(getApplicationContext(), "checked", Toast.LENGTH_SHORT).show();
            enc(pt, blocksize);
            next = (Button) findViewById(R.id.transpohelpnext);
            next.setEnabled(true);
@@ -98,7 +97,18 @@ public class transpohelp extends AppCompatActivity {
                    animate.reset();
                    System.out.println(counter);
                    if (counter >= textList.size()) {
-                       next.setEnabled(false);
+                       AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
+                       builder.setCancelable(true);
+                       builder.setTitle("Done!");
+                       builder.setMessage("Decryption is done!");
+                       builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               dialogInterface.cancel();
+                           }
+                       });
+                       builder.show();
+                       return;
                    } else {
                        if(counter == 0)
                        {
@@ -120,6 +130,17 @@ public class transpohelp extends AppCompatActivity {
            reset.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
+                   AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
+                   builder.setCancelable(true);
+                   builder.setTitle("Reset!");
+                   builder.setMessage("Process Restarted!");
+                   builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialogInterface, int i) {
+                           dialogInterface.cancel();
+                       }
+                   });
+                   builder.show();
                    counter =0;
                    textcontainer.removeAllViews();
                    rl.removeAllViews();
@@ -130,8 +151,18 @@ public class transpohelp extends AppCompatActivity {
                @Override
                public void onClick(View view) {
                    if (counter <= 0) {
-                       previous.setEnabled(false);
-                       reset.setEnabled(false);
+                       AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
+                       builder.setCancelable(true);
+                       builder.setTitle("Error!");
+                       builder.setMessage("You are at the start now. Unable to back!");
+                       builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               dialogInterface.cancel();
+                           }
+                       });
+                       builder.show();
+                       return;
                    } else {
                        --counter;
                        textList.get(counter).clearAnimation();
@@ -168,13 +199,14 @@ public class transpohelp extends AppCompatActivity {
                 next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(!next.isEnabled())
-                        {
+                        animate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
+                        animate.reset();
+                        System.out.println(counter);
+                        if (counter >= textList.size()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
                             builder.setCancelable(true);
-                            builder.setTitle("Error!");
-                            builder.setMessage("You are at the end now. Unable to next!");
-
+                            builder.setTitle("Done!");
+                            builder.setMessage("Decryption is done!");
                             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -183,12 +215,6 @@ public class transpohelp extends AppCompatActivity {
                             });
                             builder.show();
                             return;
-                        }
-                        animate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
-                        animate.reset();
-                        System.out.println(counter);
-                        if (counter >= textList.size()) {
-                            next.setEnabled(false);
                         } else {
                             if(counter == 0)
                             {
@@ -210,6 +236,17 @@ public class transpohelp extends AppCompatActivity {
            reset.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
+                   AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
+                   builder.setCancelable(true);
+                   builder.setTitle("Reset!");
+                   builder.setMessage("Process Restarted!");
+                   builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialogInterface, int i) {
+                           dialogInterface.cancel();
+                       }
+                   });
+                   builder.show();
                    counter=0;
                    textcontainer.removeAllViews();
                    rl.removeAllViews();
@@ -219,13 +256,11 @@ public class transpohelp extends AppCompatActivity {
                 previous.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(!previous.isEnabled())
-                        {
+                        if (counter <= 0) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
                             builder.setCancelable(true);
                             builder.setTitle("Error!");
                             builder.setMessage("You are at the start now. Unable to back!");
-
                             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -234,10 +269,6 @@ public class transpohelp extends AppCompatActivity {
                             });
                             builder.show();
                             return;
-                        }
-                        if (counter <= 0) {
-                            previous.setEnabled(false);
-                            reset.setEnabled(false);
                         } else {
                             --counter;
                             textList.get(counter).clearAnimation();
@@ -259,7 +290,7 @@ public class transpohelp extends AppCompatActivity {
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "X";
+            message = message + "x";
         }
        // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];
@@ -326,7 +357,7 @@ public class transpohelp extends AppCompatActivity {
         float numX = blksize - remainder;
 
         for (int i = 0; i < numX; i++) {
-            message = message + "X";
+            message = message + "x";
         }
        // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         ct = new char[(int) rows][(int)cols];

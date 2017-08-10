@@ -65,7 +65,9 @@
         <activity android:name=".Help.subencrypthelp"
             android:label="Krypto"
             android:theme="@style/AppTheme.NoActionBar"/>
-
+        <activity android:name=".Help.imagehelp"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--Games-->
         <activity

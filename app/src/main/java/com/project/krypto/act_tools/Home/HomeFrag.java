@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -66,8 +67,9 @@ public class HomeFrag extends Fragment {
     TextInputLayout homekey, homeinput;
 
     int enc_dec_choice = 0; //default is enc, enc = 0, dec = 1;
-
+    SharedPreferences settings = null;
     private OnFragmentInteractionListener mListener;
+    boolean firstRun;
 
     public HomeFrag() {
         // Required empty public constructor
@@ -106,8 +108,9 @@ public class HomeFrag extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final SharedPreferences settings = getActivity().getSharedPreferences(PREF_FILE, 0);
-        final boolean firstRun = settings.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
+        //for the first run algo
+        settings = getActivity().getSharedPreferences(PREF_FILE, 0);
+        firstRun = settings.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
 
         homeinput  = (TextInputLayout) view.findViewById(R.id.inputHome);
         homekey = (TextInputLayout) view.findViewById(R.id.keylayouthome);
@@ -169,13 +172,6 @@ public class HomeFrag extends Fragment {
                     go.setVisibility(View.INVISIBLE);
                 }
 
-                if(firstRun)
-                {
-                    Log.w("activity", "first time");
-                    SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
-                    editor.putBoolean("firstRun", false); // It is no longer the first run
-                    editor.commit(); // Save all changed settings
-                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -431,7 +427,32 @@ public class HomeFrag extends Fragment {
                 }
             }
         });
+
+
+
+
         return view;
+    }
+
+
+    //this will check for the first run of the application
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (firstRun) {
+            Log.w("activity", "first time");
+            SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
+           /* editor.putBoolean("firstRun", false); // It is no longer the first run
+            editor.commit(); // Save all changed settings
+*/
+            final AppCompatActivity act = (AppCompatActivity) getActivity();
+            Toolbar toolbar;
+            if (act.getSupportActionBar() != null) {
+                toolbar = (Toolbar) act.getSupportActionBar().getCustomView();
+
+            }
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

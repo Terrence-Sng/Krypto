@@ -167,18 +167,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent (getApplicationContext(), prologue.class);
             startActivity(i);
         }
-        //else if (id == R.id.nav_frequency) {
-        // fragment = nfrag;
-        // toolbar.setTitle("Frequency");
-        //} else if (id == R.id.nav_ioc) {
-        // fragment = iocFrag;
-        // toolbar.setTitle("Index of Coincidence");
-        // } else if (id == R.id.nav_period) {
-        //fragment = periodFrag;
-        //  toolbar.setTitle("Period");
-        // } else if (id == R.id.nav_vigenere) {
-        //fragment = vigFrag;
-        //    toolbar.setTitle("Vigenere Cipher");
+
         if(fragment != null) {
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         }

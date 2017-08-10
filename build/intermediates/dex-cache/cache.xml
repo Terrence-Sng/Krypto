@@ -3,12 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Panda\.android\build-cache\b8846abd38112c0ebfdc76f6a03a7a9bc006bd23\output\jars\classes.jar"
+        jar="C:\Users\Panda\.android\build-cache\9ff0a43c8fb36bd0097cd9e13ffd0294db48a273\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="c33db5975995f68c52b66bd4e3e988de0453cc24">
-        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto\app\build\intermediates\pre-dexed\debug\classes_b40d9fc07ff1b38e727ba6edb1ad881d4b385a11.jar" />
+        <dex dex="C:\Users\Panda\Documents\GitHub\Krypto3\app\build\intermediates\pre-dexed\debug\classes_9d6266cb22f467e7d6bf3f0637c4522832f06bf0.jar" />
     </item>
 
 </items>

@@ -20,6 +20,7 @@ import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
+import com.project.krypto.Help.imagehelp;
 import com.project.krypto.R;
 
 import java.text.DecimalFormat;
@@ -182,6 +183,9 @@ public class ioc extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.iochelpex:
+                Intent mHelp = new Intent (this, imagehelp.class);
+                mHelp.putExtra("HELPID", "2");
+                startActivity(mHelp);
                 // do your sign-out stuff
                 break;
             default:

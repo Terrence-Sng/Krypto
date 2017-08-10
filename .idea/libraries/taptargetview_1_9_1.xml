@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="taptargetview-1.9.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/b8846abd38112c0ebfdc76f6a03a7a9bc006bd23/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/b8846abd38112c0ebfdc76f6a03a7a9bc006bd23/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/9ff0a43c8fb36bd0097cd9e13ffd0294db48a273/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/9ff0a43c8fb36bd0097cd9e13ffd0294db48a273/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

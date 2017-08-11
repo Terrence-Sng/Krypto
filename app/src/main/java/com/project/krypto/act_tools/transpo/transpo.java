@@ -487,9 +487,6 @@ public class transpo extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.transpohelpex:
-                // do your sign-out stuff
-                break;
             default:
                 break;
             // case blocks for other MenuItems (if any)

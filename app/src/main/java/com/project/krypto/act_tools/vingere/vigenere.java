@@ -1,12 +1,9 @@
 package com.project.krypto.act_tools.vingere;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -22,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
@@ -30,8 +26,8 @@ import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.Help.helpmenu;
 import com.project.krypto.Help.vigHelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
-import com.project.krypto.act_tools.Sub.SubCipher2;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -440,10 +436,10 @@ public class vigenere extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.vighelpex:
-                // do your sign-out stuff
-                break;
-            default:
+            case R.id.viginfo:
+                Intent mInfo = new Intent (this, infoact.class);
+                mInfo.putExtra("INFOID", "5");
+                startActivity(mInfo);
                 break;
             // case blocks for other MenuItems (if any)
         }

@@ -17,13 +17,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.Help.imagehelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 
 import java.text.DecimalFormat;
@@ -253,6 +253,9 @@ public class period extends AppCompatActivity {
                 startActivity(mHelp);
                 break;
             default:
+                Intent mInfo = new Intent (this,infoact.class);
+                mInfo.putExtra("INFOID", "3");
+                startActivity(mInfo);
                 break;
             // case blocks for other MenuItems (if any)
         }

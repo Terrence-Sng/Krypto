@@ -41,9 +41,9 @@ android:layout_height="match_parent"
 
     <com.project.krypto.Game.TypeWriter
         android:id="@+id/tv"
-        android:layout_width="384dp"
-        android:layout_height="319dp"
-        android:textSize="23sp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:textSize="20sp"
         android:background="@drawable/edittextborder"
         android:textColor="@color/Dark_Green"
         android:gravity="center"

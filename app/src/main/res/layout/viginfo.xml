@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarinfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/infolayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:lines="20"
+                android:textColor="@color/Neon_Green"
+                android:text="Vigenere cipher is a form of polyalphabetic substitution. This cipher uses a method of encrypting alphabetic text by using a series of Caesar Ciphers based on the letters of a keyword. In a Caesar cipher, each letter of the alphabet is shifted along some number of places; for example, in a Caesar cipher of shift 3, A would become D, B would become E, Y would become B and so on. The Vigenere cipher consists of several Caesar ciphers in sequence with different shift values.
+\n\nMaking use of this table below, where the top row is the Key and the First Column is the Plaintext, when the row and column meets will be the ciphertext substitute for that plaintext using that key letter.
+"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:background="@null"
+                android:src="@drawable/vigciphertable"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"
+                android:lines="15"
+                android:gravity="center"
+                android:text="We could also use formulas to calculate Vigenere Ciphers\nFormula for Encryption:\nCiphertext = (Plaintext + Key Letter) mod 26\nFormula for Decryption:\nPlaintext = (Ciphertext - Key Letter) mod 26"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

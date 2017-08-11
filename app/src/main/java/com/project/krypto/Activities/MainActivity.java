@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -26,9 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.krypto.Game.prologue;
+import com.project.krypto.Help.imagehelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 import com.project.krypto.act_tools.Home.HomeFrag;
-import com.project.krypto.act_tools.Sub.SubCipher2;
 import com.project.krypto.act_tools.Sub.subCipher;
 import com.project.krypto.act_tools.ioc.ioc;
 import com.project.krypto.act_tools.nGram.nGramCounter;
@@ -55,8 +57,6 @@ public class MainActivity extends AppCompatActivity
     private ioc iocFrag;
     private period periodFrag;
     private vigenere vigFrag;
-    private subCipher subFrag;
-    private SubCipher2 subFrag2;
     private transpo transpoFrag;
     private TextView username, textEmail;
     private ArrayList <Fragment> listFrags = new ArrayList<>();
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
-        toolbar.setTitle("Home");
     }
 
     @Override
@@ -160,7 +159,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
             fragment = homeFrag;
-            toolbar.setTitle("Home");
         }
         else if(id == R.id.game)
         {
@@ -187,19 +185,6 @@ public class MainActivity extends AppCompatActivity
     {
         homeFrag = new HomeFrag();
         listFrags.add(homeFrag);
-     //   nfrag = new nGramCounter();
-     //   listFrags.add(nfrag);
-        //iocFrag = new ioc();
-        //listFrags.add(iocFrag);
-       // periodFrag = new period();
-       // listFrags.add(periodFrag);
-        subFrag = new subCipher();
-        listFrags.add(subFrag);
-       // vigFrag = new vigenere();
-       // listFrags.add(vigFrag);
-        //transpoFrag = new transpo();
-       // listFrags.add(transpoFrag);
-        subFrag2 = new SubCipher2();
     }
 
     @Override
@@ -211,7 +196,6 @@ public class MainActivity extends AppCompatActivity
         Log.d("Log", "hello " + text);
        // nfrag.updateText(text);
        // iocFrag.updateText(text);
-        subFrag.updateText(text);
     }
 
     public void checkExternalStorage()
@@ -254,7 +238,30 @@ public class MainActivity extends AppCompatActivity
         }
         }
     }
+            @Override
+            public boolean onCreateOptionsMenu(Menu menu) {
+                getMenuInflater().inflate(R.menu.main, menu);
+                return true;
+            }
 
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.homehelpex:
+                        // do your sign-out stuff
+                        Intent mHelp = new Intent (this, imagehelp.class);
+                        mHelp.putExtra("HELPID", "0");
+                        startActivity(mHelp);
+                        break;
+                    default:
+                        Intent mInfo = new Intent (this,infoact.class);
+                        mInfo.putExtra("INFOID", "0");
+                        startActivity(mInfo);
+                        break;
+                    // case blocks for other MenuItems (if any)
+                }
+                return false;
+            }
     public void setStatusBar()
     {
         Window window = getWindow();

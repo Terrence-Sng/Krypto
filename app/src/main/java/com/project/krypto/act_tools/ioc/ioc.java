@@ -14,13 +14,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.Help.imagehelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 
 import java.text.DecimalFormat;
@@ -189,6 +189,9 @@ public class ioc extends AppCompatActivity {
                 // do your sign-out stuff
                 break;
             default:
+                Intent mInfo = new Intent (this, infoact.class);
+                mInfo.putExtra("INFOID", "2");
+                startActivity(mInfo);
                 break;
             // case blocks for other MenuItems (if any)
         }

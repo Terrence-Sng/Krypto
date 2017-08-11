@@ -439,9 +439,6 @@ public class SubCipher2  extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.subhelpex:
-                // do your sign-out stuff
-                break;
             default:
                 break;
             // case blocks for other MenuItems (if any)

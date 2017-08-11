@@ -9,7 +9,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    >
     <android.support.design.widget.AppBarLayout
         android:id="@+id/actionBarioc"
         android:layout_width="match_parent"
@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/previewIOC"
         android:layout_below="@+id/actionBarioc"
-        android:background="@drawable/edittextborder">
+        android:background="@drawable/edittextborder"
+        android:layout_margin="10dp">
     <TextView
         android:id="@+id/labelInput"
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:id="@+id/resultIOC"
         android:layout_below="@+id/previewIOC"
         android:background="@drawable/edittextborder"
-        android:layout_marginBottom="10dp">
+        android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/labelIOC"
@@ -80,7 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonGroupIOC"
-        android:layout_below="@+id/resultIOC">
+        android:layout_below="@+id/resultIOC"
+        android:layout_margin="10dp">
     <Button
         android:id="@+id/calioc"
         android:layout_width="wrap_content"

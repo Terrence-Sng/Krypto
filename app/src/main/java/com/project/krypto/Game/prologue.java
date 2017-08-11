@@ -31,6 +31,7 @@ public class prologue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         final MediaPlayer typing= MediaPlayer.create(this, R.raw.typewriter);
+        typing.setLooping(true);
         final MediaPlayer ring= MediaPlayer.create(this,R.raw.background);
        // ring.start();
        // ring.setLooping(true);
@@ -95,16 +96,21 @@ public class prologue extends AppCompatActivity {
             }
         };
       h = new Handler();
-      h.postDelayed(r, 2000); // will be delayed for 2 seconds
+      h.postDelayed(r, 3000); // will be delayed for 2 seconds
 
         r2 = new Runnable() {
             @Override
             public void run() {
-                typing.stop();
+                try{
+                    typing.stop();
+                }catch  (Exception e)
+                {
+
+                }
             }
         };
         h2 = new Handler();
-        h2.postDelayed(r2, 10000);
+        h.postDelayed(r2,18000);
         //stop the tying after msg is done -> need to time manually
 
         //after mission is complete then show button
@@ -122,7 +128,7 @@ public class prologue extends AppCompatActivity {
             }
         };
         h3 = new Handler();
-        h3.postDelayed(r3, 11000);
+        h.postDelayed(r3, 19000);
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +136,7 @@ public class prologue extends AppCompatActivity {
                 h2.removeCallbacksAndMessages(null);
                 h3.removeCallbacksAndMessages(null);
 
-                tw.setText("Mission" + "\n" + "\n" + "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ");
+                tw.setText("Mission" + "\n" + "\n" + "You are tasked to recover a treasure from a vault. However, the vault in deep within many levels of rooms. Each door is locked and you will have to solve a cryptography cipher in order to unlock all the doors and get to the treasure. Put what you have learnt to use! Good Luck! ");
                 start.setVisibility(View.VISIBLE);
                 if(!testForCont()){
                     cont.setVisibility(View.INVISIBLE);

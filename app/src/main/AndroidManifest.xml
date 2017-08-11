@@ -68,7 +68,9 @@
         <activity android:name=".Help.imagehelp"
             android:label="Krypto"
             android:theme="@style/AppTheme.NoActionBar"/>
-
+        <activity android:name=".Info.infoact"
+            android:label="Krypto"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--Games-->
         <activity
             android:name=".Game.GameActivity"

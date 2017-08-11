@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarinfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:gravity="center"
+                android:text="Index of Coincidence is the probability of two randomly selected letters being equal. The use of Index of Coincidence was first proposed by William F. Friedman in 1922. When decrypting a cipher –text, the value for the Index of Coincidence can be used to filter the list of ciphering methods that was used. "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:gravity="center"
+                android:text="Some values of Index of Coincidence among some language\n\n English: 0.0667\nFrench: 0.0778\nGerman: 0.0762\nSpanish: 0.0770\nItalian: 0.0738\nRussian: 0.0529"/>
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/iocformula"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

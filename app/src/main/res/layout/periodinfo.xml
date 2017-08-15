@@ -33,7 +33,6 @@
                 android:textColor="@color/Neon_Green"
                 android:gravity="center"
                 android:text="In cryptography, calculating the period would allow the user to determine how long the byte stream or the length of the keyword. For example, if the keyword is ‘ABCDABCDABCD’, the period would be 4."/>
-
         </LinearLayout>
     </ScrollView>
 

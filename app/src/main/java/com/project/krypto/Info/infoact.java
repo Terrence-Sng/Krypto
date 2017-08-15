@@ -52,9 +52,11 @@ public class infoact extends AppCompatActivity {
     {
         switch(id)
         {
-            case 0: //home
+            case 0:
+                setContentView(R.layout.homeinfo);//home
                 break;
-            case 1://ngram
+            case 1:
+                setContentView(R.layout.freqinfo);//ngram
                 break;
             case 2://ioc
                 setContentView(R.layout.iocinfo);
@@ -62,12 +64,14 @@ public class infoact extends AppCompatActivity {
             case 3://period
                 setContentView(R.layout.periodinfo);
                 break;
-            case 4://sub
+            case 4:
+                setContentView(R.layout.subinfo);
                 break;
             case 5://vig
                 setContentView(R.layout.viginfo);
                 break;
             case 6://transpo
+                setContentView(R.layout.transpoinfo);
                 break;
         }
     }

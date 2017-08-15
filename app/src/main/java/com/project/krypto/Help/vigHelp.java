@@ -44,7 +44,7 @@ public class vigHelp extends AppCompatActivity{
     String keyword;// = "CAFE";
     String msg;//= "WOLLONGONG";
      String ct;//= "YOQPQNLSPG";
-    final int choice = 0; //0=encryption 1=decryption
+    int choice = 0; //0=encryption 1=decryption
 
     private Toolbar toolbar;
 
@@ -69,6 +69,13 @@ public class vigHelp extends AppCompatActivity{
         keyword = getIntent().getStringExtra("KEY").toUpperCase();
         msg = getIntent().getStringExtra("CIPHER").toUpperCase();
         ct = getIntent().getStringExtra("RESULT").toUpperCase();
+        try{
+            choice = Integer.parseInt(getIntent().getStringExtra("TYPE"));
+        }catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println(choice);
 
         tview = (TextView) findViewById(R.id.tview);
         tvfinal = (TextView) findViewById(R.id.tvfinal);
@@ -138,11 +145,11 @@ public class vigHelp extends AppCompatActivity{
 
 
         //display the key and the input text
-        tview.setText("Key:  " + "\t" + fullkey + "\n" + "Text: " + "\t" + msg);
+        tview.setText("Key:  \n" + "\t" + fullkey + "\n\n" + "Text: \n" + "\t" + msg);
 
         //display result in tvfinal
         if (choice == 0) {
-            tvfinal.setText("CipherText: ");
+            tvfinal.setText("CipherText: \n\n");
         }else{
             tvfinal.setText("PlainText: ");
         }
@@ -189,64 +196,61 @@ public class vigHelp extends AppCompatActivity{
                     builder.show();
                 } else {
 
-                    String top = Character.toString(keywordtest.charAt(0));
-                    String left = Character.toString(msgtest.charAt(0));
-                    String ct = Character.toString(cttest.charAt(0));
-
-                    //highlight left to right
-                    for (int i = 0; i < 26; i++) {
-                        TextView tv = (TextView) row[i].getChildAt(0);
-                        String text = tv.getText().toString();
-                        if (text.equals(left)) {
-                            tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                            //tv.setTextColor(getResources().getColor(R.color.Black));
-                            for (int j = 0; j < 26; j++) {
-                                TextView tv2 = (TextView) row[i].getChildAt(j);
-                                String text2 = tv2.getText().toString();
-                                if (!text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                              //      tv2.setTextColor(getResources().getColor(R.color.Black));
-                                } else if (text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                               //     tv2.setTextColor(getResources().getColor(R.color.Black));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    //highlight top to down
-                    for (int i = 0; i < 26; i++) {
-                        TextView tv = (TextView) tr1.getChildAt(i);
-                        String text = tv.getText().toString();
-                        if (text.equals(top)) {
-                            tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                           // tv.setTextColor(getResources().getColor(R.color.Black));
-                            for (int j = 0; j < 26; j++) {
-                                TextView tv2 = (TextView) row[j].getChildAt(i);
-                                String text2 = tv2.getText().toString();
-                                if (!text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                                 //   tv2.setTextColor(getResources().getColor(R.color.Black));
-                                } else if (text2.equals(ct)) {
-                                    tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
-                                 //   tv2.setTextColor(getResources().getColor(R.color.Black));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    keywordtest = keywordtest.substring(1);
-                    msgtest = msgtest.substring(1);
-                    cttest = cttest.substring(1);
-                    keytv.setText(keywordtest);
-                    msgtv.setText(msgtest);
-                    cttv.setText(cttest);
-
                     //execute depends on encryption or decryption
                     if (choice == 0)
                     {
+                        String top = Character.toString(keywordtest.charAt(0));
+                        String left = Character.toString(msgtest.charAt(0));
+                        String ct = Character.toString(cttest.charAt(0));
+
+
+                        //highlight left to right
+                        for (int i = 0; i < 26; i++) {
+                            TextView tv = (TextView) row[i].getChildAt(0);
+                            String text = tv.getText().toString();
+                            if (text.equals(left)) {
+                                tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+
+                                for (int j = 0; j < 26; j++) {
+                                    TextView tv2 = (TextView) row[i].getChildAt(j);
+                                    String text2 = tv2.getText().toString();
+                                    if (!text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                    } else if (text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        //highlight top to down
+                        for (int i = 0; i < 26; i++) {
+                            TextView tv = (TextView) tr1.getChildAt(i);
+                            String text = tv.getText().toString();
+                            if (text.equals(top)) {
+                                tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+
+                                for (int j = 0; j < 26; j++) {
+                                    TextView tv2 = (TextView) row[j].getChildAt(i);
+                                    String text2 = tv2.getText().toString();
+                                    if (!text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                    } else if (text2.equals(ct)) {
+                                        tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        keywordtest = keywordtest.substring(1);
+                        msgtest = msgtest.substring(1);
+                        cttest = cttest.substring(1);
+                        keytv.setText(keywordtest);
+                        msgtv.setText(msgtest);
+                        cttv.setText(cttest);
+
                         tvshow.setText(ct);
                         tvshow.bringToFront();
                         tvshow.setVisibility(View.VISIBLE);
@@ -269,6 +273,60 @@ public class vigHelp extends AppCompatActivity{
 
                     else if (choice == 1)
                     {
+                        String top = Character.toString(keywordtest.charAt(0));
+                        String left = Character.toString(cttest.charAt(0));
+                        String ct = Character.toString(msgtest.charAt(0));
+
+
+                        //highlight left to right
+                        for (int i = 0; i < 26; i++) {
+                            TextView tv = (TextView) row[i].getChildAt(0);
+                            String text = tv.getText().toString();
+                            if (text.equals(left)) {
+                                tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+
+                                for (int j = 0; j < 26; j++) {
+                                    TextView tv2 = (TextView) row[i].getChildAt(j);
+                                    String text2 = tv2.getText().toString();
+                                    if (!text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                    } else if (text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        //highlight top to down
+                        for (int i = 0; i < 26; i++) {
+                            TextView tv = (TextView) tr1.getChildAt(i);
+                            String text = tv.getText().toString();
+                            if (text.equals(top)) {
+                                tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+
+                                for (int j = 0; j < 26; j++) {
+                                    TextView tv2 = (TextView) row[j].getChildAt(i);
+                                    String text2 = tv2.getText().toString();
+                                    if (!text2.equals(ct)) {
+                                        tv2.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                    } else if (text2.equals(ct)) {
+                                        tv.setBackgroundColor(getResources().getColor(R.color.violetedpink));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        keywordtest = keywordtest.substring(1);
+                        msgtest = msgtest.substring(1);
+                        cttest = cttest.substring(1);
+                        keytv.setText(keywordtest);
+                        msgtv.setText(msgtest);
+                        cttv.setText(cttest);
+
+
+
                         tvshow.setText(left);
                         tvshow.bringToFront();
                         tvshow.setVisibility(View.VISIBLE);

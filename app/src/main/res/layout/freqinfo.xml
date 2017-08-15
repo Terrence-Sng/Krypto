@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarinfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:text="Ciphers made from olden cipher methods are insecure against Statistical Cryptanalysis. Statistical Analysis relies on the relationship between the statistical properties of the plain text and the statistical properties of the ciphertext.\n\nFrequency counting is an example of statistical analysis\n"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:text="Letters of the english language can be grouped according to the frequency that they occur."
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/letterfreq"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:text="We can also apply that to nGrams of the english language."/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:src="@drawable/ngramsfreq"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:text="By using the above information, we could compare it against the typical distribution of letters in the english languagae."
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/freqgraph"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarinfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:text="\nENCRYPTION"
+            android:textSize="20dp"
+            android:textColor="@color/Neon_Green"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="\nPlaintext = COMPUTER SECURITY\nBlock Size = 5\n"
+            android:textColor="@color/Neon_Green"
+            android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="For encryption, block size = no. of columns (i.e block size 5 = 5 columns)\n\nAny missing space in the matrix is filled in by 'x' or any other character"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/transpo"
+                android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/Neon_Green"
+            android:layout_margin="10dp"
+            android:text="Read off by column, thus \noutput ciphertext = CTCY OEUX MRRX PSIX UETX"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:textAlignment="center"
+                android:text="\nDECRYPTION"
+                android:textSize="20dp"
+                android:layout_margin="10dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"
+                android:text="\nCipher = CTCY OEUX MRRX PSIX UETX\nBlock Size = 5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="For decryption, block size = no. of rows (i.e block size 5 = 5 rows)\n\nWe do not need to add in extra alphabets here as most likely ciphertext obtain from Tranposition Cipher has already been manipulated \n"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/transpodec"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/Neon_Green"
+                android:layout_margin="10dp"
+                android:text="Read off by column, thus \noutput plaintext = COMPU TERSE CURIT YXXX = COMPUTER SECURITYXXX"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

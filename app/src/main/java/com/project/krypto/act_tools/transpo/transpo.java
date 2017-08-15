@@ -22,7 +22,8 @@ import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
-import com.project.krypto.Help.helpmenu;
+import com.project.krypto.Help.transpohelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class transpo extends AppCompatActivity {
     private TextInputLayout blksizelayout;
     private TextView mtext, outputview, keyview;
     private  EditText mEdit2;
-    private String cipherFromGame, cipherfromhome,keyfromhome, type, mastercipher, masterkey;
+    private String cipherFromGame, cipherfromhome,keyfromhome, type, mastercipher, masterkey, helptype;
     private String level;
     private boolean fromGame;
     private Button back,help;
@@ -134,10 +135,10 @@ public class transpo extends AppCompatActivity {
                }
 
 
-                Intent mIntent = new Intent (getBaseContext(), helpmenu.class);
+                Intent mIntent = new Intent (getBaseContext(), transpohelp.class);
                 mIntent.putExtra("CIPHER", mastercipher);
                 mIntent.putExtra("KEY",masterkey);
-                mIntent.putExtra("TYPECIPHER", "T");
+                mIntent.putExtra("TYPE", helptype);
                 startActivity(mIntent);
             }
         });
@@ -184,6 +185,7 @@ public class transpo extends AppCompatActivity {
             encrypt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    helptype = 0+"";
                     String message = mtext.getText().toString();
                     String size = mEdit2.getText().toString();
                     mEdit2.addTextChangedListener(new MyTextWatcher(mEdit2));
@@ -230,6 +232,7 @@ public class transpo extends AppCompatActivity {
             decrypt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    helptype = 1+"";
                     String message = mtext.getText().toString();
                     String size = mEdit2.getText().toString();
                     mEdit2.addTextChangedListener(new MyTextWatcher(mEdit2));
@@ -277,7 +280,7 @@ public class transpo extends AppCompatActivity {
             if(type.equals("0")) // enc
             {
                 String message = cipherfromhome;
-
+                helptype = type;
                 int blksize = Integer.parseInt(keyfromhome);
                 mtext.setText(cipherfromhome);
                 keyview.setText(blksize + "");
@@ -291,7 +294,7 @@ public class transpo extends AppCompatActivity {
                 int blksize = Integer.parseInt(keyfromhome);
                 mtext.setText(cipherfromhome);
                 keyview.setText(blksize + "");
-
+                helptype = type;
                 outputview.setText("");
                 dec(message, blksize, outputview);
             }
@@ -488,6 +491,9 @@ public class transpo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             default:
+                Intent mInfo = new Intent (this,infoact.class);
+                mInfo.putExtra("INFOID", "6");
+                startActivity(mInfo);
                 break;
             // case blocks for other MenuItems (if any)
         }

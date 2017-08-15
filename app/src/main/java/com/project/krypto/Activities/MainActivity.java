@@ -2,10 +2,8 @@ package com.project.krypto.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,31 +22,25 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.krypto.Game.prologue;
 import com.project.krypto.Help.imagehelp;
 import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 import com.project.krypto.act_tools.Home.HomeFrag;
-import com.project.krypto.act_tools.Sub.subCipher;
 import com.project.krypto.act_tools.ioc.ioc;
 import com.project.krypto.act_tools.nGram.nGramCounter;
 import com.project.krypto.act_tools.period.period;
 import com.project.krypto.act_tools.transpo.transpo;
 import com.project.krypto.act_tools.vingere.vigenere;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 //import com.example.panda.krypto.Interfaces.fragmentInterfaces;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener,
-        subCipher.OnFragmentInteractionListener
-        {//, fragmentInterfaces {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFrag.OnFragmentInteractionListener
+        {
 
     private Toolbar toolbar;
     private ExpandableListView expandableList;
@@ -60,14 +52,11 @@ public class MainActivity extends AppCompatActivity
     private transpo transpoFrag;
     private TextView username, textEmail;
     private ArrayList <Fragment> listFrags = new ArrayList<>();
-    private static final String PREF_FILE = "MyPrefsFile"; // Name of prefs file; don't change this after it's saved something
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences settings = getSharedPreferences(PREF_FILE, 0);
-        boolean firstRun = settings.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Krypto");
@@ -76,7 +65,6 @@ public class MainActivity extends AppCompatActivity
         setStatusBar();
 
         initFrags();
-        checkExternalStorage();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //expandableList = (ExpandableListView) findViewById(R.id.navsubmenu);
@@ -119,14 +107,6 @@ public class MainActivity extends AppCompatActivity
         username.setTextColor(getResources().getColor(R.color.Dark_Green));
         textEmail = (TextView) headerView.findViewById(R.id.userEmail);
         textEmail.setTextColor(getResources().getColor(R.color.Dark_Green));
-        // initUserSession();
-
-        if (firstRun) {
-            Log.w("activity", "first time");
-            SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
-            editor.putBoolean("firstRun", false); // It is no longer the first run
-            editor.commit(); // Save all changed settings
-        }
 
     }
 
@@ -176,10 +156,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void onDestory()
-    {
-        super.onDestroy();
-    }
 
     public void initFrags()
     {
@@ -198,70 +174,31 @@ public class MainActivity extends AppCompatActivity
        // iocFrag.updateText(text);
     }
 
-    public void checkExternalStorage()
-    {
-        boolean mExternalStorageAvailable = false;
-        boolean mExternalStorageWriteable = false;
-        String state = Environment.getExternalStorageState();
-
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            // We can read and write the media
-            mExternalStorageAvailable = mExternalStorageWriteable = true;
-            Log.d("Log" , "External Storage Available");
-        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            // We can only read the media
-            mExternalStorageAvailable = true;
-            mExternalStorageWriteable = false;
-            Log.d("Log" , "External Storage Available cannot write");
-        } else {
-            // Something else is wrong. It may be one of many other states, but all we need
-            //  to know is we can neither read nor write
-            mExternalStorageAvailable = mExternalStorageWriteable = false;
-            Log.d("Log" , "External Storage not Available");
-        }
-
-        if(mExternalStorageAvailable == true && mExternalStorageWriteable == true) {
-            try {
-                File newFile = new File(Environment.getExternalStorageDirectory(), "Cipher");
-                if (!newFile.exists()) {
-                    newFile.mkdirs();
-                }
-                File notes = new File(newFile, "cipher1");
-                FileWriter fw = new FileWriter(notes);
-                fw.append("hello");
-                fw.flush();
-                fw.close();
-                Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
-            } catch (IOException e)
-            {
-                Log.d("Saving issues", "cannot save");
-        }
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
-            @Override
-            public boolean onCreateOptionsMenu(Menu menu) {
-                getMenuInflater().inflate(R.menu.main, menu);
-                return true;
-            }
 
-            @Override
-            public boolean onOptionsItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.homehelpex:
-                        // do your sign-out stuff
-                        Intent mHelp = new Intent (this, imagehelp.class);
-                        mHelp.putExtra("HELPID", "0");
-                        startActivity(mHelp);
-                        break;
-                    default:
-                        Intent mInfo = new Intent (this,infoact.class);
-                        mInfo.putExtra("INFOID", "0");
-                        startActivity(mInfo);
-                        break;
-                    // case blocks for other MenuItems (if any)
-                }
-                return false;
-            }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.homehelpex:
+                // do your sign-out stuff
+                Intent mHelp = new Intent (this, imagehelp.class);
+                mHelp.putExtra("HELPID", "0");
+                startActivity(mHelp);
+                break;
+            default:
+                Intent mInfo = new Intent (this,infoact.class);
+                mInfo.putExtra("INFOID", "0");
+                startActivity(mInfo);
+                break;
+            // case blocks for other MenuItems (if any)
+        }
+        return false;
+    }
+
     public void setStatusBar()
     {
         Window window = getWindow();

@@ -26,6 +26,7 @@ import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
 import com.project.krypto.Help.imagehelp;
+import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
 
 import java.util.ArrayList;
@@ -309,6 +310,9 @@ public class nGramCounter extends AppCompatActivity {
                 // do your sign-out stuff
                 break;
             default:
+                Intent mInfo = new Intent (this, infoact.class);
+                mInfo.putExtra("INFOID", "1");
+                startActivity(mInfo);
                 break;
             // case blocks for other MenuItems (if any)
         }

@@ -24,7 +24,6 @@ import com.project.krypto.Game.GameActivity;
 import com.project.krypto.Game.finallvl;
 import com.project.krypto.Game.transpolvl;
 import com.project.krypto.Game.viglvl;
-import com.project.krypto.Help.helpmenu;
 import com.project.krypto.Help.vigHelp;
 import com.project.krypto.Info.infoact;
 import com.project.krypto.R;
@@ -45,7 +44,7 @@ public class vigenere extends AppCompatActivity {
     private static Button help;
     private static Button reset,back,share;
     private static TextView displayResult;
-    private String mastercipher;
+    private String masterresult,mastercipher;
     private String cipherFromGame;
     private String level;
     private boolean fromGame;
@@ -103,15 +102,7 @@ public class vigenere extends AppCompatActivity {
        help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tempcipher = mastercipher;
-                if(mastercipher.length() > 20)
-                {
-                    tempcipher = mastercipher.substring(0,20);
-                }
-                else
-                {
-                    tempcipher = mastercipher;
-                }
+
 
                 if(key.trim().isEmpty())
                 {
@@ -120,20 +111,22 @@ public class vigenere extends AppCompatActivity {
                     return;
                 }
                 if(fromGame == true) {
-                    Intent mIntent = new Intent(getBaseContext(), helpmenu.class);
-                    mIntent.putExtra("CIPHER", tempcipher);
+                    Intent mIntent = new Intent(getBaseContext(), vigHelp.class);
+                    mIntent.putExtra("CIPHER", mastercipher);
                     mIntent.putExtra("KEY", key);
-                    mIntent.putExtra("RESULT", displayResult.getText().toString());
+                    mIntent.putExtra("RESULT", masterresult);
+                    mIntent.putExtra("TYPE", type+"");
                     mIntent.putExtra("TYPECIPHER", "V");
                     startActivity(mIntent);
                 }
                 else
                 {
                     Intent mIntent = new Intent(getBaseContext(), vigHelp.class);
-                    mIntent.putExtra("CIPHER", tempcipher);
+                    mIntent.putExtra("CIPHER",mastercipher);
                     mIntent.putExtra("KEY", key);
-                    mIntent.putExtra("RESULT", displayResult.getText().toString());
+                    mIntent.putExtra("RESULT", masterresult);
                     mIntent.putExtra("TYPECIPHER", "V");
+                    mIntent.putExtra("TYPE", type+"");
                     startActivity(mIntent);
                 }
             }
@@ -176,7 +169,7 @@ public class vigenere extends AppCompatActivity {
             level = getIntent().getStringExtra("LEVEL");
             cipherFromGame = getIntent().getStringExtra("GAMECIPHER");
             help.setVisibility(View.INVISIBLE);
-            mastercipher=cipherFromGame;
+            masterresult =cipherFromGame;
 
             gamecipheroutput_input.setText(cipherFromGame);
             editKey.setVisibility(View.VISIBLE);
@@ -195,6 +188,7 @@ public class vigenere extends AppCompatActivity {
 
             encrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    type = 0+"";
                     displayResult.setText("");
                     key = editKey.getText().toString();
                     editKey.addTextChangedListener(new MyTextWatcher(editKey));
@@ -244,12 +238,14 @@ public class vigenere extends AppCompatActivity {
                         //displayResult.setText(msg);
                         displayResult.setText(tempcipher);
                         help.setVisibility(View.VISIBLE);
+                        masterresult = tempcipher;
                     }
                 }
             });
 
             decrypt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    type = 1 + "";
                     displayResult.setText("");
                     //editKey = (EditText) view.findViewById(R.id.inputkey);
                     key = editKey.getText().toString();
@@ -273,7 +269,7 @@ public class vigenere extends AppCompatActivity {
                     {
                         msg = msg.replaceAll("[^A-Za-z]+", "");
                         msg = msg.toLowerCase();
-                        mastercipher=msg;
+                        mastercipher =msg;
                         String plaintext = "";
 
                         String tempplaintext = "";
@@ -302,6 +298,7 @@ public class vigenere extends AppCompatActivity {
                         displayResult.setMovementMethod(new ScrollingMovementMethod());
                         displayResult.setText(tempplaintext);
                         help.setVisibility(View.VISIBLE);
+                        masterresult = tempplaintext;
                     }
                 }
             });
@@ -361,6 +358,7 @@ public class vigenere extends AppCompatActivity {
                 displayResult.setMovementMethod(new ScrollingMovementMethod());
                 //displayResult.setText(msg);
                 displayResult.setText(tempcipher);
+                masterresult = tempcipher;
             }
             else
             {
@@ -402,6 +400,7 @@ public class vigenere extends AppCompatActivity {
                 }
                 displayResult.setMovementMethod(new ScrollingMovementMethod());
                 displayResult.setText(tempplaintext);
+                masterresult  = tempplaintext;
             }
 
         }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/actionBarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarinfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textColor="@color/Neon_Green"
+                android:text="\nSubstitution Cipher is an encoding method where the plaintext are substituted wiht ciphertext accroding to a fixed system.(e.g keyword)\n"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:text="Key Creation"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:text="
+Plaintext to be encrypted = 'This is substitution cipher'
+Keyword = 'Bombay'
+
+After removing repeating characters, keyword will become = 'BOMAY'
+
+Using keyword 'bomay', a key string for all A to Z is constructed
+key string = 'BOMAY' + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' = 'BOMAYABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+After removing repeating characters, key string will become = 'BOMAYCDEFGHIJKLNPQRSTUVWXZ'
+
+Therefore, we can see the relationship of plaintext and ciphertext as below"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/sub"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:text="Encryption"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="To encrypt, we replace the plaintext with the key. Thus, after replacing 'T' with 'S', and 'H' with 'E', and 'I' with 'F', and so on.\n\nEncrypted text = 'SEFR FR RTORSFSTSFLK MFNEYQ'"
+                android:textColor="@color/Neon_Green"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:text="Decryption"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textColor="@color/Neon_Green"
+                android:text="
+To decrypt, we replace letters in the ciphertext with the substituted letters. Thus, after replacing 'S' with 'T', and 'E' with 'H', and 'F' with 'I', and so on.\n
+Decrypted text = 'THIS IS SUBSTITUTION CIPHER'
+"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

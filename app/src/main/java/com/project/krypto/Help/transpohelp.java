@@ -27,12 +27,14 @@ public class transpohelp extends AppCompatActivity {
     ArrayList<String> outputct;
     LinearLayout textcontainer, rl;
     Button next, previous, reset;
+    TextView endresult;
 
     Animation animate;
-    String pt, message, enc_dec;
+    String pt, message, enc_dec,end_result_str;
     int blocksize;
     double rows, cols;
-    int counter;
+    int counter, counter_show_end_result;
+    boolean ended;
 
     private Toolbar toolbar;
 
@@ -64,7 +66,7 @@ public class transpohelp extends AppCompatActivity {
         blocksizetv.setText(blocksize+"");
         textcontainer = (LinearLayout) findViewById(R.id.textContainer);
         rl = (LinearLayout)findViewById(R.id.outputlayout);
-
+        endresult = (TextView) findViewById(R.id.endresultstranspohelp);
        if(enc_dec.equals("0"))//enc
        {
            counter =0;
@@ -97,10 +99,11 @@ public class transpohelp extends AppCompatActivity {
                    animate.reset();
                    System.out.println(counter);
                    if (counter >= textList.size()) {
+                       endresult.setText(end_result_str);
                        AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
                        builder.setCancelable(true);
                        builder.setTitle("Done!");
-                       builder.setMessage("Decryption is done!");
+                       builder.setMessage("Encryption is done!");
                        builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                            @Override
                            public void onClick(DialogInterface dialogInterface, int i) {
@@ -115,7 +118,7 @@ public class transpohelp extends AppCompatActivity {
                            textList.get(0).clearAnimation();
                        }else
                        {
-                           textList.get(counter).clearAnimation();}
+                       textList.get(counter).clearAnimation();}
                        textcontainer.addView(textList.get(counter));
                        textList.get(counter).startAnimation(animate);
                        rl.addView(rltxView.get(counter));
@@ -141,6 +144,7 @@ public class transpohelp extends AppCompatActivity {
                        }
                    });
                    builder.show();
+                   endresult.setText("");
                    counter =0;
                    textcontainer.removeAllViews();
                    rl.removeAllViews();
@@ -164,6 +168,7 @@ public class transpohelp extends AppCompatActivity {
                        builder.show();
                        return;
                    } else {
+                       endresult.setText("");
                        --counter;
                        textList.get(counter).clearAnimation();
                        textcontainer.removeView(textList.get(counter));
@@ -203,6 +208,7 @@ public class transpohelp extends AppCompatActivity {
                         animate.reset();
                         System.out.println(counter);
                         if (counter >= textList.size()) {
+                            endresult.setText(end_result_str);
                             AlertDialog.Builder builder = new AlertDialog.Builder(transpohelp.this);
                             builder.setCancelable(true);
                             builder.setTitle("Done!");
@@ -247,6 +253,7 @@ public class transpohelp extends AppCompatActivity {
                        }
                    });
                    builder.show();
+                   endresult.setText("");
                    counter=0;
                    textcontainer.removeAllViews();
                    rl.removeAllViews();
@@ -271,6 +278,7 @@ public class transpohelp extends AppCompatActivity {
                             return;
                         } else {
                             --counter;
+                            endresult.setText("");
                             textList.get(counter).clearAnimation();
                             textcontainer.removeView(textList.get(counter));
                             rltxView.get(counter).clearAnimation();
@@ -337,6 +345,7 @@ public class transpohelp extends AppCompatActivity {
             textID.add(i);
         }
 
+        end_result_str = "";
         rltxView = new ArrayList<TextView>();
         for (int i = 0; i < cols; i++) {
             TextView tx = new TextView(getApplicationContext());
@@ -345,6 +354,7 @@ public class transpohelp extends AppCompatActivity {
             tx.setTextColor(getResources().getColor(R.color.Neon_Green));
             tx.setTextSize(14);
             rltxView.add(tx);
+            end_result_str += outputct.get(i);
         }
     }
     public void dec (String message, int blksize)
@@ -406,6 +416,7 @@ public class transpohelp extends AppCompatActivity {
             textID.add(i);
         }
 
+        end_result_str = "";
         rltxView = new ArrayList<TextView>();
         for (int i = 0; i < cols; i++) {
             TextView tx = new TextView(getApplicationContext());
@@ -414,6 +425,7 @@ public class transpohelp extends AppCompatActivity {
             tx.setTextColor(getResources().getColor(R.color.Neon_Green));
             tx.setTextSize(14);
             rltxView.add(tx);
+            end_result_str += outputct.get(i);
         }
     }
 

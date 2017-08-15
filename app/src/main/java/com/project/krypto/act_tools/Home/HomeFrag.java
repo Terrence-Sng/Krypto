@@ -277,10 +277,8 @@ public class HomeFrag extends Fragment {
         go.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //String choice = dropdown.getSelectedItem().toString(); //encrypt or decrypt --> so if encrypt run the encryption algo at the cipher page, same for decryption
                 cipher = input.getText().toString().replaceAll("[^A-Za-z]+","");
                 String keyword = inputkey.getText().toString();//
-                //Toast.makeText(getContext(), keyword, Toast.LENGTH_SHORT).show();
 
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -343,9 +341,8 @@ public class HomeFrag extends Fragment {
                 }
                 else {
                     //get cipher choice
-
                     String cipherchoice = radiochoice.getText().toString();
-                    if (cipherchoice.equals("Subsitution")) {
+                    if (cipherchoice.equals("Substitution")) {
                         //pass values and go to sub
                         keyword.replaceAll("[^A-Za-z]+","");
                         Pattern p = Pattern.compile("[^A-Za-z]");

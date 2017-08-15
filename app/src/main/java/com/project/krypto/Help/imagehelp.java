@@ -1,11 +1,9 @@
 package com.project.krypto.Help;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
@@ -59,15 +57,18 @@ public class imagehelp extends AppCompatActivity {
         if (toolhelp == 0)
         {
             //for Home
-            int[] images = new int[]{R.drawable.home1, R.drawable.home2, R.drawable.home3,R.drawable.home4,R.drawable.home5};
+            int[] images = new int[]{R.drawable.home1, R.drawable.home2, R.drawable.home3,R.drawable.home4,R.drawable.home5,R.drawable.home6,R.drawable.home7,R.drawable.home8,R.drawable.home9};
             String[] des = new String[] {
                     "Step 1:" + "\n" + "Enter desired text in the 'Enter text here' field ",
                     "Step 2:" + "\n" + "Select one function from the dropdown list ",
-                    "Step 3:" + "\n" + "If 'Analysis' is selected, tap on one of the analysis tool button to go to the respective tool",
-                    "Step 4:" + "\n" + "If 'Encrypt' is selected, choose the cipher that is needed and enter the keyword or block size(if transposition is selected)' ",
-                    "Step 5:" + "\n" + "If 'Decrypt' is selected, choose the cipher that is needed and enter the keyword or block size(if transposition is selected)' ",
+                    "If 'Analysis' is selected, tap on one of the analysis tool button to go to the respective tool",
+                    "If 'Encrypt' is selected, choose the cipher that is needed and enter the keyword or block size(if transposition is selected)' ",
+                    "If 'Decrypt' is selected, choose the cipher that is needed and enter the keyword or block size(if transposition is selected)' ",
+                    "In the various ciphers, tap on 'How its done?' to view the progress. Tapping on the 'Share' button allows you to share the result through various messaging app. ",
+                    "Tapping on the '?' opens up a help instruction, slide the image to view the steps. Tapping on the 'i' brings out information of the respective tools and ciphers.",
+                    "To go to the game, tap on the 'Practice it!' in the menu bar",
+                    "Use the various tools and cipher to solve the puzzle in the game"
             };
-
             viewPager = (ViewPager)findViewById(R.id.viewPager);
             adapter = new ViewPagerAdapter(imagehelp.this,images,des);
             viewPager.setAdapter(adapter);

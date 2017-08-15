@@ -138,7 +138,7 @@ public class finallvl extends Activity {
             public void onClick(View view) {
 
                 String Plaintext = answer.getText().toString();
-                if (Plaintext.matches("open") && submit.isPressed()) {
+                if (Plaintext.matches("finaldoor") && submit.isPressed()) {
                     //opendoor.start();
                     //btnTest.setImageResource(R.drawable.door1);
                     editor.putInt(getString(R.string.high_score), 4);

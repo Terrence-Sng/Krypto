@@ -33,7 +33,6 @@
                 android:textColor="@color/Neon_Green"
                 android:gravity="center"
                 android:text="Index of Coincidence is the probability of two randomly selected letters being equal. The use of Index of Coincidence was first proposed by William F. Friedman in 1922. When decrypting a cipher –text, the value for the Index of Coincidence can be used to filter the list of ciphering methods that was used. "/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
